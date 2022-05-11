@@ -537,8 +537,13 @@ for ($nombre_de_ligne = 1 ; $nombre_de_ligne &gt= 100; $nombre_de_ligne++)      
         <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4238931-les-tableaux#/id/r-4239146" target="_blank">
             La boucle Foreach</a></h2>
 
+            <p><a href="https://www.php.net/manual/fr/control-structures.foreach.php" target="blank">Description ici</a></p>
             <p>
                 <code class="line_code">foreach</code> va passer en revue chaque ligne du tableau, et lors de chaque passage, elle va mettre la valeur de cette ligne dans une variable temporaire (par exemple <code class="line_code">$element</code>).
+            </p>
+
+            <p>
+            La structure de langage <code class="line_code">foreach</code> fournit une façon simple de parcourir des tableaux. <code class="line_code">foreach</code> ne fonctionne que pour les tableaux et les objets, et émettra une erreur si vous tentez de l'utiliser sur une variable de type différent ou une variable non initialisée. Il existe deux syntaxes : 
             </p>
 
             <figure class="block_code">
@@ -546,7 +551,7 @@ for ($nombre_de_ligne = 1 ; $nombre_de_ligne &gt= 100; $nombre_de_ligne++)      
 &lt?php
     $prenoms = array ('François', 'michel', 'Nicole');
     
-    foreach ($renoms as $element)
+    foreach ($prenoms as $element)
     {
         echo $element. &ltbr /&gt   // affichera $prenoms[0], $prenoms[1] etc.
     }
@@ -557,7 +562,7 @@ for ($nombre_de_ligne = 1 ; $nombre_de_ligne &gt= 100; $nombre_de_ligne++)      
         'adresse' =&gt '3 Rue du Paradis',
         'Ville' =&gt 'Marseille');
 
-    foreach ($renoms as $element)
+    foreach ($prenoms as $element)
     {
         echo $element. &ltbr /&gt   
     }
@@ -856,7 +861,7 @@ for ($nombre_de_ligne = 1 ; $nombre_de_ligne &gt= 100; $nombre_de_ligne++)      
             <img scr="../images/215760.png" alt="schéma formulaire" />
         </figure>
         <p>
-            <em>Remarquez qu'en théorie rien n'empêche le formulaire de s'appeler lui-même. Il suffirait d'écrireaction="formulaire.php". Dans ce cas, la page du formulaire doit être capable aussi bien d'afficher le formulaire que de traiter les données.</em>
+            <div class="em">Remarquez qu'en théorie rien n'empêche le formulaire de s'appeler lui-même. Il suffirait d'écrire <code class="line_code">action="formulaire.php"</code>. Dans ce cas, la page du formulaire doit être capable aussi bien d'afficher le formulaire que de traiter les données.</div>
         </p>
         <p>
             Je vais ici tous les énumérer et vous montrer comment vous servir de chacun d'eux dans la page <code class="line_code">cible.php</code> qui fera le traitement. Vous allez voir, c'est vraiment très simple : au lieu de recevoir un array <code class="line_code">$_GET</code>, vous allez recevoir un array <code class="line_code">$_POST</code> contenant les données du formulaire !
@@ -864,6 +869,13 @@ for ($nombre_de_ligne = 1 ; $nombre_de_ligne &gt= 100; $nombre_de_ligne++)      
         <p>
             PHP viendra stocker la valeur saisie ou sélectionnée dans la variable <code class="line_code">$_POST['valeur_de_name']</code> car pour rappel, la balise <code class="line_code">input</code> qui permet de remplir un formulaire a un attribut <code class="line_code">name</code> qui va définir le nom de la variable qui sera créée dans <code class="line_code">name</code>cible.php</p>. . <code class="line_code">&ltinput type="text" name="pseudo" /&gt.</code>
         </p>
+
+        <img src="../images/124553.png" alt="code d'une page cible submit" />
+
+        <p>
+        La fonction <code class="line_code">isset()</code> teste si une variable existe. Nous allons nous en servir pour afficher un message spécifique, dans le cas où le nom ou le prénom serait absent.
+        </p>
+
 
         <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913099-transmettez-des-donnees-avec-les-formulaires#/id/r-2174019" target="_blank">Pour un liste déroulante</a></h2>
 
@@ -884,7 +896,7 @@ for ($nombre_de_ligne = 1 ; $nombre_de_ligne &gt= 100; $nombre_de_ligne++)      
         </figure>
 
             <p>
-                Ici, une variable <code class="line_code">$_POST['choix']</code> sera créée, et elle contiendra le choix qu'a fait l'utilisateur. S'il a choisi « France », la variable <code class="line_code">$_POST['choix']</code> sera égale au <code class="line_code">value</code> correspondant, c'est-à-dire <code class="line_code">france</code>.
+                Ici, une variable <code class="line_code">$_POST['pays']</code> sera créée, et elle contiendra le choix qu'a fait l'utilisateur. S'il a choisi « France », la variable <code class="line_code">$_POST['pays']</code> sera égale au <code class="line_code">value</code> correspondant, c'est-à-dire <code class="line_code">france</code>.
             </p>
 
         <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913099-transmettez-des-donnees-avec-les-formulaires#/id/r-2174036" target="_blank">Les cases à cocher</a></h2>
@@ -903,6 +915,24 @@ for ($nombre_de_ligne = 1 ; $nombre_de_ligne &gt= 100; $nombre_de_ligne++)      
                 </ul>
             </p>
 
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913099-administrez-des-formulaires-de-facon-securisee#/id/r-912979" target="_blank">La faille XSS (Recevoir du HTML)</a></h2>
+
+        <p>
+            C'est une technique qui consiste à injecter du code HTML contenant du JavaScript dans vos pages, pour le faire exécuter à vos visiteurs.
+        </p>
+        <p>
+            Pour ignorer le code HTML, il suffit d'utiliser la fonction <code class="line_code">htmlspecialchars</code> Elle va transformer les chevrons des balises HTML <code class="line_code">&lt</code> et <code class="line_code">&gt</code> en &lt;  et &gt;  
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+&ltp&gt&ltb&gtMessage&lt/b&gt : &lt?php echo htmlspecialchars($_POST['message']); ?&gt&lt/p&gt
+                </code></pre>
+        </figure>
+
+
+
+
         <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913099-transmettez-des-donnees-avec-les-formulaires#/id/r-913098" target="_blank">
         L'envoi de fichier</a></h1>
 
@@ -910,7 +940,7 @@ for ($nombre_de_ligne = 1 ; $nombre_de_ligne &gt= 100; $nombre_de_ligne++)      
             Vous aurez besoin de lire cette section si vous voulez que vos visiteurs puissent envoyer (on dit aussi uploader) des images, des programmes ou tout autre type de fichier sur votre site.
         </p>
 
-        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913099-transmettez-des-donnees-avec-les-formulaires#/id/r-2174135" target="_blank">
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7360266-activez-le-partage-de-fichiers#/id/r-7360478" target="_blank">
             Le formulaire d'envoi de fichier</a></h2>
 
             <p>
@@ -933,7 +963,7 @@ for ($nombre_de_ligne = 1 ; $nombre_de_ligne &gt= 100; $nombre_de_ligne++)      
                 </code></pre>
             </figure>
 
-        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913099-transmettez-des-donnees-avec-les-formulaires#/id/r-2174219" target="_blank">
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7360266-activez-le-partage-de-fichiers#/id/r-7360383" target="_blank">
             Le traitement de l'envoi en PHP</a></h2>
 
             <p>
@@ -976,7 +1006,7 @@ for ($nombre_de_ligne = 1 ; $nombre_de_ligne &gt= 100; $nombre_de_ligne++)      
                         <td>Contient un code d'erreur permettant de savoir si l'envoi s'est bien effectué ou s'il y a eu un problème et si oui, lequel. La variable vaut 0 s'il n'y a pas eu d'erreur.</td>
                     </tr>
                 </table>
-                <em>Si vous avez mis un second champ d'envoi de fichier dans votre formulaire, il y aura une seconde variable <code class="line_code">$_FILES['nom_de_votre_autre_champ']</code> découpée de la même manière que le tableau qu'on vient de voir ici.</em>
+                <div class="em">Si vous avez mis un second champ d'envoi de fichier dans votre formulaire, il y aura une seconde variable <code class="line_code">$_FILES['nom_de_votre_autre_champ']</code> découpée de la même manière que le tableau qu'on vient de voir ici.</div>
             </p>
             <p>
                 Je vous propose de faire les vérifications suivantes pour décider si l'on accepte le fichier ou non.
@@ -1020,9 +1050,42 @@ if (isset($_FILES['monfichier']) AND $_FILES['monfichier']['error'] == 0)
             Les variables superglobales sont des variables un peu particulières pour trois raisons :
             <ul>
                 <li>elles sont écrites en majuscules et commencent toutes, à une exception près, par un underscore : <code class="line_code">$_GET</code> et <code class="line_code">$_POST</code>.</li>
-                <li>les superglobales sont desarraycar elles contiennent généralement de nombreuses informations .
+                <li>les superglobales sont des array car elles contiennent généralement de nombreuses informations .
                 <li>Enfin, ces variables sont automatiquement créées par PHP à chaque fois qu'une page est chargée. Elles existent donc sur toutes les pages et sont accessibles partout : au milieu de votre code, au début, dans les fonctions, etc.</li>
             </ul>
+        </p>
+
+
+        
+        <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913196-implementez-un-systeme-de-connexion#/id/r-7471352" target="_blank">
+        Implémentez un système de connexion</a></h1>
+
+        <p>
+            Cela va se schématiser comme suit :
+            <ol>
+                <li>Vous n'êtes pas connecté : auquel cas, le formulaire de contact s'affiche, et la liste des recettes ne s'affiche pas.</li>Vous avez soumis le formulaire avec le bon mot de passe pour l'utilisateur : le message de succès s'affiche, le formulaire de connexion ne s'affiche pas et les recettes s'affichent.</li>
+                <li>Vous avez soumis le formulaire avec le mauvais mot de passe pour l'utilisateur : le message d'erreur s'affiche, le formulaire de connexion s'affiche et les recettes ne s'affichent pas.</li>
+            </ol>
+            Vous devez donc créer une nouvelle page et adapter la page d'accueil :
+            <ul>
+                <li><stong>login.php</stong> : contient un simple formulaire comme vous savez les faire ;</li>
+                <li><stong>home.php</stong> : qui doit maintenant inclure une formulaire de connexion et une condition sur l'affichage des recettes.</li>
+            </ul>
+        </p>
+
+        <h2><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913196-implementez-un-systeme-de-connexion#/id/r-7445353" target="blank">Codez la page login.php</a></h2>
+
+        <img src="../images/6494761.png" alt="page login.php"/>
+
+        <h2><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913196-implementez-un-systeme-de-connexion#/id/r-7445356" target="blank">Codez la page home.php</a></h2>
+
+        <img src="../images/944511.png" alt="page login.php"/>
+
+        <p>
+        Mais est-ce que le formulaire est si sécurisé que ça ? Oui, honnêtement il l'est. Du moins, tant que vos utilisateurs ne choisissent pas de mots de passe trop simples à deviner !
+        </p>
+        <p>
+        Pour l'instant ce système de connexion n'est pas "persistant". C'est-à-dire que si vous rechargez la page d'accueil ou que vous revenez sur votre site plus tard, l'information de la connexion n'aura pas été conservée. Pas super utile du coup ! Comment on fait pour conserver les informations de connexion d'un utilisateur ? Eh bien, ce sera l'objet des prochains chapitres !
         </p>
 
         <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4239476-session-cookies#/id/r-4274891" target="_blank">

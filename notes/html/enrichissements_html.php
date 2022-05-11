@@ -118,7 +118,7 @@ td, th   /* Mettre une bordure sur les td et th */
 
     <p>
         Lorsqu'il vous prend subitement l'envie d'insérer un formulaire dans votre page HTML, vous devez pour commencer écrire une balise<code class="line_code">&ltform&gt&lt/form&gt</code>.<br/>
-    <em>Notez qu'il faut obligatoirement mettre des balises de type block à l'intérieur de votre formulaire si vous souhaitez y faire figurer du texte.</em><br/>
+    <div class="em">Notez qu'il faut obligatoirement mettre des balises de type block à l'intérieur de votre formulaire si vous souhaitez y faire figurer du texte.</div>
     Vous devez ajouter deux attributs à la balise<code class="line_code">&ltform&gt</code>:
         <ul>
             <li><code class="line_code">method</code>: cet attribut indique par quel moyen les données vont être envoyées. Il existe deux solutions pour envoyer des données sur le Web :
@@ -145,9 +145,9 @@ td, th   /* Mettre une bordure sur les td et th */
             Pour créer une zone de texte à une ligne, on doit écrire : <code class="line_code">&ltinput type="text" /&gt</code><br/>
             Pour donner un nom à un élément de formulaire, on utilise l'attribut <code class="line_code">name</code>.<br/>
             Pour insérer un libelé, on utilise la balise <code class="line_code">label</code>.<br/>
-            <em>Il faut lier le label à la zone de texte. Pour ce faire, on doit donner un nom à la zone de texte, non pas avec l'attribut <code class="line_code">name</code> mais avec l'attribut <code class="line_code">id</code>.<br/>
-            Le <code class="line_code">name</code> , lui, réfère à la variable du formulaire que l’élément concerne. Ici, il n’y a qu’un seul élément qui pourra référer à la variable pseudo, <code class="line_code">name</code> et <code class="line_code">id</code> auront donc la même valeur.</em><br/>
-            Pour lier le label au champ, il faut lui donner un attribut <code class="line_code">for</code> qui a la même valeur que l'<code class="line_code">id</code>du champ… Le mieux est de le voir sur un exemple :
+            <div class="em">Il faut lier le label à la zone de texte. Pour ce faire, on doit donner un nom à la zone de texte, non pas avec l'attribut <code class="line_code">name</code> mais avec l'attribut <code class="line_code">id</code>.<br/>
+            Le <code class="line_code">name</code> , lui, réfère à la variable du formulaire que l’élément concerne. Ici, il n’y a qu’un seul élément qui pourra référer à la variable pseudo, <code class="line_code">name</code> et <code class="line_code">id</code> auront donc la même valeur.</div>
+            Pour lier le label au champ, il faut lui donner un attribut <code class="line_code">for</code> qui a la même valeur que l'<code class="line_code">id</code> du champ… Le mieux est de le voir sur un exemple :
         </p>
         <figure class="block_code">
         <pre><code>
