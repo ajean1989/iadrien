@@ -1073,11 +1073,11 @@ if (isset($_FILES['monfichier']) AND $_FILES['monfichier']['error'] == 0)
             </ul>
         </p>
 
-        <h2><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913196-implementez-un-systeme-de-connexion#/id/r-7445353" target="blank">Codez la page login.php</a></h2>
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913196-implementez-un-systeme-de-connexion#/id/r-7445353" target="blank">Codez la page login.php</a></h2>
 
         <img src="../images/6494761.png" alt="page login.php"/>
 
-        <h2><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913196-implementez-un-systeme-de-connexion#/id/r-7445356" target="blank">Codez la page home.php</a></h2>
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913196-implementez-un-systeme-de-connexion#/id/r-7445356" target="blank">Codez la page home.php</a></h2>
 
         <img src="../images/944511.png" alt="page login.php"/>
 
