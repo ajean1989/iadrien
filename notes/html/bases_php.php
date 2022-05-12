@@ -1107,6 +1107,15 @@ if (isset($_FILES['monfichier']) AND $_FILES['monfichier']['error'] == 0)
             <em> il faut appeler <code class="line_code">session_start()</code> sur chacune de vos pages AVANT d'écrire le moindre code HTML (avant même la balise <code class="line_code">&lt!DOCTYPE&gt</code>. Si vous oubliez de lancer  session_start() , vous ne pourrez pas accéder aux variables superglobales <code class="line_code">$_SESSION</code>.</em>
             <em>Si vous voulez détruire manuellement la session du visiteur, vous pouvez faire un lien « Déconnexion » amenant vers une page qui fait appel à la fonction <code class="line_code">session_destroy()</code> . Néanmoins, sachez que sa session sera automatiquement détruite au bout d'un certain temps d'inactivité.</em>
         </p>
+        Voici quelques exemples :
+        <ul>
+            <li>Imaginez un script qui demande un identifiant et un mot de passe pour qu'un visiteur puisse se « connecter » (s'authentifier). On peut enregistrer ces informations dans des variables de session et se souvenir de l'identifiant du visiteur sur toutes les pages du site !</li>
+            <li>Puisqu'on retient son identifiant et que la variable de session n'est créée que s'il a réussi à s'authentifier, on peut l'utiliser pour restreindre certaines pages de notre site à certains visiteurs uniquement. Cela permet de créer toute une zone d'administration sécurisée : si la variable de session login existe, on affiche le contenu, sinon on affiche une erreur. Cela devrait vous rappeler l'exercice sur la protection d'une page par mot de passe, sauf qu'ici, on peut se servir des sessions pour protéger automatiquement plusieurs pages.</li>
+            <li>On se sert activement des sessions sur les sites de vente en ligne. Cela permet de gérer un « panier » : on retient les produits que commande le client quelle que soit la page où il est. Lorsqu'il valide sa commande, on récupère ces informations et… on le fait payer. </li>
+        </ul>
+        <p>
+
+        </p>
 
         <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4239476-session-cookies#/id/r-4275065" target="_blank">
         Les cookies</a></h1>
@@ -1134,7 +1143,7 @@ if (isset($_FILES['monfichier']) AND $_FILES['monfichier']['error'] == 0)
                     <li>La valeur du cookie (adridri)</li>
                     <li>la date d'expiration du cookie, sous forme de timestamp</li>
                 </ol>
-                timestamp : c'est le nombre de secondes écoulées depuis le 1er janvier 1970. Le timestamp est une valeur qui augmente de 1 toutes les secondes. Pour obtenir le timestamp actuel, on fait appel à la fonction  time() . Pour définir une date d'expiration du cookie, il faut ajouter au « moment actuel » le nombre de secondes au bout duquel il doit expirer.
+                timestamp : c'est le nombre de secondes écoulées depuis le 1er janvier 1970. Le timestamp est une valeur qui augmente de 1 toutes les secondes. Pour obtenir le timestamp actuel, on fait appel à la fonction  time() . Pour définir une date d'expiration du cookie, il faut ajouter au « moment actuel » le nombre de secondes au bout duquel il doit expirer. Dans l'exemple cela aura pour effet de supprimer votre cookie dans exactement un an.
             </p>
             
             <p>
@@ -1142,7 +1151,7 @@ if (isset($_FILES['monfichier']) AND $_FILES['monfichier']['error'] == 0)
             </p>
 
             <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4239476-session-cookies#/id/r-4275171" target="_blank">
-                Sécuriser son cookie avec le mode httpOnly</a></h2>
+                Sécuriser son cookie avec le mode <code class="line_code">httpOnly</code> et <code class="line_code">secure</code></a></h2>
 
                 <p>
                     Sans rentrer dans les détails, cela rendra votre cookie inaccessible en JavaScript sur tous les navigateurs qui supportent cette option (c'est le cas de tous les navigateurs récents.). Cette option permet de réduire drastiquement les risques de faille XSS sur votre site, au cas où vous auriez oublié d'utiliser <code class="line_code">htmlspecialchars</code> à un moment.<br />>
@@ -1151,7 +1160,17 @@ if (isset($_FILES['monfichier']) AND $_FILES['monfichier']['error'] == 0)
 
                 <figure class="block_code">
                     <pre><code>
-&lt?php setcookie('pseudo', 'adridri', time() +365*24*3600, null, null, false, true); ?&gt
+                    &lt?php
+// retenir l'email de la personne connectée pendant 1 an
+setcookie(
+    'LOGGED_USER',
+    'utilisateur@exemple.com',
+    [
+        'expires' => time() + 365*24*3600,
+        'secure' => true,
+        'httponly' => true,
+    ]
+);
                     </code></pre>
                 </figure>
                 <p>
@@ -1188,7 +1207,7 @@ setcookie('pays', 'France', time() + 365*24*3600, null, null, false, true); // O
                     Vous avez besoin de savoir ce que contient le cookie  pseudo  ? Affichez donc le contenu de la superglobale <code class="line_code">$_COOKIE['pseudo']</code> avec <code class="line_code">print_r</code>.
                 </p>
                 <p>
-                    <em>Les cookies viennent du visiteur. Comme toute information qui vient du visiteur, elle n'est pas sûre. N'importe quel visiteur peut créer des cookies et envoyer ainsi de fausses informations à votre site. Souvenez-vous en lorsque vous lisez les cookies du visiteur : il peut les avoir modifiés, donc soyez prudents et n'ayez pas une confiance aveugle en leur contenu !</em>
+                    <div class="em">Les cookies viennent du visiteur. Comme toute information qui vient du visiteur, elle n'est pas sûre. N'importe quel visiteur peut créer des cookies et envoyer ainsi de fausses informations à votre site. Souvenez-vous en lorsque vous lisez les cookies du visiteur : il peut les avoir modifiés, donc soyez prudents et n'ayez pas une confiance aveugle en leur contenu !</div>
                 </p>
 
             <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4239476-session-cookies#/id/r-4275204" target="_blank">
