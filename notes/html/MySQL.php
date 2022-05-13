@@ -29,7 +29,7 @@
     			<div class="element_1">
 
     				
-    				<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913655-travaillez-avec-une-base-de-donnees#/id/r-2174664" target="_blank">PHP et MySQL : </a></h1>
+    				<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913655-travaillez-avec-une-base-de-donnees#/id/r-2174664" target="_blank">PHP et MySQL</a></h1>
 
     				<p>
     					PHP fait l'intermédiaire entre vous et MySQL. On devra demander à PHP : "Va dire à MySQL de faire ceci".
@@ -498,7 +498,7 @@ JOIN recipes r
 						</ol>
 						</p>
 
-						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/915107-allez-plus-loin#/id/r-7456012" target="blank">Les fonctions scalaires</a></h2>
+						<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/915107-allez-plus-loin#/id/r-7456012" target="blank">Les fonctions scalaires</a></h3>
 
 						<p>
 							Pour vous montrer comment on utilise les fonctions scalaires SQL, je vais me baser sur la fonction <code class="line_code">DATE_FORMAT()</code> qui permet de convertir un timestamp en date.
@@ -516,7 +516,8 @@ SELECT *, DATE_FORMAT(c.created_at, "%d/%m/%Y") FROM recipes r LEFT JOIN comment
 
 						<figure class="block_code">
     						<pre><code>
-SELECT DATE_FORMAT(c.created_at, "%d/%m/%Y") AS comment_date FROM recipes r LEFT JOIN comments c on r.recipe_id = c.recipe_id WHERE r.recipe_id = 1							</code></pre>
+SELECT DATE_FORMAT(c.created_at, "%d/%m/%Y") AS comment_date FROM recipes r LEFT JOIN comments c on r.recipe_id = c.recipe_id WHERE r.recipe_id = 1							
+							</code></pre>
 						</figure>
 
 						<p>Ce champ virtuel est appelé "alias".</p>
@@ -533,7 +534,7 @@ SELECT DATE_FORMAT(c.created_at, "%d/%m/%Y") AS comment_date FROM recipes r LEFT
 
 						<figure class="block_code">
     						<pre><code>
-SELECT AVG(c.review) as rating FROM recipes r LEFT JOIN comments c on r.recipe_id = c.recipe_id WHERE r.recipe_id = 1												</code></pre>
+SELECT AVG(c.review) as rating FROM recipes r LEFT JOIN comments c on r.recipe_id = c.recipe_id WHERE r.recipe_id = 1								</code></pre>
 						</figure>
 
 						<p>
@@ -542,9 +543,12 @@ SELECT AVG(c.review) as rating FROM recipes r LEFT JOIN comments c on r.recipe_i
 
 						<figure class="block_code">
     						<pre><code>
-SELECT ROUND(AVG(c.review),1) as rating FROM recipes r LEFT JOIN comments c on r.recipe_id = c.recipe_id WHERE r.recipe_id = 1												</code></pre>
+SELECT ROUND(AVG(c.review),1) as rating FROM recipes r LEFT JOIN comments c on r.recipe_id = c.recipe_id WHERE r.recipe_id = 1
+							</code></pre>
 						</figure>
-
+										<p>
+											<strong>Problème de CSS ici !</strong>
+										</p>
 						<p>
 						Pour afficher cette information en PHP, on pourrait faire comme on en a l'habitude (cela fonctionne). Mais pourquoi s'embêterait-on à faire une boucle, étant donné qu'on sait qu'on ne va récupérer qu'une seule entrée, puisqu'on utilise une fonction d'agrégat ?
 						</p>
@@ -552,7 +556,8 @@ SELECT ROUND(AVG(c.review),1) as rating FROM recipes r LEFT JOIN comments c on r
 						<figure class="block_code">
     						<pre><code>
 &lt?php
-$sqlQuery = 'SELECT ROUND(AVG(c.review),1) as rating FROM recipes r LEFT JOIN comments c on r.recipe_id = c.recipe_id WHERE r.recipe_id = 1';
+$sqlQuery = 'SELECT ROUND(AVG(c.review),1) as rating FROM recipes r 
+LEFT JOIN comments c ON r.recipe_id = c.recipe_id WHERE r.recipe_id = 1'; 
 
 // Préparation
 $averageRatingStatment = $db-&gtprepare($sqlQuery);
@@ -560,14 +565,10 @@ $averageRatingStatment = $db-&gtprepare($sqlQuery);
 // Exécution
 $averageRatingStatment-&gtexecute();
 
-/** La fonction fetch est plus performante que fetchAll()
- * quand nous sommes certain(e)s de ne récupérer qu'une ligne.
- * https://www.php.net/manual/fr/pdostatement.fetch.php
- */
-$averageRating = $averageRatingStatment-&gtfetch();											
+// La fonction fetch est plus performante que fetchAll()
+$averageRating = $averageRatingStatment-&gtfetch();	
 							</code></pre>
-						</figure>
-
+						</figure>	
 						<p>
 							Ce code est plus simple et plus logique :
 							<ol>
@@ -633,6 +634,589 @@ SELECT AVG(review) AS rating, recipe_id FROM comments WHERE user_id = 1 GROUP BY
 						<p>
 							Rendez-vous sur <a href="https://dev.mysql.com/downloads/installer/" target="blank">https://dev.mysql.com/downloads/installer/ . Je vous conseille de télécharger le deuxième programme (la version “community”), qui dispose d’options supplémentaires par rapport au premier (la version “web”). </a>
 						</p>
+						<p>
+							Pour lancer MySQL sur Windows, double-cliquez sur la console MySQL. Celle-ci doit avoir apparu dans vos programmes, suite à l’installation précédente.
+						</p>
+						<p>
+							Pour créer le mot de passe “root”, utilisez la commande <code class="line_code">mysqladmin -u root password 'votresupermotdepassetrescomplique' </code>
+						</p>
+						<p>
+						En informatique, et notamment dans le monde des bases de données, l’utilisateur dit “root” (ou racine) est un utilisateur qui a tous les droits (création, suppression, mise à jour). C’est celui qu’on utilise pour installer des logiciels sur notre machine. Mais attention à ne jamais l’utiliser en production ! En effet, il serait très dangereux qu’un utilisateur puisse l’utiliser, car il obtiendrait l’accès à toutes nos données. “Utiliser en production” désigne l’utilisation de votre base par votre application, depuis un serveur. Alors que “l’utilisation en local” signifie l’utilisation sur votre ordinateur, à des fins de développement uniquement.
+						</p>
+
+						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142232-creez-votre-base-de-donnees-bdd#/id/r-7142237" target="blank">Créez votre BDD avec <code class="line_code">CREATE DATABASE</code></a></h1>
+
+						<p>
+						Une application complexe peut être reliée à plusieurs BDD à la fois, et ce, pour plusieurs raisons. Par exemple, Facebook utilise plusieurs BDD pour des besoins spécifiques (certaines gèrent mieux la recherche, les autres le stockage…), mais surtout pour des raisons de taille de la donnée ! 
+						</p>
+						
+						<p>
+						Attention lorsqu’on nomme les bases de données ! Tout comme beaucoup de “noms” en informatique (variables, objets, identifiants…), ceux-ci ne doivent pas contenir de caractères spéciaux ou d’espaces. Il est même recommandé de n’utiliser que des caractères minuscules.
+						</p>
+
+						<p>
+						Pour activer MySQL dans votre terminal, il va falloir exécuter la commande  <code class="line_code">mysql -u root -p</code>. Cette commande signale que vous souhaitez lancer MySQL, avec l’utilisateur root en saisissant le mot de passe.
+						</p>
+
+						<p>
+						Pour créer une base, on utilise la commande <code class="line_code">CREATE DATABASE nomdelabase;</code>
+						</p>
+
+						<p>
+						SQL vous indique que la commande a fonctionné en répondant <code class="line_code">Query OK</code>. 
+						</p>
+
+						<p>
+						Pour sélectionner la base que vous venez de créer, utilisez la commande <code class="line_code">USE nomdelabase;</code>
+						</p>
+
+						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142232-creez-votre-base-de-donnees-bdd#/id/r-7142243" target="blank">Créez votre BDD avec <code class="line_code">Créer une table</code></a></h1>
+
+						<figure class="block_code">
+    						<pre><code>
+							CREATE TABLE utilisateur (
+
+id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+
+nom VARCHAR(100),
+
+prenom VARCHAR(100),
+
+email VARCHAR(255) NOT NULL UNIQUE
+
+);
+							</code></pre>
+						</figure>
+
+						<img src="../images/573e.png" alt="description CERATE TABLE"/>
+
+						<p>
+							Il existe aussi :
+							<ul>
+								<li>FLOAT : nombres décimaux</li>
+								<li>BOOLEAN : true or fasle</li>
+								<li>DEFAULT  sert à indiquer une valeur par défaut. Utile pour ne pas avoir à spécifier une valeur tout le temps ! exemple : bio BOOLEAN DEFAULT false</li>
+								<li>...</li>
+							</ul>
+						</p>
+
+						<p>
+						Pour vérifier que tout ce que vous avez fait fonctionne, rien de plus simple ! On demande à MySQL de nous afficher toutes les tables présentes dans notre base grâce à la commande <code class="line_code">SHOW tables;</code>.
+						</p>
+
+						<p>
+						On peut même aller encore plus loin en demandant à MySQL de nous afficher le schéma de chaque table grâce à la commande <code class="line_code">SHOW COLUMNS FROM lenomdematable;</code>
+						</p>
+
+						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142248-inserez-des-donnees-dans-votre-bdd#/id/video_Player_1" target="blank">Les opérations CRUD</a></h1>
+
+						<img src="../images/CRUD.png" alt="def CRUD"/>
+
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142248-inserez-des-donnees-dans-votre-bdd#/id/r-7142316" target="blank">Insérez des objets</a></h2>
+
+						<figure class="block_code">
+    						<pre><code>
+INSERT INTO `utilisateur` (`nom`, `prenom`, `email`)
+
+VALUES
+
+('Durantay', 'Quentin', 'quentin@gmail.com');
+							</code></pre>
+						</figure>
+
+						<p>
+							<ol>
+								<li>On indique en SQL qu’on souhaite ajouter un objet avec <code class="line_code">INSERT INT</code>O.</li>
+								<li>On écrit ensuite le nom de la table dans laquelle on souhaite ajouter l’objet, ici “utilisateur”.</li>
+								<li>On écrit ensuite entre parenthèses la liste des colonnes que l’on va ajouter, ainsi que leur ordre.</li>
+								<li>On ajoute le mot clé SQL <code class="line_code">VALUES</code> qui indique qu’on va ensuite déclarer les valeurs que l’on souhaite ajouter.</li>
+								<li>On écrit la liste des valeurs de l’objet qu’on souhaite ajouter, dans le même ordre que les colonnes citées en 3.</li>
+							</ol>
+						</p>
+
+						<p>
+							On peut aussi ajouter plusieurs objets à la fois :
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+INSERT INTO `utilisateur` (`nom`, `prenom`, `email`)
+
+VALUES
+
+('Doe', 'John', 'john@yahoo.fr'),
+
+('Smith', 'Jane', 'jane@hotmail.com'),
+
+('Dupont', 'Sebastien', 'sebastien@orange.fr'),
+
+('Martin', 'Emilie', 'emilie@gmail.com');
+							</code></pre>
+						</figure>
+
+						<p>
+						Vous vous demandez sûrement pourquoi certaines valeurs sont entre guillemets simples, d’autres entre backticks (`) et certaines sans rien.
+						</p>
+
+						<img src="../images/16109607655779_2c1-3_ponctuation_static.png" alt='utilisation guillemets'/>
+
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142258-selectionnez-les-donnees-presentes-dans-votre-bdd#/id/r-7156577" target="blank">Lisez les objets</a></h2>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT * FROM utilisateur;
+							</code></pre>
+						</figure>
+
+						<img src="../images/16109610872927_2c2-1_static.png" alt="la commande SELECT"/>
+
+						<p>
+							<ul>
+								<li><code class="line_code">SELECT</code>, comme nous l’avons vu, indique à MySQL que nous souhaitons récupérer de la donnée ;</li>
+								<li><code class="line_code">*</code> indique que l’on souhaite récupérer toutes les colonnes (ou champs) présents dans cette table (ici : id, nom, prenom et email) ;</li>
+								<li><code class="line_code">FROM table</code> permet à MySQL de comprendre depuis quelle table nous souhaitons récupérer de la donnée.</li>
+							</ul>
+						</p>
+
+						<p>
+							Lire quelques colonnes seulement :
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT `nom`, `prenom`, `email` FROM utilisateur;
+							</code></pre>
+						</figure>
+
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142260-mettez-a-jour-les-donnees-de-votre-bdd#/id/r-7156412" target="blank">Mettez à jour les données</a></h2>
+
+						<figure class="block_code">
+    						<pre><code>
+UPDATE `utilisateur` SET `email` = 'quentind@gmail.com' WHERE `id` = '1';
+							</code></pre>
+						</figure>
+
+						<p>
+							<ul>
+								<li>UPDATE table : Signifie à SQL que vous souhaitez mettre à jour de la donnée dans votre BDD. Vous indiquez aussi la table dans laquelle se trouve(nt) le ou les objets que vous souhaitez modifier.</li>
+								<li>SET colonne = valeur : Sert à indiquer à SQL quelles sont la ou les colonnes à modifier, et quelles sont la ou les valeurs qu’elles doivent désormais prendre.</li>
+								<li>WHERE colonne = valeur : C’est ce qu’on appelle un filtre. Ils servent à restreindre la commande en cours à un ou des objets répondant à des conditions précises. Ici, on va mettre à jour uniquement l’objet dont l’id est 1, soit le premier utilisateur !</li>
+							</ul>
+						</p>
+
+						<div class="em">Il est tout à fait possible d’utiliser <code class="line_code">UPDATE</code> sans filtres (sans <code class="line_code">WHERE</code>). Néanmoins, la commande modifierait tous les objets de notre table. C’est très rarement ce que l’on souhaite.</div>
+
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142266-supprimez-des-objets-dans-votre-bdd#/id/r-7156417" target="blank">Supprimez des objets</a></h2>
+
+						<p>
+						Admettons qu’un utilisateur souhaite se désinscrire de Foodly. Il faudrait alors le supprimer de votre BDD. Mais comment faire ? 
+						</p>
+
+						<div class="em">Attention toutefois, cette commande est très simple à utiliser, parfois trop même ! Une fois la donnée supprimée de votre BDD, impossible de la récupérer ! À utiliser avec parcimonie.</div>
+
+
+						<figure class="block_code">
+    						<pre><code>
+DELETE FROM `utilisateur` WHERE `id` = '2';
+							</code></pre>
+						</figure>
+
+						<div class="em">Là aussi, il vaut mieux utiliser cette commande avecWHEREpour en limiter l’effet. Si vous ne le faites pas, vous risqueriez de supprimer tous les objets d’une table ! Dans notre cas, adieu à nos utilisateurs.</div>
+
+						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142269-extrayez-des-informations-specifiques-de-votre-bdd#/id/r-7142268" target="blank">Isolez un objet unique avec <code class="line_code">WHERE</code></a></h1>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT * FROM aliment WHERE nom = “poire”;
+							</code></pre>
+						</figure>
+
+						<p>
+						Vous pouvez utiliser tous les opérateurs classiques, tels que :
+						<ul>
+							<li>supérieur à ( > ) ;</li>
+							<li>inférieur à ( < ) ;</li>
+							<li>supérieur ou égal à (>=) ;</li>
+							<li>et inférieur ou égal à (<=).</li>
+						</ul>
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT * FROM aliment WHERE calories < 90;
+							</code></pre>
+						</figure>
+
+						<p>
+						Vous pouvez utiliser tous les selecteurs de texte classiques (REGEX), tels que :
+						<ul>
+							<li>%nom</li>
+							<li>..</li>
+						</ul>
+						</p>
+
+						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142269-extrayez-des-informations-specifiques-de-votre-bdd#/id/r-7153066" target="blank">Ordonnez les objets récupérés pour chaque requête</a></h1>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT * FROM aliment ORDER BY calories ASC;
+
+SELECT * FROM aliment WHERE calories < 90 ORDER BY calories DESC;
+							</code></pre>
+						</figure>
+
+						<p>
+						Ce mot clé vous permet d’ordonner une colonne par ordre croissant (ascending en anglais, d’où le mot clé SQL <code class="line_code">ASC</code>), ou décroissant (descending en anglais, soit le mot clé <code class="line_code">DESC</code>).<br/>
+						Cette commande fonctionne aussi avec le texte ! Si vous effectuez un <code class="line_code">ORDER BY</code> sur une colonne de texte, celle-ci sera ordonnée par ordre alphabétique.
+						</p>
+
+						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142269-extrayez-des-informations-specifiques-de-votre-bdd#/id/r-7153066" target="blank">Comptez le nombre d’objets récupérés via une requête</a></h1>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT COUNT(*) FROM utilisateur WHERE email LIKE "%gmail.com";
+							</code></pre>
+						</figure>
+
+						<p>
+						MySQL vous affiche le nombre d’objets plutôt que leur contenu. Vous voyez donc combien d’utilisateurs répondent à ce critère.<br/>
+						Vous comptez le nombre d’objets, mais vous pouvez aussi restreindre le comptage à une colonne spécifique en écrivant <code class="line_code">COUNT(colonne)</code>. Enfin, vous pouvez aussi compter le nombre d’éléments uniques d’une colonne avec <code class="line_code">COUNT(DISTINCT colonne)</code>.
+						</p>
+
+						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7152961-effectuez-des-operations-et-sauvegardez-vos-requetes#/id/r-7153026" target="blank">Effectuez des opérations sur des données chiffrées</a></h1>
+
+						<img src="../images/16109617725758_P3_operations_static.png" alt="opération sur des objets"/>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT MAX(sucre) FROM aliment;
+							</code></pre>
+						</figure>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT AVG(calories) FROM aliment WHERE calories >= 30;
+							</code></pre>
+						</figure>
+
+						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7152961-effectuez-des-operations-et-sauvegardez-vos-requetes#/id/r-7153058" target="blank">Sauvegardez vos requêtes</a></h1>
+
+						<p>
+						MySQL a un système de “vues” qui permet de créer des tables temporaires à partir d’une commande SQL. Entendez par là que vous allez “sauvegarder” une commande SQL pour ne plus avoir à la réeffectuer à chaque fois !
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+CREATE VIEW utilisateurs_gmail_vw AS SELECT * FROM utilisateur WHERE email LIKE "%gmail.com";
+							</code></pre>
+						</figure>
+
+						<p>
+						Je viens de créer la vue “utilisateurs_gmail_vw”. Cette dernière s’utilise désormais comme une table.<br/>
+						Ainsi, pour récupérer les utilisateurs avec une adresse Gmail, plus besoin d’écrire ma requête compliquée !<br/>
+						Je n’ai plus qu’à écrire :
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT * FROM utilisateurs_gmail_vw;
+							</code></pre>
+						</figure>
+
+						<div class="em">La convention chez les utilisateurs de SQL est de toujours préfixer le nom d’une vue avec “_vw”, pour la distinguer des “vraies” tables.</div>
+
+						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142288-modifiez-la-structure-d-un-objet-avec-alter-table#/id/video_Player_1" target="blank">Modifiez la structure d’un objet </a></h1>
+
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142288-modifiez-la-structure-d-un-objet-avec-alter-table#/id/r-7142287" target="blank">Ajoutez un champ</a></h2>
+
+						<figure class="block_code">
+    						<pre><code>
+ALTER TABLE aliment ADD vitamines_c FLOAT;
+							</code></pre>
+						</figure>
+
+						<p>
+						Ici, on signale à MySQL :
+						<ul>
+							<li>de modifier la structure d’une table avec <li class="line_code">ALTER TABLE</li> ;</li>
+							<li>quelle table modifier (ici “aliment”) ;</li>
+							<li>que la modification va faire ajouter une colonne avec <code class="line_code">ADD</code> ;</li>
+							<li>le nom de cette nouvelle colonne (ici “vitamines_c”) ;</li>
+							<li>enfin, le type de la colonne (ici, <code class="line_code">FLOAT</code>, car les vitamines sont stockées usuellement en mg/100g, valeur décimale).</li>
+						</ul>
+						<div class="em">À noter que le type n’est parfois pas seul. On peut aussi (comme dans la partie 1), mentionner à MySQL qu’on rajoute une colonne qui est :
+							<ul>
+								<li>une clé primaire (<code class="line_code">PRIMARY KEY</code>) ;</li>
+								<li>avec une valeur par défaut (<code class="line_code">DEFAULT</code> valeur_par_défaut) ;</li>
+								<li>non nulle (<code class="line_code">NOT NULL</code>). Auquel cas il faudra préciser une valeur par défaut, MySQL créant la colonne avec la valeur “NULL” pour tous les objets existants dans cette table ;</li>
+								<li>etc.</li>
+							</ul>
+						</div>
+						</p>
+
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142288-modifiez-la-structure-d-un-objet-avec-alter-table#/id/r-7144111" target="blank">Supprimez un champ</a></h2>
+
+						<figure class="block_code">
+    						<pre><code>
+ALTER TABLE aliment DROP bio;
+							</code></pre>
+						</figure>
+
+						<p>
+							<ul>
+								<li>On modifie toujours la structure d’une table avec <code class="line_code">ALTER TABLE</code>.</li>
+								<li>On lui signale à nouveau quelle table modifier (ici, “aliment”).</li>
+								<li>On lui indique que la modification va supprimer une colonne avec <code class="line_code">DROP</code>.</li>
+								<li>On mentionne le nom de la colonne à supprimer (ici, “bio”).</li>
+							</ul>
+						</p>
+
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142288-modifiez-la-structure-d-un-objet-avec-alter-table#/id/r-7142292" target="blank">Modifiez un champ existant</a></h2>
+
+						<figure class="block_code">
+    						<pre><code>
+ALTER TABLE aliment MODIFY calories FLOAT;
+							</code></pre>
+						</figure>
+
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142288-modifiez-la-structure-d-un-objet-avec-alter-table#/id/r-7144116" target="blank">Renommez un champ</a></h2>
+
+						<figure class="block_code">
+    						<pre><code>
+ALTER TABLE aliment CHANGE sucre sucres FLOAT;
+							</code></pre>
+						</figure>
+
+						<p>
+							<ul>
+								<li>On modifie toujours la structure d’une table avec <code class="line_code">ALTER TABLE</code>.</li>
+								<li>On lui signale à nouveau quelle table modifier (ici, “aliment”).</li>
+								<li>On lui indique que la modification va modifier le nom d’une colonne avec <code class="line_code">CHANGE</code>.</li>
+								<li>On mentionne le nom de la colonne à renommer, ainsi que son nouveau nom (ici, “sucre” devient “sucres”).</li>
+								<li>On indique le nouveau type de la colonne (ici, <code class="line_code">FLOAT</code>).</li>
+							</ul>
+							C’est une spécificité propre à MySQL : pour renommer une colonne, il faut aussi indiquer son type. Ce qui n’est pas nécessaire si vous utilisez un autre SGBD. Cela permet de modifier à la fois le nom et le type d’une colonne dans une seule commande. Et ce, même si vous ne souhaitez pas le modifier (réutilisez alors le même type 😉).
+						</p>
+
+						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142285-implementez-des-relations-entre-vos-donnees-grace-a-join#/id/video_Player_1" target="blank">Implémentez des relations entre vos données grâce à <code class="line_code">JOIN</code></a></h1>
+
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7142296-ajoutez-une-relation-un-a-plusieurs#/id/video_Player_1" target="blank">Relation un à plusieurs</a></h2>
+
+						<p>
+						Nous allons expliquer à MySQL comment joindre deux tables selon un identifiant qu’elles ont en commun.
+						</p>
+
+						<p>
+						Vous allez spécifier à MySQL de joindre les tables “utilisateur” et “langue” en lui précisant que l’id de langue et langue_id de l’utilisateur doivent êtres égaux !
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT * FROM `utilisateur`
+
+JOIN `langue`
+
+ON `utilisateur`.`langue_id` = `langue`.`id`;
+							</code></pre>
+						</figure>
+
+						<p>
+						Que s’est-il passé dans cette commande ?
+						<ul>
+							<li>Nous avons demandé à MySQL de sélectionner tous les utilisateurs : <code class="line_code">SELECT * FROM `utilisateur` </code></li>
+							<li>Auxquels nous voulons joindre les langues : <code class="line_code">JOIN `langue`</code> </li>
+							<li>En précisant à MySQL de les relier, en considérant que l’id de la langue est stockée dans chaque utilisateur dans le champ langue_id : <code class="line_code">ON `utilisateur`.`langue_id` = `langue`.`id` </code></li>
+						</ul>
+						</p>
+
+						<p>
+							Il s'agit d'une relation 1 à plusieurs : Chaque utilisateur est relié à une langue. Et chaque langue peut être reliée à plusieurs utilisateurs.
+						</p>
+
+						<img src="../images/16109621275269_3c2_one-to-many.png" alt="1 à plusieurs"/>
+
+						<p>
+						Dans le cadre d’une telle relation, c’est l’objet qui se trouve du côté “plusieurs” de la relation qui va être modifié :
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+ALTER TABLE aliment
+
+ADD FOREIGN KEY (famille_id) REFERENCES famille (id)
+
+ON DELETE CASCADE;
+							</code></pre>
+						</figure>
+
+						<p>
+							<ul>
+								<li>On signale à MySQL qu’on souhaite modifier la table “aliment”, pour y ajouter une colonne (enfin, plutôt y ajouter une contrainte, dans ce cas précis).</li>
+								<li>On dit à MySQL que la colonne “famille_id” est une clé étrangère (foreign key en anglais), soit une référence à une colonne d’une autre table (ici, avec la partie <code class="line_code">FOREIGN KEY (famille_id)</code>).</li>
+								<li>On indique ensuite ce à quoi cette clé fait référence. Soit, dans notre cas, la colonne “id” de la table “famille” (soit la commande <code class="line_code">REFERENCES famille(id)</code>).</li>
+								<li>Enfin, sûrement la partie la plus obscure pour vous, on indique à MySQL le comportement à adopter en cas de suppression de l’objet “unique” (ici, la “famille”).</li>
+							</ul>
+							Pour ce dernier point : Admettons que je vienne de créer ma famille “fruits”, et qu’elle soit reliée à mes objets “pomme” et “poire”. Que se passe-t-il si je supprime la famille “fruits” ?
+						</p>
+
+						<p>
+						Eh bien, MySQL a besoin de le savoir. Pour cela, on lui indique via la commande <code class="line_code">ON DELETE</code>.
+						</p>
+
+						<img src="../images/1610964972865_P4_ON-DELETE.png" alt="attributs ON DELETE"/>
+
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7153111-ajoutez-une-relation-plusieurs-a-plusieurs#/id/r-7156432" target="blank">Relation plusieurs à plusieurs</a></h2>
+						
+						<p>
+							Que se passe-t-il lorsque chaque objet d’une table doit être relié à plusieurs objets de l’autre table, et vice versa ?
+						</p>
+
+						<p>
+							Cest une relation plusieurs à plusieurs :
+						</p>
+
+						<img src="../images/16109643615497_3c2_Many-to-many.png" alt="plusieurs à plusieurs"/>
+
+
+						<p>
+						Par défaut, le SQL ne sait modéliser que des relations 1 à plusieurs.
+						</p>
+
+						<p>
+							On va utiliser une <strong>table de liaison</strong> : Par convention, elle prend le nom <code class="line_code"> {table1}_{table2}</code>, et sert à relier les tables 1 et 2 qui y sont stockées, en sauvegardant l’id d’un objet de la table 1, à l’id de l’objet de la table 2 correspondant.
+						</p> 
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT
+
+*
+
+FROM
+
+utilisateur
+
+JOIN utilisateur_aliment ON (utilisateur.id = utilisateur_aliment.utilisateur_id)
+
+JOIN aliment ON (aliment.id = utilisateur_aliment.aliment_id);
+							</code></pre>
+						</figure>
+
+						<p>
+							<ul>
+								<li>Nous avons demandé à MySQL de sélectionner tous les utilisateurs : <code class="line_code">SELECT * FROM `utilisateur`</code></li>
+								<li>Auxquels nous voulons joindre la table utilisateur_aliment: <code class="line_code">JOIN `utilisateur_aliment`</code></li>
+								<li>En précisant à MySQL de les relier en considérant que l’id de l’utilisateur est stocké en tant que utilisateur_id dans la table utilisateur_aliment : <code class="line_code">ON (utilisateur.id = utilisateur_aliment.utilisateur_id)</code></li>
+								<li>À ce <code class="line_code"> JOIN</code>, on veut à nouveau lier de la donnée de la table aliment, soit un nouveau  <code class="line_code">JOIN</code> : <code class="line_code">JOIN `aliment`</code></li>
+								<li>Pour ce faire, on précise à MySQL que l’id de l’aliment est stocké dans utilisateur_aliment en tant que aliment_id : <code class="line_code">ON (aliment.id = utilisateur_aliment.utilisateur_id)</code></li>
+							</ul>
+						</p>
+
+						<p>
+						En fait, les aliments vont avoir des relations un à plusieurs avec la table de liaison. Les lieux, eux aussi, vont disposer de telles relations avec cette table. Et c’est en reliant ces deux tables via cette table de liaison que vous allez pouvoir ressortir les relations entre lieux et aliments.<br/>
+						Pour ce faire, une table de liaison doit être créée. Par convention, elle doit toujours avoir cette forme :
+							<ul>
+								<li>Son nom doit regrouper les deux tables qu’elle relie, sous la forme : “table1_table2”.</li>
+								<li>Elle n’a que deux champs à stocker : “table1_id” et “table2_id”. Soit les id de chaque objet qu’elle relie. Ces id sont donc des références aux id des autres tables.</li>
+								<li>Sa clé primaire n’est autre que l’association de ces deux id (association qui doit toujours être unique).</li>
+							</ul>
+							Dans notre cas, cela donne ceci en commande SQL :
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+CREATE TABLE aliment_lieu (
+
+aliment_id INT NOT NULL,
+
+lieu_id INT NOT NULL,
+
+FOREIGN KEY (aliment_id) REFERENCES aliment (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+
+FOREIGN KEY (lieu_id) REFERENCES lieu (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+
+PRIMARY KEY (aliment_id, lieu_id)
+
+);
+							</code></pre>
+						</figure>
+
+						<p>
+						Décortiquons cette commande ensemble :
+						<ul>
+							<li>On crée une nouvelle table avec le nom des deux tables qu’elle relie (ici la table “aliment”, ainsi que la table “lieu”).</li>
+							<li>On ajoute les références aux id de ces deux tables :
+								<ul>
+									<li>“aliment_id”, qui est une référence aux id de la table “aliment” </li>
+									<li>“lieu_id”, qui est une référence aux id de la table “lieu” ;</li>
+									<li>on signale à MySQL comment mettre à jour la BDD en cas de suppression ou de mise à jour d’un objet de “aliment_lieu”.</li>
+								</ul>
+							</li>
+							<li>On explique à MySQL que l’id de cette table sera l’association entre les deux id précédents.</li>
+						</ul>
+						Avec :
+						</p>
+
+						<img src="../images/16109652325493_P4_ON-UPDATE.png" alt="ON UPDATE"/>
+
+						<p>
+						C’est bien beau tout ça, mais comment ajoute-t-on une relation entre les lieux et les aliments ?
+						</p>
+
+						<p>
+						Sachant que 11 est l’id du “blanc de dinde”, 1 celui du “Carrefour City :
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+INSERT INTO `aliment_lieu` (`aliment_id`, `lieu_id`) VALUES ('11', '1');
+							</code></pre>
+						</figure>
+
+						<p>
+						Et voilà, le fait que le blanc de dinde soit vendu à Carrefour est stocké en base de données. Bravo à vous. 👏
+						</p>
+
+						<p>
+						Enfin, pour retrouver cette relation, il vous faudra faire un double JOIN. Rappelez-vous :
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT
+
+*
+
+FROM
+
+aliment
+
+JOIN aliment_lieu ON aliment.id = aliment_lieu.aliment_id
+
+JOIN lieu ON lieu.id = aliment_lieu.lieu_id
+
+WHERE
+
+aliment.id = 11;
+							</code></pre>
+						</figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						
+
 
 
 
