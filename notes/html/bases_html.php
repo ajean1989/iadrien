@@ -23,10 +23,8 @@
 
 
 		<div class="column_front">
-
-    		<div id="conteneur">
           
-       	 	<section>
+       	 	<section id="conteneur">
 
     			<div class="element_1">
 
@@ -50,10 +48,7 @@
 						</code></pre>
 					</figure>
 
-				</div>
-
-
-				<div class="element_2">
+			
 
     				
     				<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1604534-organisez-votre-texte#/id/r-1604413" target="_blank">Les paragraphes</a></h1>
@@ -67,9 +62,7 @@
 					<p>
 						Sauter une ligne : balise orpheline <code>&ltbr /&gt</code>
 					</p>
-				</div>
-
-				<div class="element_3">
+		
    				
     				<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1604534-organisez-votre-texte#/id/r-1604443" target="_blank">Les titres</a></h1>
 
@@ -84,9 +77,7 @@
     					</ul>
     				</p>
 
-    			</div>
-
-    			<div class="element_4">
+    	
     				
     				<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1604534-organisez-votre-texte#/id/r-1604474" target="_blank">La mise en valeur</a></h1>
 
@@ -96,9 +87,6 @@
     					<code class="line_code">&ltmark&gt &lt/mark&gt</code> : Marquer le texte.Permet de faire ressortir visuellement une portion de texte. L'extrait n'est pas forcément considéré comme important mais on veut qu'il se distingue bien du reste du texte. Cela peut être utile pour faire ressortir un texte pertinent après une recherche sur votre site par exemple. Par défaut,&ltmark&gta pour effet de surligner le texte. 
     				</p>
 
-    			</div>
-
-    			<div class="element_5">
     		
     				<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1604534-organisez-votre-texte#/id/r-1604533" target="_blank">Les listes</a></h1>
    				
@@ -121,9 +109,6 @@
     					</ul>
     				</p>
 
-    			</div>
-
-    			<div class="element_6">
     		
     				
     				<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1604534-organisez-votre-texte#/id/r-1609612" target="_blank">Listes ordonnées</a></h2>
@@ -142,9 +127,7 @@
    						<div class="em">Pour information, il existe un troisième type de liste, beaucoup plus rare : la liste de définitions. Elle fait intervenir les balises<code class="line_code">&ltdl&gt</code>(pour délimiter la liste), <code class="line_code">&ltdt&gt</code>(pour délimiter un terme) et <code class="line_code">&ltdd&gt</code> (pour délimiter la définition de ce terme).</div>
     				</p>
 
-    			</div>
-
-    			<div class="element_7">
+    		
 
     				
     				<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1604646-creez-des-liens#/id/video_Player_1" target="_blank">Créer des liens</a></h1>
@@ -159,7 +142,9 @@
     				</p>
 
     				<figure class="block_code">
-    					<pre><code class="block_code">&lta href="https://openclassrooms.com"&gtOpenClassrooms&lt/a&gt</pre></code>
+    					<pre><code class="block_code">
+&lta href="https://openclassrooms.com"&gtOpenClassrooms&lt/a&gt
+					</pre></code>
     				</figure>
 
     				<p>
@@ -167,7 +152,8 @@
     				</p>
 
     		
-    				
+			
+
     				<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1604646-creez-des-liens#/id/r-1604590" target="_blank">Lien vers une autre page de son site</a></h2>
 
     				<p>
@@ -249,9 +235,8 @@
     					<code class="line_code">&ltp&gt&lta href="monfichier.zip"&gtTélécharger le fichier&gt/a&gt&lt/p&gt</code>
     				</p>
 
-    			</div>
+    		
 
-    			<div class="element_8">
 
     				
     				<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1604791-inserez-des-images#/id/r-1604738" target="_blank">Insérer une image</a></h1>
@@ -344,9 +329,8 @@
 						<div class="em">Si vous faites de votre image une figure, l'image peut être située en-dehors d'un paragraphe.</div>
 					</p>
 
-				</div>
 
-				<div class="element_9">
+	
 
 					<h1 id=<?php echo $ini ; $ini++ ;?>>Balises diverses</h1>
 
@@ -359,8 +343,10 @@
 					</p>
 
 				</div>
+			
  	
     		</section>
+
 
     		<footer>
 
@@ -368,19 +354,16 @@
 
     		</div>
 
-		</div>
-
     	<div class="column_reseaux">
-    	<div id="navright">
+    		<div id="navright">
                 reseaux
-            </div>
+        	</div>
 
         </div>
 
     </div>
 					
 					<script src="../js/navright.js"></script>
-    </div>
 
     </body>
 </html>

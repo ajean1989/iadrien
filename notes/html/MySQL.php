@@ -35,9 +35,9 @@
     					PHP fait l'intermédiaire entre vous et MySQL. On devra demander à PHP : "Va dire à MySQL de faire ceci".
     				</p>
 
-    				<img src='../images/PHPMySQL.png' alt='Schéma entre PHP et MySQL' />
+    				<img src="../images/PHPMySQL.png" alt="Schéma entre PHP et MySQL"/>
 
-    				<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913655-travaillez-avec-une-base-de-donnees#/id/r-913633" target="blank">Structurez votre base de données</a></h1>
+    				<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913655-travaillez-avec-une-base-de-donnees#/id/r-913633" target="blank">Structurez votre base de données</a></h2>
 
     				<p>
     					<ul>
@@ -45,7 +45,9 @@
     						<li>Dans une armoire, il y a plusieurs tiroirs. Un tiroir, en SQL, c'est ce qu'on appelle <strong>"une table"</strong>. Chaque tiroir contient des données différentes. Par exemple, on peut imaginer un tiroir qui contient les pseudonymes et informations sur vos visiteurs, un autre qui contient les messages postés sur votre forum, etc.</li>
     						<li>Mais que contient une table ? C'est là que sont enregistrées les données, sous la forme d'un tableau. Dans ce tableau, les colonnes sont appelées des <strong>"champs"</strong>, et les lignes sont appelées des <strong>"entrées"</strong>.</li>
     					</ul>
-    					Par exemple, le tableau suivant vous montre à quoi peut ressembler le contenu d'une table appelée « Utilisateurs » :<br/>
+    					Par exemple, le tableau suivant vous montre à quoi peut ressembler le contenu d'une table appelée « Utilisateurs » :
+					</p>
+						<figure>
     					<table>
     						<caption>Exemple d'une table</caption>
     						<tr>
@@ -77,6 +79,9 @@
     							<td>...</td>
     						</tr>
     					</table>
+						</figure>
+
+						<p>
     					La base de données contient plusieurs tables (on peut en mettre autant que l'on veut à l'intérieur). Chaque table est en fait un tableau où les colonnes sont appelées champs et où les lignes sont appelées entrées.<br/>
     					Pour vous donner quelques exemples concrets, voici le nom des tables que vous allez devoir créer pour compléter votre site de partage de recettes :
     					<ul>
@@ -90,11 +95,11 @@
 
 						<img src="../images/16335991080356_p4c1-2.png"  atl="schéma base de donnée"/>
 
-    					<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913893-mettez-en-place-une-base-de-donnees-avec-phpmyadmin#/id/r-7455696" target="blank">Mettre en place une base de données avec phpMyAdmin</a></h1>
+    					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913893-mettez-en-place-une-base-de-donnees-avec-phpmyadmin#/id/r-7455696" target="blank">Mettre en place une base de données avec phpMyAdmin</a></h2>
 
     					<p>phpMyAdmin est livré avec MAMP et XAMPP. Voir vidéo dans <a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913893-mettez-en-place-une-base-de-donnees-avec-phpmyadmin#/id/video_Player_2" target="blank">le lien</a></p>
 
-    					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913893-mettez-en-place-une-base-de-donnees-avec-phpmyadmin#/id/r-6923863" target="blank">Les types de champs MySQL</a></h2>
+    					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913893-mettez-en-place-une-base-de-donnees-avec-phpmyadmin#/id/r-6923863" target="blank">Les types de champs MySQL</a></h3>
 
     					<p>
     						MySQL propose une quantité très importante de types de données, mais dans la pratique, vous n'aurez besoin de jongler qu'entre les quatre types de données suivants :
@@ -109,7 +114,7 @@
     						<div class="em">Prenez le réflexe de créer à chaque fois ce champ « id » en lui donnant l'index <code class="line_code">PRIMARY</code>, ce qui aura pour effet d'en faire une clé primaire. Vous en profiterez en général pour cocher la case <code class="line_code">AUTO_INCREMENT</code> pour que ce champ gère lui-même les nouvelles valeurs automatiquement (1, 2, 3, 4…).</div>
     					</p>
 
-    					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913893-mettez-en-place-une-base-de-donnees-avec-phpmyadmin#/id/r-6923889" target="blank">Importez et exportez des données</a></h2>
+    					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913893-mettez-en-place-une-base-de-donnees-avec-phpmyadmin#/id/r-6923889" target="blank">Importez et exportez des données</a></h3>
 
     					<p>
     						Explorez maintenant l'onglet « Exporter » de phpMyAdmin. C'est ici que vous allez pouvoir récupérer votre base de données sur le disque dur, sous forme de fichier texte .sql  (qui contiendra des tonnes de requêtes SQL). Le fichier que vous allez obtenir grâce à « l'exportation » de phpMyAdmin, c'est un fichier qui dit à MySQL comment recréer votre base de données (avec des requêtes en langage SQL). Et ce fichier-là est tout à fait lisible.<br/>
@@ -120,16 +125,16 @@
     						</ol>
     					</p>
 
-    					<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-7471362" target="blank">Accéder aux donnée en PHP avec PDO</a></h1>
+    					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-7471362" target="blank">Accéder aux donnée en PHP avec PDO</a></h3>
 
     					<p>
     						Pour pouvoir travailler avec la base de données en PHP, il faut d'abord s'y connecter. Il va donc falloir que PHP s'authentifie : on dit qu'il établit une connexion avec MySQL. Une fois que la connexion sera établie, vous pourrez faire toutes les opérations que vous voudrez sur votre base de données !
     					</p>
 						<p>Pour se connecter à une base de données MySQL, vous allez devoir utiliser une extension PHP appelée PDO ("PHP Data Objects"). Cette extension est fournie avec PHP (en français, "les fonctions PDO sont à votre disposition"), mais parfois il vous faudra activer l'extension.</p>
 
-    					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-2175040" target="blank">Vérifiez que PDO est bien activé (voir lien)</a></h2>
+    					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-2175040" target="blank">Vérifiez que PDO est bien activé (voir lien)</a></h3>
 
-						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-2175074" target="blank">Connectez PHP à MySQL avec PDO</a></h2>
+						<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-2175074" target="blank">Connectez PHP à MySQL avec PDO</a></h3>
 
 						<p>Maintenant que nous sommes certains que PDO est activé, nous pouvons nous connecter à MySQL. Nous allons avoir besoin de quatre renseignements :
 							<ul>
@@ -148,7 +153,7 @@ $mysqlConnection = new PDO(
     'mysql:host=localhost;dbname=my_recipes;charset=utf8',
     'root',
     'root',
-	[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION], //active une meilleure gestion des erreurs
+	[PDO::ATTR_ERRMODE =&gt PDO::ERRMODE_EXCEPTION], //active une meilleure gestion des erreurs
 );
 ?&gt
 							</code></pre>
@@ -164,7 +169,7 @@ $db = new PDO('mysql:host=sql.hebergeur.com;dbname=mabase;charset=utf8', 'pierre
 						</figure>
 						<div class="em">Le premier paramètre (qui commence par mysql  ) s'appelle le DSN : Data Source Name. C'est généralement le seul qui change en fonction du type de base de données auquel on se connecte.</div>
 
-						<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-2175084" target="blank">Testez la présence d'erreurs</a></h3>
+						<h4 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-2175084" target="blank">Testez la présence d'erreurs</a></h4>
 
 						<p>Si vous avez renseigné les bonnes informations, rien ne devrait s'afficher à l'écran. Toutefois, s'il y a une erreur (vous vous êtes trompé de mot de passe ou de nom de base de données, par exemple), PHP risque d'afficher toute la ligne qui pose l'erreur, ce qui inclut le mot de passe !<br/>
 						En cas d'erreur, PDO renvoie ce qu'on appelle une exception, qui permet de « capturer » l'erreur :</p>
@@ -178,7 +183,7 @@ try
 }
 catch (Exception $e)		
 {
-        die('Erreur : ' . $e->getMessage());
+        die('Erreur : ' . $e-&gtgetMessage());
 }
 ?&gt	
 							</code></pre>
@@ -192,7 +197,7 @@ catch (Exception $e)
 							</ul>
 						</p>
 
-						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-914147" target="blank">Effectuez une première requête SQL</a></h1>
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-914147" target="blank">Effectuez une première requête SQL</a></h2>
 
 						<p>Voici la première requête SQL que nous allons utiliser :</p>
 
@@ -215,7 +220,7 @@ SELECT * FROM recipes
 						<figure class="block_code">
     						<pre><code>
 &lt?php
-$recipesStatement = $db->prepare('SELECT * FROM recipes');
+$recipesStatement = $db-&gtprepare('SELECT * FROM recipes');
 ?&gt	
 							</code></pre>
 						</figure>
@@ -225,8 +230,8 @@ $recipesStatement = $db->prepare('SELECT * FROM recipes');
 						<figure class="block_code">
     						<pre><code>
 &lt?php
-$recipesStatement->execute();
-$recipes = $recipesStatement->fetchAll();		//fetch signifie "va chercher" en anglais
+$recipesStatement-&gtexecute();
+$recipes = $recipesStatement-&gtfetchAll();		//fetch signifie "va chercher" en anglais
 ?&gt	
 							</code></pre>
 						</figure>
@@ -239,7 +244,7 @@ $recipes = $recipesStatement->fetchAll();		//fetch signifie "va chercher" en ang
 
 						<img src="../images/6948946.png" alt=" résumer code complet "/>
 
-						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-914221" target="blank">Filtrez vos données</a></h1>
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-914221" target="blank">Filtrez vos données</a></h2>
 
 						<p>
 						Vous allez voir qu'en modifiant vos requêtes SQL, il est possible de filtrer et trier très facilement vos données. Vous allez ici découvrir les mots-clés suivants du langage SQL :
@@ -257,22 +262,32 @@ $sqlQuery = 'SELECT * FROM recipes WHERE is_enabled = TRUE';
 							</code></pre>
 						</figure>
 
-						<p>Traduction : « Sélectionner tous les champs de la table recipes lorsque le champ is_enabled est égal à vrai ».</p>
-						<div class="em">Il faut utiliser les mots-clés dans l'ordre que j'ai donné : <code class="line_code">WHERE</code> puis <code class="line_code">ORDER BY</code> puis <code class="line_code">LIMIT</code> , sinon MySQL ne comprendra pas votre requête.</div>
+						<p>
+							Traduction : « Sélectionner tous les champs de la table recipes lorsque le champ is_enabled est égal à vrai ».
+						</p>
+
+						<div class="em">
+							Il faut utiliser les mots-clés dans l'ordre que j'ai donné : <code class="line_code">WHERE</code> puis <code class="line_code">ORDER BY</code> puis <code class="line_code">LIMIT</code> , sinon MySQL ne comprendra pas votre requête.
+						</div>
+
 						<p>Avant d'écrire le code PHP, vous pouvez déjà vérifier que la requête SQL est correcte en la testant dans l'onglet "SQL" de phpMyAdmin, comme je viens de vous le montrer.</p>
 
-						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-914259" target="blank">Construisez des requêtes en fonction de variables</a></h1>
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-914259" target="blank">Construisez des requêtes en fonction de variables</a></h2>
 
-						<div class="em">On ne concatène JAMAIS une requête SQL pour passer des variables, au risque de créer des injections SQL !</div>
+						<div class="em">
+							On ne concatène JAMAIS une requête SQL pour passer des variables, au risque de créer des injections SQL !
+						</div>
 
-						<p>On utilise des marqueurs qui sont des identifiants reconnus par PDO pour être remplacés lors de la préparation de la requête par les variables PHP :</p>
+						<p>
+							On utilise des marqueurs qui sont des identifiants reconnus par PDO pour être remplacés lors de la préparation de la requête par les variables PHP :
+						</p>
 
 						<figure class="block_code">
     						<pre><code>
 &lt?php
 $sqlQuery = 'SELECT * FROM recipes WHERE author = :author AND is_enabled = :is_enabled';
 
-$db->prepare($sqlQuery);
+$db-&gtprepare($sqlQuery);
 $recipes = $db-&gtexecute([
     'author' =&gt 'mathieu.nebra@exemple.com',
     'is_enabled' =&gt true,
@@ -281,7 +296,7 @@ $recipes = $db-&gtexecute([
 						</figure>
 
 
-						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914508-ajoutez-modifiez-et-supprimez-des-recettes#/id/r-2175533" target="blank">Ajouter une recette : l'instruction <code class="line_code">INSERT INTO</code></a></h1>
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914508-ajoutez-modifiez-et-supprimez-des-recettes#/id/r-2175533" target="blank">Ajouter une recette : l'instruction <code class="line_code">INSERT INTO</code></a></h2>
 
 						<figure class="block_code">
     						<pre><code>
@@ -310,7 +325,7 @@ $sqlQuery = 'INSERT INTO recipes(title, recipe, author, is_enabled) VALUES (:tit
 
 						<img src="../images/4864.png" alt="cpde post_create.php"/>
 
-						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914508-ajoutez-modifiez-et-supprimez-des-recettes#/id/r-914477" target="blank">Editer une recette : l'instruction <code class="line_code">UPDATE</code></a></h1>
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914508-ajoutez-modifiez-et-supprimez-des-recettes#/id/r-914477" target="blank">Editer une recette : l'instruction <code class="line_code">UPDATE</code></a></h2>
 
 						<p>
 						En imaginant qu'on fournit un formulaire d'édition et que l'on autorise les utilisateurs à éditer les champs title et recipe , voici la requête SQL correspondante :
@@ -332,7 +347,7 @@ UPDATE recipes SET title = :title, recipe = :recipe WHERE recipe_id = :id
 							</ul>
 						</p>
 
-						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914508-ajoutez-modifiez-et-supprimez-des-recettes#/id/r-914507" target="blank">Editer une recette : l'instruction <code class="line_code">UPDATE</code></a></h1>
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914508-ajoutez-modifiez-et-supprimez-des-recettes#/id/r-914507" target="blank">Editer une recette : l'instruction <code class="line_code">UPDATE</code></a></h2>
 
 
 						<p>
@@ -344,14 +359,16 @@ DELETE FROM recipes WHERE recipe_id=:id
 							</code></pre>
 						</figure>
 
-						<div class="em">Si vous oubliez le <code class="line_code">WHERE</code>, toutes les entrées seront supprimées. Cela équivaut à vider la table.</div>
+						<div class="em">
+							Si vous oubliez le <code class="line_code">WHERE</code>, toutes les entrées seront supprimées. Cela équivaut à vider la table.
+						</div>
 
 						<p>
 							<a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914508-ajoutez-modifiez-et-supprimez-des-recettes#/id/video_Player_3" target="blank">Voir vidéo</a> pour plus de détail : <br/>
 							Pour faire un bouton supprimer une recette, on passera toujours par un formulaire pour envoyer la requete en POST
 						</p>
 
-						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914508-ajoutez-modifiez-et-supprimez-des-recettes#/id/r-4428801" target="blank">Traitez les erreurs SQL</a></h1>
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914508-ajoutez-modifiez-et-supprimez-des-recettes#/id/r-4428801" target="blank">Traitez les erreurs SQL</a></h2>
 
 						<p>
 							Repérez la requête qui selon vous plante, et forcez l'affichage de l'erreur s'il y en a une, comme ceci :
@@ -360,10 +377,10 @@ DELETE FROM recipes WHERE recipe_id=:id
 						<figure class="block_code">
     						<pre><code>
 &lt?php
-$deleteRecipeStatement = $db->prepare('DELETE FROM recipes WHERE recipe_id = :id');
-$deleteRecipeStatement->execute([
-    'id' => $id,
-]) or die(print_r($db->errorInfo()));
+$deleteRecipeStatement = $db-&gtprepare('DELETE FROM recipes WHERE recipe_id = :id');
+$deleteRecipeStatement-&gtexecute([
+    'id' =&gt $id,
+]) or die(print_r($db-&gterrorInfo()));
 							</code></pre>
 						</figure>
 
@@ -371,7 +388,7 @@ $deleteRecipeStatement->execute([
 							Si la requête fonctionne, aucune erreur ne sera affichée. Si en revanche la requête plante, PHP arrêtera de générer la page et vous affichera l'erreur donnée par MySQL…
 						</p>
 
-						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7372786-ajoutez-des-commentaires-grace-aux-jointures-sql#/id/r-7373184" target="blank">Les jointures</a></h1>
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7372786-ajoutez-des-commentaires-grace-aux-jointures-sql#/id/r-7373184" target="blank">Les jointures</a></h2>
 
 						<p>
 							Considérons deux tables :
@@ -392,7 +409,7 @@ $deleteRecipeStatement->execute([
 							</ol>
 						</p>
 
-						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7372786-ajoutez-des-commentaires-grace-aux-jointures-sql#/id/r-7373279" target="blank">Les jointures internes</a></h2>
+						<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7372786-ajoutez-des-commentaires-grace-aux-jointures-sql#/id/r-7373279" target="blank">Les jointures internes</a></h3>
 
 
 						<figure class="block_code">
@@ -424,9 +441,9 @@ ON u.user_id = c.user_id
 
 						<img src="../images/jointure interne.png" alt="table jointurne interne"/>
 
-						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7372786-ajoutez-des-commentaires-grace-aux-jointures-sql#/id/r-7373496" target="blank">Les jointures externes</a></h2>
+						<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7372786-ajoutez-des-commentaires-grace-aux-jointures-sql#/id/r-7373496" target="blank">Les jointures externes</a></h3>
 
-						<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7372786-ajoutez-des-commentaires-grace-aux-jointures-sql#/id/r-7455896" target="blank"><code class="line_code">LEFT JOIN</code> et <code class="line_code">RIGHT JOIN</code></a></h3>
+						<h4 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7372786-ajoutez-des-commentaires-grace-aux-jointures-sql#/id/r-7455896" target="blank"><code class="line_code">LEFT JOIN</code> et <code class="line_code">RIGHT JOIN</code></a></h4>
 
 						<figure class="block_code">
     						<pre><code>
@@ -442,7 +459,7 @@ ON u.user_id = c.user_id
 						users  est appelée la « table de gauche » et comments  la « table de droite ».
 						</p>
 
-						<img src="../images/LEFTJOIN.png" alt="LEFT JOIN"  />
+						<img src="../images/LEFTJOIN.png" alt="LEFT JOIN"/>
 
 						<figure class="block_code">
     						<pre><code>
@@ -456,7 +473,7 @@ ON u.user_id = c.user_id
 
 						<img src="../images/RIGHTJOIN.png" alt="RIGHT JOIN"/>
 
-						<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7372786-ajoutez-des-commentaires-grace-aux-jointures-sql#/id/r-7373957" target="blank">Enchainer les jointures</a></h3>
+						<h4 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7372786-ajoutez-des-commentaires-grace-aux-jointures-sql#/id/r-7373957" target="blank">Enchainer les jointures</a></h4>
 
 						<figure class="block_code">
     						<pre><code>
@@ -471,7 +488,7 @@ JOIN recipes r
 						
 						<img src="../images/2JOIN.png" alt="Enchainer les jointures"/>
 
-						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/915107-allez-plus-loin#/id/r-7456018" target="blank">Les fonctions</a></h1>
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/915107-allez-plus-loin#/id/r-7456018" target="blank">Les fonctions</a></h2>
 
 						<p>
 						Les fonctions SQL peuvent être classées en deux catégories :
@@ -504,7 +521,7 @@ SELECT DATE_FORMAT(c.created_at, "%d/%m/%Y") AS comment_date FROM recipes r LEFT
 
 						<p>Ce champ virtuel est appelé "alias".</p>
 
-						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/915107-allez-plus-loin#/id/r-7456014" target="blank">Les fonctions d'agrégat</a></h2>
+						<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/915107-allez-plus-loin#/id/r-7456014" target="blank">Les fonctions d'agrégat</a></h3>
 
 						<p>
 						<code class="line_code">ROUND()</code> est une fonction scalaire qui permet d'arrondir une valeur. On récupère donc autant d'entrées qu'il y en avait dans la table. En revanche, une fonction d'agrégat comme <code class="line_code">AVG()</code> renvoie une seule entrée : la valeur moyenne de tous les lignes.
@@ -538,16 +555,16 @@ SELECT ROUND(AVG(c.review),1) as rating FROM recipes r LEFT JOIN comments c on r
 $sqlQuery = 'SELECT ROUND(AVG(c.review),1) as rating FROM recipes r LEFT JOIN comments c on r.recipe_id = c.recipe_id WHERE r.recipe_id = 1';
 
 // Préparation
-$averageRatingStatment = $db->prepare($sqlQuery);
+$averageRatingStatment = $db-&gtprepare($sqlQuery);
 
 // Exécution
-$averageRatingStatment->execute();
+$averageRatingStatment-&gtexecute();
 
 /** La fonction fetch est plus performante que fetchAll()
  * quand nous sommes certain(e)s de ne récupérer qu'une ligne.
  * https://www.php.net/manual/fr/pdostatement.fetch.php
  */
-$averageRating = $averageRatingStatment->fetch();											
+$averageRating = $averageRatingStatment-&gtfetch();											
 							</code></pre>
 						</figure>
 
@@ -559,7 +576,7 @@ $averageRating = $averageRatingStatment->fetch();
 							</ol>
 						</p>
 
-						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/915107-allez-plus-loin#/id/r-7456017" target="blank">Regroupez des données avec <code class="line_code">GROUP BY</code></a></h2>
+						<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/915107-allez-plus-loin#/id/r-7456017" target="blank">Regroupez des données avec <code class="line_code">GROUP BY</code></a></h3>
 
 						<p>
 							Ce qui pourrait avoir du sens, ce serait de demander le note moyenne des commentaires pour chaque recette <br/>
@@ -582,7 +599,7 @@ SELECT AVG(review) AS rating, recipe_id FROM comments GROUP BY recipe_id
 
 						<figure class="block_code">
     						<pre><code>
-SELECT AVG(review) AS rating, recipe_id FROM comments GROUP BY recipe_id HAVING rating >= 3										
+SELECT AVG(review) AS rating, recipe_id FROM comments GROUP BY recipe_id HAVING rating &gt= 3										
 							</code></pre>
 						</figure>
 
@@ -601,16 +618,29 @@ SELECT AVG(review) AS rating, recipe_id FROM comments GROUP BY recipe_id HAVING 
 							</ul>
 						</p>
 
+						<figure class="block_code">
+    						<pre><code>
+SELECT AVG(review) AS rating, recipe_id FROM comments WHERE user_id = 1 GROUP BY recipe_id HAVING rating &gt= 2						
+							</code></pre>
+						</figure>
+
+						<p>
+						Ici, on demande à récupérer la note moyenne par recette de Mickaël ( <code class="line_code">WHERE</code> ), dont la valeur moyenne est supérieure ou égale à 2 ( <code class="line_code">HAVING</code> ).
+						</p>
+
+						<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7152681-installez-le-sgbd-mysql#/id/r-7152721" target="blank">Installer MySQL sur windows</a></h1>
+
+						<p>
+							Rendez-vous sur <a href="https://dev.mysql.com/downloads/installer/" target="blank">https://dev.mysql.com/downloads/installer/ . Je vous conseille de télécharger le deuxième programme (la version “community”), qui dispose d’options supplémentaires par rapport au premier (la version “web”). </a>
+						</p>
 
 
 
 
 
 
+								</div>
 
-
-    				
- 	
     		</section>
 
     		<footer>
@@ -628,11 +658,7 @@ SELECT AVG(review) AS rating, recipe_id FROM comments GROUP BY recipe_id HAVING 
 
     </div>
 					
-					<script src="../js/navright.js"></script>
-
-    	</div>
-
-    </div>
+			<script src="../js/navright.js"></script>
 
     </body>
 </html>
