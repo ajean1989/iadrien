@@ -251,6 +251,249 @@ require('affichageAccueil.php');
             </ol>
             </p>
 
+            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682351-creer-un-routeur#/id/r-4682356" target="blank">Créer un routeur</a></h1>
+
+            <p>
+            Pour faciliter la maintenance, il est plus simple de passer par un contrôleur frontal, qui va jouer le rôle de routeur. Son objectif va être d'appeler le bon contrôleur (on dit qu'il route les requêtes).
+            </p>
+
+            <img src="../images/15066137117023_mvc_router.png" alt="vue routeur"/>
+
+            <p>
+            On va travailler ici sur 2 fichiers :
+            <ul>
+                <li><code class="line_code">index.php</code> : ce sera le nom de notre routeur. Le routeur étant le premier fichier qu'on appelle en général sur un site, c'est normal de le faire dans index.php. Il va se charger d'appeler le bon contrôleur.</li>
+                <li><code class="line_code">controller.php</code> : il contiendra nos contrôleurs dans des fonctions.</li>
+            </ul>
+            </p>
+
+            <p>
+            On va faire passer un paramètre <code class="line_code">action</code> dans l'URL de notre routeur <code class="line_code">index.php</code> pour savoir quelle page on veut appeler. Par exemple :
+            <ul>
+                <li>index.php?action=listPosts : va afficher la liste des billets.</li>
+                <li>index.php?action=post : va afficher un billet et ses commentaires.</li>
+            </ul>
+            </p>
+
+            <div class="em">Certains trouvent que l'URL n'est plus très jolie sous cette forme. Peut-être préféreriez-vous voir monsite.com/listposts plutôt que index.php?action=listPosts.<br/>
+            Heureusement, cela peut se régler avec un mécanisme de réécriture d'URL (URL rewriting). On ne l'abordera pas ici, car ça se fait dans la configuration du serveur web (Apache), mais vous pouvez vous renseigner sur le sujet si vous voulez !</div>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682351-creer-un-routeur#/id/r-4682481" target="blank">Création du routeur index.php</a></h2>
+
+            <figure class="block_code">
+    			<pre><code>
+&lt?php
+require('controller.php');
+
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'listPosts') {
+        listPosts();
+    }
+    elseif ($_GET['action'] == 'post') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            post();
+        }
+        else {
+            echo 'Erreur : aucun identifiant de billet envoyé';
+        }
+    }
+}
+else {
+    listPosts();
+}
+				</code></pre>
+			</figure>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682351-creer-un-routeur#/id/r-4682469" target="blank">Création de controller.php</a></h2>
+
+            <figure class="block_code">
+    			<pre><code>
+ &lt?php
+
+require('model.php');
+
+function listPosts()
+{
+    $posts = getPosts();
+
+    require('listPostsView.php');
+}
+
+function post()
+{
+    $post = getPost($_GET['id']);
+    $comments = getComments($_GET['id']);
+
+    require('postView.php');
+}
+				</code></pre>
+			</figure>
+
+            <p>
+            Vous remarquerez que c'est dans le routeur qu'on teste la présence de l'id dans l'URL pour l'affichage d'un post (ligne 9). On aurait pu laisser ce test dans le contrôleur, mais c'est normalement le rôle du routeur de vérifier que tous les paramètres sont présents dans l'URL avant de charger le contrôleur.
+            </p>
+
+            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682551-organiser-en-dossiers#/id/r-4682636" target="blank">Organiser en dossiers</a></h1>
+
+            <p>
+            Nos fichiers tous mélangés à la racine du projet. Berk ! Il est temps de faire un peu de rangement !
+            </p>
+
+            <p>
+            Je pense que ça serait bien d'adopter déjà au minimum l'organisation suivante, que l'on peut retrouver dans un certain nombre projets :
+            <ul>
+                <li><strong>controller/</strong> : le dossier qui contient nos contrôleurs.</li>
+                <li><strong>view/</strong> : nos vues.</li>
+                <li><strong>model/</strong> : notre modèle.</li>
+                <li><strong>public/</strong> : tous nos fichiers statiques publics. On pourra y mettre à l'intérieur un dossier css/, images/, js/, etc.</li>
+            </ul>
+            On retrouve aussi souvent un dossier appelé <strong>vendor/</strong> dans lequel on place toutes les bibliothèques tierces (tout le code qui provient d'autres personnes).
+            </p>
+
+            <p>
+            Hum, mais c'est bizarre non d'avoir controller/controller.php et model/model.php ? 🤔  En fait, ça nous donne la place de nous étendre quand le site va grossir. L'idée sera de regrouper les contrôleurs, modèles (et même les vues) dans des sections, en fonction des différentes grandes "zones du site".
+            </p>
+
+            <p>
+                On peut aussi avoir un autre découpage :
+                <ul>
+                    <li><strong>frontend</strong> : tout ce qui est côté utilisateur. Affichage des billets, ajout et liste des commentaires...</li>
+                    <li><strong>backend</strong> : tout ce qui est pour les administrateurs. Création de billets, modération des commentaires...</li>
+                </ul>
+            </p>
+
+            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689586" target="blank">Gérer les erreurs</a></h1>
+
+            <p>
+            Si vous vous souvenez de notre routeur, il contient beaucoup de  if .On fait des tests et on affiche des erreurs à chaque fois qu'il y a un problème.
+            </p>
+
+            <p>
+            Oui, mais comme toujours, ce n'est pas parce que ça marche que c'est pratique à la longue. Les développeurs ont en particulier du mal à gérer comme ça les erreurs qui ont lieu à l'intérieur des fonctions.
+            </p>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689649" target="blank">Les exceptions</a></h2>
+
+            <p>
+            Les exceptions sont un moyen en programmation de gérer les erreurs. Vous en avez peut-être déjà vu dans du code PHP, ça ressemble à ça :
+            </p>
+
+            <figure class="block_code">
+    			<pre><code>
+&lt?php
+try {
+    // Essayer de faire quelque chose
+}
+catch(Exception $e) {
+    // Si une erreur se produit, on arrive ici
+}
+				</code></pre>
+			</figure>
+
+            <p>
+            En premier lieu, l'ordinateur essaie d'exécuter les instructions qui se trouvent dans le bloc <code class="line_code">try</code> ("essayer" en anglais). Deux possibilités :
+            <ul>
+                <li>Soit il ne se passe aucune erreur dans le bloc <code class="line_code">try</code> : dans ce cas, on saute le bloc <code class="line_code">catch</code> et on passe à la suite du code.</li>
+                <li>Soit une erreur se produit dans le bloc <code class="line_code">try</code> : on arrête ce qu'on faisait et on va directement dans le <code class="line_code">catch</code> (pour "attraper" l'erreur).</li>
+            </ul>
+            </p>
+            On peut afficher l'erreur qui nous a été envoyée avec <code class="line_code">$e->getMessage() </code>
+            </p>
+
+            <p>
+            Pour générer une erreur, il faut "jeter une exception" (oui, on dit ça 😂 ). Dès qu'il y a une erreur quelque part dans votre code, dans une fonction par exemple, vous utiliserez cette ligne :
+            </p>
+
+            <figure class="block_code">
+    			<pre><code>
+&lt?php
+throw new Exception('Message d\'erreur à transmettre');
+				</code></pre>
+			</figure>
+
+            <p>
+            On va utiliser ce mécanisme dans notre code comme ceci :
+            </p>
+
+            <figure class="block_code">
+    			<pre><code>
+&lt?php
+require('controller/frontend.php');
+
+try { // On essaie de faire des choses
+    if (isset($_GET['action'])) {
+        if ($_GET['action'] == 'listPosts') {
+            listPosts();
+        }
+        elseif ($_GET['action'] == 'post') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                post();
+            }
+            else {
+                // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'addComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                if (!empty($_POST['author']) && !empty($_POST['comment'])) {
+                    addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                }
+                else {
+                    // Autre exception
+                    throw new Exception('Tous les champs ne sont pas remplis !');
+                }
+            }
+            else {
+                // Autre exception
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+        }
+    }
+    else {
+        listPosts();
+    }
+}
+catch(Exception $e) { // S'il y a eu une erreur, alors...
+    echo 'Erreur : ' . $e->getMessage();
+}
+
+				</code></pre>
+			</figure>
+
+            <p>
+            Comme vous pouvez le voir, à l'endroit où les erreurs se produisent j'ai mis des <code class="line_code">throw new Exception</code>. Cela arrête le bloc <code class="line_code">try</code> et amène directement l'ordinateur au bloc <code class="line_code">catch</code>. Ici, notre bloc <code class="line_code">catch</code> se contente de récupérer le message d'erreur qu'on a transmis et de l'afficher.
+            </p>
+
+            <p>
+            Lorsqu'une erreur survient dans une sous-fonction, elle est remontée jusqu'au bloc catch :
+            </p>
+
+            <img src="../images/15066202231155_exceptions.png" alt="remonter une erreur"/>
+
+            <p>
+            Pour l'instant, notre bloc <code class="line_code">catch</code> affiche une erreur avec un simple <code class="line_code">echo</code>. Si nous voulons faire quelque chose de plus joli, nous pouvons appeler une vue  <code class="line_code">errorView.php</code> qui affiche joliment le message d'erreur.
+            </p>
+
+            <figure class="block_code">
+    			<pre><code>
+&lt?php
+require('controller/frontend.php');
+
+try {
+    // ...
+}
+catch(Exception $e) {
+    $errorMessage = $e->getMessage();
+    require('view/errorView.php');
+}
+				</code></pre>
+			</figure>
+
+
+
+
+
 
 
 
