@@ -7,6 +7,7 @@
         <li><a href="bases_php.php">PHP</a></li>
         <li><a href="MySQL.php">MySQL</a></li>
         <li><a href="MVC.php">Le modèle MVC</li>
+        <li><a href="PHP_POO.php">POO</li>
         <li><a href="parametrage_erreurs_securité.php">Paramétrage, erreurs et sécurité en PHP</a>
         <li><a href="bases_javascript.php">Javascript</a></li>
         <li><a href="js_manipulation_de_page.php">Javascript - manipulation de pages</a></li>
