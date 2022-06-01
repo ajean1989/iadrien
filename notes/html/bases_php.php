@@ -864,7 +864,25 @@ for ($nombre_de_ligne = 1 ; $nombre_de_ligne &gt= 100; $nombre_de_ligne++)      
             <div class="em">Remarquez qu'en théorie rien n'empêche le formulaire de s'appeler lui-même. Il suffirait d'écrire <code class="line_code">action="formulaire.php"</code>. Dans ce cas, la page du formulaire doit être capable aussi bien d'afficher le formulaire que de traiter les données.</div>
         </p>
         <p>
-            Je vais ici tous les énumérer et vous montrer comment vous servir de chacun d'eux dans la page <code class="line_code">cible.php</code> qui fera le traitement. Vous allez voir, c'est vraiment très simple : au lieu de recevoir un array <code class="line_code">$_GET</code>, vous allez recevoir un array <code class="line_code">$_POST</code> contenant les données du formulaire !
+            Je vais ici tous les énumérer et vous montrer comment vous servir de chacun d'eux dans la page <code class="line_code">cible.php</code> qui fera le traitement.
+        </p>
+
+        <p>
+            Tout d'abord, la méthode <code class="line_code">GET</code> sert à faire transiter des informations par l'intermédiaire de l'URL, comme ceci : 
+        </p>
+
+        <img src="../images/16334391704407_p3c1-1.png" alt="image transfet par GET"/>
+
+        <p>
+            En théorie on peut écrire autant de paramètre que l'on veut. En pratique, certain navigateur n'accepte que 256 caractères. Il suffit d'écrire ces paramètre dans le lien hypertext (en remplaçant & par &amp) ou grâce à l'attribut <code class="line_code">name</code> d'un formulaire avec la méthode <code class="line_code">GET</code>.
+        </p>
+
+        <p>
+            Les données transférer sont alors récupéré dans la page cible à l'aide de la super variable <code class="line_code">__GET</code>. Exemple : $_GET['email'] donne utilisateur@exemple.com
+        </p>
+            
+        <p> 
+            Pour la méthode <code class="line_code">POST</code>, vous allez voir, c'est vraiment très simple : au lieu de recevoir un array <code class="line_code">$_GET</code>, vous allez recevoir un array <code class="line_code">$_POST</code> contenant les données du formulaire !
         </p>
         <p>
             PHP viendra stocker la valeur saisie ou sélectionnée dans la variable <code class="line_code">$_POST['valeur_de_name']</code> car pour rappel, la balise <code class="line_code">input</code> qui permet de remplir un formulaire a un attribut <code class="line_code">name</code> qui va définir le nom de la variable qui sera créée dans <code class="line_code">name</code>cible.php</p>. . <code class="line_code">&ltinput type="text" name="pseudo" /&gt.</code>
