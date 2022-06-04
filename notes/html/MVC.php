@@ -562,7 +562,9 @@ catch(Exception $e) {
 				</code></pre>
 			</figure>
 
+            <h1 id=<?php echo $ini ; $ini++ ;?>>Pour résumer</a></h1>
 
+            <a href="../images/MVC.png"><img src="../images/MVC.png" alt="résumer code MVC"/></a>
 
 
 
