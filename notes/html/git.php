@@ -231,7 +231,7 @@ git branch cagnotte   // créer une branche en local, pas sur le dépôt distant
                     </figure>
 
                     <p>
-                        Pour basculer sur la branche cagnotte, on utilise :    
+                        Pour basculer sur la branche cagnotte, on utilise :
                     </p>
 
                     <figure class="block_code">
