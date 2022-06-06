@@ -226,7 +226,7 @@ git branch    // renvoie * main ou * master ; l'étoile signifie que c'est la br
 
                     <figure class="block_code">
                             <pre><code>
-git branch cagnotte   // créer une branche en local, pas sur le dépôt distant
+git branch cagnotte   // créer une branche en local, pas sur le dépôt distant 
                             </code></pre>
                     </figure>
 
