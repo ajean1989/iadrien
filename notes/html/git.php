@@ -221,7 +221,7 @@ git branch    // renvoie * main ou * master ; l'étoile signifie que c'est la br
                     </figure>
 
                     <p>
-                        On créer à présent une nouvelle branche "cagnotte" :
+                        On créer à présent une nouvelle branche "cagnotte" :  
                     </p>
 
                     <figure class="block_code">
