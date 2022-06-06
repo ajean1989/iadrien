@@ -61,8 +61,8 @@ $ git config --global user.email adrienjean1989@gmail.com
                 </figure>
 
                 <p>
-                    <code class="line-code">--global</code> permet de configurer pour tous les dossiers. On peut configurer qu'un seul dossier avec <code class="line-code">global</code>.<br/>
-                    Pour vérifier que vos paramètres ont bien été pris en compte, et vérifier les autres paramètres, il suffit de passer la commande <code class="line-code">git config --list</code>.
+                    <code class="line_code">--global</code> permet de configurer pour tous les dossiers. On peut configurer qu'un seul dossier avec <code class="line_code">global</code>.<br/>
+                    Pour vérifier que vos paramètres ont bien été pris en compte, et vérifier les autres paramètres, il suffit de passer la commande <code class="line_code">git config --list</code>.
                 </p>
 
                 <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165721-installez-git-sur-votre-ordinateur#/id/r-7480879" target="_blank">Configurer les couleurs</a></h3>
@@ -141,13 +141,13 @@ Initialized empty Git repository in c:/users/JohnDoe/Documents/PremierProjet/
                     Pour résumer :
                     <ul>
                         <li><strong><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165726-travaillez-depuis-votre-depot-local-git#/id/r-7482738" target="blank">1</a></strong>. Créez les premiers fichiers dans le working directory.</li>
-                        <li><strong><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165726-travaillez-depuis-votre-depot-local-git#/id/r-7481074" target="blank">2</a></strong>.  Indexez vos fichiers avec la commande <code class="line-code">git add</code> : <code class="line-code">$ git add index.html styles.css</code> toujours avec gitbash et étant bien positionné dans le wd (<code class="line-code">pwd</code> ou <code class="line-code">cd working directory</code>).</li>
-                        <li><strong><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165726-travaillez-depuis-votre-depot-local-git#/id/r-7481082" target="blank">3</a></strong>. Créez une nouvelle version avec la commande <code class="line-code">git commit</code> : <code class="line-code">git commit -m “Ajout des fichiers html et css de base”</code> ;  -m (comme message) est ce qu'on appelle un argument, qui est ajouté à la commande principale. Ici "-m" permet de définir un message particulier rattaché au commit effectué. La description est très importante pour retrouver le fil de vos commits, et revenir sur un commit en particulier. Ne la négligez pas ! Il ne serait pas pratique de nommer des commits du type "version 1", "version 2", "version 2.1", car vous seriez alors obligé de lire le fichier pour connaître les modifications réalisées.</li>
-                        <li><strong><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165726-travaillez-depuis-votre-depot-local-git#/id/r-7481125">4</a></strong>. Envoyez votre commit sur le dépôt distant avec la commande <code class="line-code">git push</code> comme suit :
+                        <li><strong><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165726-travaillez-depuis-votre-depot-local-git#/id/r-7481074" target="blank">2</a></strong>.  Indexez vos fichiers avec la commande <code class="line_code">git add</code> : <code class="line_code">$ git add index.html styles.css</code> toujours avec gitbash et étant bien positionné dans le wd (<code class="line_code">pwd</code> ou <code class="line_code">cd working directory</code>).</li>
+                        <li><strong><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165726-travaillez-depuis-votre-depot-local-git#/id/r-7481082" target="blank">3</a></strong>. Créez une nouvelle version avec la commande <code class="line_code">git commit</code> : <code class="line_code">git commit -m “Ajout des fichiers html et css de base”</code> ;  -m (comme message) est ce qu'on appelle un argument, qui est ajouté à la commande principale. Ici "-m" permet de définir un message particulier rattaché au commit effectué. La description est très importante pour retrouver le fil de vos commits, et revenir sur un commit en particulier. Ne la négligez pas ! Il ne serait pas pratique de nommer des commits du type "version 1", "version 2", "version 2.1", car vous seriez alors obligé de lire le fichier pour connaître les modifications réalisées.</li>
+                        <li><strong><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165726-travaillez-depuis-votre-depot-local-git#/id/r-7481125">4</a></strong>. Envoyez votre commit sur le dépôt distant avec la commande <code class="line_code">git push</code> comme suit :
                             <ul>
-                                <li><code class="line-code">git remote add origin https://github.com/EtudiantOC/OpenclassroomsProject</code> lien disponnible sur github dans le projet.</li>
-                                <li><code class="line-code">git branch -M main</code> pour relié le dépôt local au dépôt distant.</li>
-                                <li>Vous pouvez donc envoyer des commits du repository vers le dépôt distant GitHub en utilisant la commande suivante : <code class="line-code">git push -u origin main</code> ; la version du projet est maintenant stockée dans le cloud !</li>
+                                <li><code class="line_code">git remote add origin https://github.com/EtudiantOC/OpenclassroomsProject</code> lien disponnible sur github dans le projet.</li>
+                                <li><code class="line_code">git branch -M main</code> pour relié le dépôt local au dépôt distant.</li>
+                                <li>Vous pouvez donc envoyer des commits du repository vers le dépôt distant GitHub en utilisant la commande suivante : <code class="line_code">git push -u origin main</code> ; la version du projet est maintenant stockée dans le cloud !</li>
                             </ul>
                         </li>
                     </ul>
@@ -183,13 +183,13 @@ git push origin main
 
                    <p>
                         <ul>
-                            <li><a href="https://git-scm.com/docs/git-init" target="blank"><code class="line-code">git-init</code></a> - Create an empty Git repository or reinitialize an existing one</li>
-                            <li><a href="https://git-scm.com/docs/git-add" target="blank"><code class="line-code">git-add</code></a> - Add file contents to the index</li>
-                            <li><a href="https://git-scm.com/docs/git-commit" target="blank"><code class="line-code">git-commit</code></a> - Record changes to the repository</li>
-                            <li><a href="https://git-scm.com/docs/git-remote" target="blank"><code class="line-code">git-remote</code></a> - Manage set of tracked repositories</li>
-                            <li><code class="line-code">git remote add</code> [-t &ltbranch&gt] [-m &ltmaster&gt] [-f] [--[no-]tags] [--mirror=(fetch|push)] &ltname&gt &ltURL&gt - Add a remote named &ltname&gt for the repository at &ltURL&gt.</li>
-                            <li><a href="https://git-scm.com/docs/git-branch" target="blank"><code class="line-code">git-branch</code></a> - List, create, or delete branches </li>
-                            <li><a href="https://git-scm.com/docs/git-push" target="blank"><code class="line-code">git-push</code></a> - Mettre à jour les références distantes avec les objets associés</li>
+                            <li><a href="https://git-scm.com/docs/git-init" target="blank"><code class="line_code">git-init</code></a> - Create an empty Git repository or reinitialize an existing one</li>
+                            <li><a href="https://git-scm.com/docs/git-add" target="blank"><code class="line_code">git-add</code></a> - Add file contents to the index</li>
+                            <li><a href="https://git-scm.com/docs/git-commit" target="blank"><code class="line_code">git-commit</code></a> - Record changes to the repository</li>
+                            <li><a href="https://git-scm.com/docs/git-remote" target="blank"><code class="line_code">git-remote</code></a> - Manage set of tracked repositories</li>
+                            <li><code class="line_code">git remote add</code> [-t &ltbranch&gt] [-m &ltmaster&gt] [-f] [--[no-]tags] [--mirror=(fetch|push)] &ltname&gt &ltURL&gt - Add a remote named &ltname&gt for the repository at &ltURL&gt.</li>
+                            <li><a href="https://git-scm.com/docs/git-branch" target="blank"><code class="line_code">git-branch</code></a> - List, create, or delete branches </li>
+                            <li><a href="https://git-scm.com/docs/git-push" target="blank"><code class="line_code">git-push</code></a> - Mettre à jour les références distantes avec les objets associés</li>
 
                         </ul>
                     </p>
@@ -258,7 +258,7 @@ git commit -m “Réalisation de la partie cagnotte côté front end”
                         Il ne vous reste plus qu’à envoyer les modifications réalisées sur le dépôt distant grace à la commande git push que nous avons vu précédemment.
                     </p>
 
-                    <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7475886-apprehendez-le-systeme-de-branches#/id/video_Player_2" target="_blank">Fusionner avec la commande <code class="line-code">git merge</code></a></h3>
+                    <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7475886-apprehendez-le-systeme-de-branches#/id/video_Player_2" target="_blank">Fusionner avec la commande <code class="line_code">git merge</code></a></h3>
 
                     <p>
                         À présent, il faut intégrer l'évolution réalisée dans la branche "cagnotte" à la branche principale "main". Pour cela, vous devez utiliser la commande "git merge".<br/>
@@ -296,7 +296,7 @@ git clone &ltURL&gt
                     </figure>
 
                     <p>
-                        On peut créer un raccourci pour agner du temps :
+                        On peut créer un raccourci pour gagner du temps :
                     </p>
 
                     <figure class="block_code">
@@ -312,7 +312,7 @@ git remote add &ltNOM&gt &ltURL&gt
                     <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165692-travaillez-avec-un-depot-distant#/id/r-7481330" target="_blank">Mettez à jour le dépôt en local</a></h2>
 
                     <p>
-                        Imaginons que durant la semaine, un de vos amis ait ajouté des modifications sur la branche main et que vous souhaitiez les récupérer.  Comment faire ? Utilisez la commande <code class="line-code">git pull</code> :
+                        Imaginons que durant la semaine, un de vos amis ait ajouté des modifications sur la branche main et que vous souhaitiez les récupérer.  Comment faire ? Utilisez la commande <code class="line_code">git pull</code> :
                     </p>
 
                     <figure class="block_code">
@@ -359,7 +359,7 @@ git branch -D brancheTest   // La suppression de cette branche entraînera la su
                             </code></pre>
                     </figure>
 
-                    <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165663-pratiquez-et-corrigez-vos-erreurs-sur-un-depot-local#/id/r-7481566">La commande <code class="line-code">stash</code></a></h3>
+                    <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165663-pratiquez-et-corrigez-vos-erreurs-sur-un-depot-local#/id/r-7481566">La commande <code class="line_code">stash</code></a></h3>
 
                     <p>
                         La remise, ou stash, permet de mettre vos modifications de côté, les ranger, le temps de créer votre nouvelle branche et d’appliquer cette remise sur la nouvelle branche.
@@ -385,7 +385,7 @@ git stash
                     </figure>
 
                     <p>
-                        Assurez-vous que votre branche principale soit de nouveau propre, en faisant un nouveau <code class="line-code">git status</code>.
+                        Assurez-vous que votre branche principale soit de nouveau propre, en faisant un nouveau <code class="line_code">git status</code>.
                     </p>
                     <p>
                         Créez ensuite la nouvelle branche et positionnez vous. Et finalement, vous pouvez appliquer le stash pour :
@@ -413,7 +413,7 @@ git stash list
                     </figure>
 
                     <p>
-                        Cette commande va vous retourner un "tableau" des stash avec des identifiants. Il suffira alors d'appeler la commande <code class="line-code">git stash</code> en indiquant l'identifiant.
+                        Cette commande va vous retourner un "tableau" des stash avec des identifiants. Il suffira alors d'appeler la commande <code class="line_code">git stash</code> en indiquant l'identifiant.
                     </p>
 
                     <figure class="block_code">
@@ -425,7 +425,7 @@ git stash apply stash@{0}
                     <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165663-pratiquez-et-corrigez-vos-erreurs-sur-un-depot-local#/id/r-7481565">J'ai commit sur la mauvaise branche</a></h3>
 
                     <p>
-                        Pour réparer cette erreur, vous devez analyser vos derniers commits avec la fonction <code class="line-code">git log</code>. Vous allez alors récupérer l'identifiant du commit que l'on appelle couramment le hash. 
+                        Pour réparer cette erreur, vous devez analyser vos derniers commits avec la fonction <code class="line_code">git log</code>. Vous allez alors récupérer l'identifiant du commit que l'on appelle couramment le hash. 
                     </p>
                     <p>
                         Maintenant que vous disposez de votre identifiant, gardez-le bien de côté. Vérifiez que vous êtes sur votre branche avec l'erreur et réalisez la commande suivante :
@@ -438,7 +438,7 @@ git reset --hard HEAD^
                     </figure>
 
                     <p>
-                        Cette ligne de commande va supprimer de la branche principale votre dernier commit. Le <code class="line-code">HEAD^</code> indique que c'est bien le dernier commit que nous voulons supprimer. L’historique sera changé, les fichiers seront supprimés.
+                        Cette ligne de commande va supprimer de la branche principale votre dernier commit. Le <code class="line_code">HEAD^</code> indique que c'est bien le dernier commit que nous voulons supprimer. L’historique sera changé, les fichiers seront supprimés.
                     </p>
                     <p>
                         Créer ensuite la nouvelle branche et rendez-y vous : 
@@ -452,7 +452,7 @@ git checkout brancheCommit
                     </figure>
 
                     <p>
-                        Renouvelez la commande <code class="line-code">git reset</code>, qui va appliquer ce commit sur votre nouvelle branche ! Il n'est pas nécessaire d'écrire l'identifiant en entier. Seuls les 8 premiers caractères sont nécessaires.
+                        Renouvelez la commande <code class="line_code">git reset</code>, qui va appliquer ce commit sur votre nouvelle branche ! Il n'est pas nécessaire d'écrire l'identifiant en entier. Seuls les 8 premiers caractères sont nécessaires.
                     </p>
 
                     <figure class="block_code">
@@ -474,13 +474,13 @@ git commit --amend -m "Votre nouveau message de commit"
                     </figure>
 
                     <p>
-                        On peut vérifier avec <code class="line-code">git log</code>.
+                        On peut vérifier avec <code class="line_code">git log</code>.
                     </p>
 
                     <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165663-pratiquez-et-corrigez-vos-erreurs-sur-un-depot-local#/id/r-7481574">J’ai oublié un fichier dans mon dernier commit</a></h3>
 
                     <p>
-                        La fonction <code class="line-code">git --amend</code> permet de modifier le dernier commit.
+                        La fonction <code class="line_code">git --amend</code> permet de modifier le dernier commit.
                     </p>
 
                     <figure class="block_code">
@@ -491,13 +491,13 @@ git commit --amend --no-edit
                     </figure>
 
                     <p>
-                        Votre fichier a été ajouté à votre commit et grâce à la commande <code class="line-code">--no-edit</code>  que vous avez ajoutée, vous n'avez pas modifié le message du commit.
+                        Votre fichier a été ajouté à votre commit et grâce à la commande <code class="line_code">--no-edit</code>  que vous avez ajoutée, vous n'avez pas modifié le message du commit.
                     </p>
 
                     <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165666-corrigez-vos-erreurs-sur-votre-depot-distant#/id/video_Player_1">Corrigez vos erreurs sur votre dépôt distant</a></h2>
 
                     <p>
-                        Il est possible d'annuler son commit public avec la commande <code class="line-code">git revert</code>. L'opération revert annule un commit en créant un nouveau commit. C'est une méthode sûre pour annuler des changements, car elle ne risque pas de réécrire l'historique du commit. Il vaut mieux utiliser <code class="line-code">git revert</code> pour annuler des changements apportés à une branche publique, et <code class="line-code">git reset</code> pour faire de même, mais sur une branche privée. 
+                        Il est possible d'annuler son commit public avec la commande <code class="line_code">git revert</code>. L'opération revert annule un commit en créant un nouveau commit. C'est une méthode sûre pour annuler des changements, car elle ne risque pas de réécrire l'historique du commit. Il vaut mieux utiliser <code class="line_code">git revert</code> pour annuler des changements apportés à une branche publique, et <code class="line_code">git reset</code> pour faire de même, mais sur une branche privée. 
                     </p>
 
                     <figure class="block_code">
@@ -512,9 +512,9 @@ git revert HEAD
 
                     <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165666-corrigez-vos-erreurs-sur-votre-depot-distant#/id/r-7481778">L'accès à distance ne fonctionne pas : Ajouter une clé SSH</a></h3>
 
-                    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165666-corrigez-vos-erreurs-sur-votre-depot-distant#/id/r-7481778">Revenez en arrière avec <code class="line-code">git reset</code></a></h2>
+                    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165666-corrigez-vos-erreurs-sur-votre-depot-distant#/id/r-7481778">Revenez en arrière avec <code class="line_code">git reset</code></a></h2>
 
-                    <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165651-utilisez-git-reset#/id/r-7481864"><code class="line-code">git reset --hard</code></a></h3>
+                    <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165651-utilisez-git-reset#/id/r-7481864"><code class="line_code">git reset --hard</code></a></h3>
 
                     <figure class="block_code">
                             <pre><code>
@@ -526,10 +526,10 @@ git reset notreCommitCible --hard
                         Cette commande permet de revenir à n'importe quel commit mais en oubliant absolument tout ce qu'il s'est passé après ! Quand je dis tout, c'est TOUT ! Que vous ayez fait des modifications après ou d'autres commits, tout sera effacé ! C'est pourquoi il est extrêmement important de revérifier plusieurs fois avant de la lancer, vous pourriez perdre toutes vos modifications si elle est mal faite.
                     </p>
 
-                    <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165651-utilisez-git-reset#/id/r-7481864"><code class="line-code">git reset --mixed</code></a></h3>
+                    <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165651-utilisez-git-reset#/id/r-7481864"><code class="line_code">git reset --mixed</code></a></h3>
 
                     <p>
-                        Si rien n'est spécifié après <code class="line-code">git reset</code>, par défaut il exécutera un <code class="line-code">git reset --mixed HEAD~</code>.
+                        Si rien n'est spécifié après <code class="line_code">git reset</code>, par défaut il exécutera un <code class="line_code">git reset --mixed HEAD~</code>.
                     </p>
                     <p>
                         Cela va permettre de revenir juste après votre dernier commit ou le commit spécifié, sans supprimer vos modifications en cours. Il permet aussi, dans le cas de fichiers indexés mais pas encore commités, de désindexer les fichiers.
@@ -539,7 +539,7 @@ git reset notreCommitCible --hard
                         Resets the index but not the working tree. Réinitialise l'index mais pas l'arbre de travail (c'est-à-dire que les fichiers modifiés sont conservés mais pas marqués pour validation) et signale ce qui n'a pas été mis à jour. Il s'agit de l'action par défaut.
                     </p>
 
-                    <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165651-utilisez-git-reset#/id/r-7481874"><code class="line-code">git reset --soft</code></a></h3>
+                    <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165651-utilisez-git-reset#/id/r-7481874"><code class="line_code">git reset --soft</code></a></h3>
 
                     <p>
                         Cette commande permet de se placer sur un commit spécifique afin de voir le code à un instant donné, ou de créer une branche partant d'un ancien commit. Elle ne supprime aucun fichier, aucun commit, et ne crée pas de HEAD détaché.
@@ -547,14 +547,14 @@ git reset notreCommitCible --hard
 
                     <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165651-utilisez-git-reset#/id/r-7481887">Oups, j'ai des conflits !</a></h3>
 
-                    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165653-corrigez-un-commit-rate#/id/r-7481995">Un trou de mémoire ? <code class="line-code">git reflog</code> !</a></h2>
+                    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165653-corrigez-un-commit-rate#/id/r-7481995">Un trou de mémoire ? <code class="line_code">git reflog</code> !</a></h2>
 
                     <p>
-                        Par défaut, <code class="line-code">git log</code> énumère en ordre chronologique inversé les commits réalisés. Cela signifie que les commits les plus récents apparaissent en premier. Cette commande affiche chaque commit avec son identifiant SHA, l'auteur du commit, la date et le message du commit.
+                        Par défaut, <code class="line_code">git log</code> énumère en ordre chronologique inversé les commits réalisés. Cela signifie que les commits les plus récents apparaissent en premier. Cette commande affiche chaque commit avec son identifiant SHA, l'auteur du commit, la date et le message du commit.
                     </p> 
 
                     <p>
-                        <code class="line-code">git reflog</code> va loguer les commits ainsi que toutes les autres actions que vous avez pu faire en local : vos modifications de messages, vos merges, vos resets, enfin tout, quoi. Comme <code class="line-code">git log</code>, <code class="line-code">git reflog</code> affiche un identifiant SHA-1 pour chaque action. Il est donc très facile de revenir à une action donnée grâce au SHA. Cette commande, c'est votre joker, elle assure votre survie en cas d'erreur. Pour revenir à une action donnée, on prend les 8 premiers caractères de son SHA et on fait :
+                        <code class="line_code">git reflog</code> va loguer les commits ainsi que toutes les autres actions que vous avez pu faire en local : vos modifications de messages, vos merges, vos resets, enfin tout, quoi. Comme <code class="line_code">git log</code>, <code class="line_code">git reflog</code> affiche un identifiant SHA-1 pour chaque action. Il est donc très facile de revenir à une action donnée grâce au SHA. Cette commande, c'est votre joker, elle assure votre survie en cas d'erreur. Pour revenir à une action donnée, on prend les 8 premiers caractères de son SHA et on fait :
                     </p>
 
                     <figure class="block_code">
@@ -563,10 +563,10 @@ git checkout e789e7c
                             </code></pre>
                     </figure>
 
-                    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165653-corrigez-un-commit-rate#/id/r-7482019"><code class="line-code">cherry-pick</code> !</a></h2>
+                    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165653-corrigez-un-commit-rate#/id/r-7482019"><code class="line_code">cherry-pick</code> !</a></h2>
 
                     <p>
-                        Admettons que vous travailliez sur une branche "Mes évolutions", et que vous ayez déjà réalisé plusieurs commits. Votre collègue a besoin de l'une de ces évolutions pour la livrer au client, mais pas des autres. C'est dans ce cas bien précis que nous allons faire appel à <code class="line-code">git cherry-pick</code> ! Cette commande va permettre de sélectionner un ou plusieurs commits grâce à leur SHA (décidément ils sont partout) et de les migrer sur la branche principale, sans pour autant fusionner toute la branche "Mes évolutions".
+                        Admettons que vous travailliez sur une branche "Mes évolutions", et que vous ayez déjà réalisé plusieurs commits. Votre collègue a besoin de l'une de ces évolutions pour la livrer au client, mais pas des autres. C'est dans ce cas bien précis que nous allons faire appel à <code class="line_code">git cherry-pick</code> ! Cette commande va permettre de sélectionner un ou plusieurs commits grâce à leur SHA (décidément ils sont partout) et de les migrer sur la branche principale, sans pour autant fusionner toute la branche "Mes évolutions".
                     </p>
 
                     <figure class="block_code">
