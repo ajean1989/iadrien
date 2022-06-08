@@ -306,7 +306,11 @@ $sqlQuery = 'INSERT INTO recipes(title, recipe, author, is_enabled) VALUES (:tit
 							</code></pre>
 						</figure>
 
-						<p>INSERT INTO &ltTable&gt (&ltChamps dans lesquels on veut placer les infos&gt) VALUES (&ltValeurs à insérer dans le même ordre&gt)</p>
+						<p><code class="line_code">INSERT INTO &ltTable&gt (&ltChamps dans lesquels on veut placer les infos&gt) VALUES (&ltValeurs à insérer dans le même ordre&gt)</code></p>
+
+						<p>
+							l'écriture <code class="line_code">:value</code> signifie qu'on inserera la valeur donnée à <code class="line_code">value</code> dans la base de donnée. Cette valeur est définie plus bas dans la fonction <code class="line_code">execute()</code>.
+						</p>
 
 						<img src="../images/645894.png" alt="insertion PHP"/>
 
