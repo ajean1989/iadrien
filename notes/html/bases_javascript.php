@@ -109,6 +109,48 @@
 			</code></pre>
 		</figure>
 
+		<p>
+		La convention de nommage la plus courante est camel case. Dans cette convention, les noms sont constitués de plusieurs mots dont l'initiale est en capitale. Par exemple <code class="line_code">numberOfCats</code>, <code class="line_code">finalAnswer</code>, <code class="line_code">howLongCanThisVariableNameGet</code>, etc.
+		</p>
+
+		<div class="em">Attention : dans beaucoup de démonstrations JavaScript, vous pourrez croiser le mot clé <code class="line_code">var</code> plutôt que <code class="line_code">let</code>. Bien qu'il y ait une différence subtile entre les deux (que nous détaillerons dans le chapitre sur la portée), pour l'instant vous pouvez simplement voir <code class="line_code">var</code> comme l'ancienne version de <code class="line_code">let</code> : c'est une autre façon de créer une variable.</div>
+
+		<figure class="block_code">
+    		<pre><code>
+let numberOfCats = 3;
+numberOfCats = 4;
+			</code></pre>
+		</figure>
+
+		<p>
+		En JavaScript, les variables créées par <code class="line_code">let</code> ou <code class="line_code">const</code> ne peuvent être vues ou utilisées qu'à l'intérieur du bloc de code dans lequel elles sont déclarées. Un bloc de code, aussi souvent appelé bloc tout court, est une section de code incluse entre accolades {}.
+		</p>
+
+		<p>
+		Ce phénomène est appelé portée des variables ou block scope (en anglais).  Voici un exemple :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+let userLoggedIn = true;
+
+if (userLoggedIn) {
+   let welcomeMessage = 'Welcome back!';
+} else {
+   let welcomeMessage = 'Welcome new user!';
+}
+
+console.log(welcomeMessage); // renvoie une erreur
+			</code></pre>
+		</figure>
+
+		<p>
+		<code class="line_code">var</code> sera accessible partout.
+		</p>
+
+
+
+
 		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917082-les-variables#/id/r-2262505" target="_blank">Les types de variables</a></h1>
 
 		<p>
@@ -179,6 +221,14 @@ var texté = '2'; //Avec des apostrophes
 					<td>modulo</td>
 					<td>%</td>
 				</tr>
+				<tr>
+					<td>incrémentation</td>
+					<td>++ : <code class="line_code">numberOfLikes++;</code></td>
+				</tr>
+				<tr>
+					<td>décrémentation</td>
+					<td>--</td>
+				</tr>
 			</table>
 		</p>
 
@@ -215,6 +265,27 @@ alert(number);  	//Affiche 7
 			</ul>
 		</p>
 
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript/6278392-declarez-des-variables-et-modifiez-leurs-valeurs#/id/r-7180075">Mutabilité des variables</a></h2>
+
+		<p>
+		Une variable est de base mutable c'est-à-dire qu’elle peut changer au cours du temps. On la déclare avec le mot clé  let  suivi d’un nom de variable et on lui affecte une valeur de départ. Par la suite, on va pouvoir changer la valeur de cette variable autant de fois que l’on souhaite.
+		</p>
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript/6278392-declarez-des-variables-et-modifiez-leurs-valeurs#/id/r-7178067">Les contantes</a></h2>
+
+		<p>
+		Dans de nombreux programmes, certaines données ne seront pas modifiées pendant l'exécution du programme. C'est le cas par exemple du nom d'une entreprise, de la date de naissance d'un utilisateur, ou du nombre d'heures dans une journée. Pour s'assurer de ne pas réaffecter par inadvertance de nouvelles valeurs à ces données, vous allez utiliser des constantes. Ce sont simplement des variables qui ne seront pas mutables. On donnera une valeur de départ et on ne pourra plus changer la valeur par la suite. Ainsi s’il y a une erreur de logique dans votre code changeant la valeur du variable (constante) qui ne devait pas changer, javascript retournera une erreur.
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+const nombrePostParPage = 20;
+nombrePostParPage = 30; // Retournera une erreur dans la console car on ne peut plus changer sa valeur
+			</code></pre>
+		</figure>
+
+
+
 		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917082-les-variables#/id/r-1923226" target="_blank">La concaténation</a></h1>
 
 		<figure class="block_code">
@@ -232,6 +303,289 @@ text += 'vous'
 alert(result);  	//Affiche " Bonjour vous" 
 			</code></pre>
 		</figure>
+
+		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917996-les-objets-et-les-tableaux#/id/r-1917774" target="_blank">Introduction aux objets (ancienne version)</a></h1>
+
+		<p>
+			Un objet est un concept, une idée ou une chose. Un objet possède une structure qui lui permet de pouvoir fonctionner et d'interagir avec d'autres objets. Le JavaScript met à notre disposition des objets natifs, c'est-à-dire des objets directement utilisables. Vous avez déjà manipulé de tels objets sans le savoir : un nombre, une chaîne de caractères ou même un booléen.<br />
+			Outre les objets natifs, le JavaScript nous permet de fabriquer nos propres objets. Ceci fera toutefois partie d'un chapitre à part, car la création d'objets est plus compliquée que l'utilisation des objets natifs.
+			<br />
+
+			<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917996-les-objets-et-les-tableaux#/id/r-1923941" target="_blank">Que contiennent les objets ?</a></h2>
+
+			<p>
+				Les objets contiennent trois choses distinctes :
+				<ul>
+					<li><strong>Un constructeur</strong> : Le constructeur est un code qui est exécuté quand on utilise un nouvel objet. Il permet d’effectuer des actions comme définir diverses variables au sein même de l'objet (comme le nombre de caractères d'une chaîne de caractères). Tout cela est fait automatiquement pour les objets natifs, nous en reparlerons quand nous aborderons l'orienté objet.</li>
+					<li><strong>Des propriétés</strong> : Toute valeur va être placée dans une variable au sein de l'objet : c'est ce que l'on appelle une propriété. Une propriété est une variable contenue dans l'objet, elle contient des informations nécessaires au fonctionnement de l'objet.</li>
+					<li><strong>Des méthodes</strong> : Enfin, il est possible de modifier l'objet. Cela se fait par l'intermédiaire des méthodes. Les méthodes sont des fonctions contenues dans l'objet, et qui permettent de réaliser des opérations sur le contenu de l'objet. Par exemple, dans le cas d'une chaîne de caractères, il existe une méthode qui permet de mettre la chaîne de caractères en majuscules.</li>
+				</ul>
+			</p>
+
+			<figure class="block_code">
+    			<pre><code>
+var myString = 'Ceci est une chaîne de caractères'; // On crée un objet String
+
+alert(myString.length); // On affiche le nombre de caractères, au moyen de la propriété « length »
+
+alert(myString.toUpperCase()); // On récupère la chaîne en majuscules, avec la méthode toUpperCase()
+
+//On remarque quelque chose de nouveau dans ce code : la présence d'un point. Ce dernier permet d'accéder aux propriétés et aux méthodes d'un objet. 
+				</code></pre>
+			</figure>
+
+		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript/6278564-definissez-des-objets-et-leurs-attributs-avec-des-classes#/id/r-7317052" target="_blank">Les objets</a></h1>
+
+		<p>
+		Les objets JavaScript sont écrits en JSON (JavaScript Object Notation). Ce sont des séries de <strong>paires clés-valeurs</strong> séparées par des virgules, entre des accolades. Les objets peuvent être enregistrés dans une variable :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+let myBook = {
+    title: 'The Story of Tau',
+    author: 'Will Alexander',
+    numberOfPages: 250,
+    isAvailable: true
+};
+			</code></pre>
+		</figure>
+
+		<p>
+		Chaque clé est une chaîne (title, author, numberOfPages...), et les valeurs associées peuvent avoir tout type de données (nombre, chaîne, etc.).
+		</p>
+
+		<p>
+		Construire des objets présente un avantage essentiel : cela permet de regrouper les attributs d'une chose unique à un même emplacement, que ce soit un livre, un profil d'utilisateur ou la configuration d'une application, par exemple.
+		</p>
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript/6278564-definissez-des-objets-et-leurs-attributs-avec-des-classes#/id/r-7179427" target="_blank">Accédez aux données d'un objet</a></h2>
+
+		<p>
+			Voyons comment accéder aux données dans un objet avec la notation pointée (dot notation). Une fois qu'un objet est enregistré dans une variable, vous pouvez accéder à ses données comme dans l'exemple ci-dessous.
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+let myBook = {
+    title: "L'Histoire de Tao",
+    author: "Will Alexander",
+    numberOfPages: 250,
+    isAvailable: true
+};
+let bookTitle = myBook.title;  // "L'Histoire de Tao"
+let bookPages = myBook.numberOfPages  // 250
+			</code></pre>
+		</figure>
+
+		<p>
+			Ou avec la notation bracket
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+let bookTitle = myBook["title"];  // "L'Histoire de Tao"
+let bookPages = myBook["numberOfPages"];  // 250
+			</code></pre>
+		</figure>
+
+		<p>
+		L'intérêt ici c’est qu’on va pouvoir mettre entre bracket une variable qui contient en string le nom de la propriété que l’on souhaite atteindre. Par exemple :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+let propertyToAccess = "title";
+let bookTitle = myBook[propertyToAccess];  // "L'Histoire de Tao"
+			</code></pre>
+		</figure>
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript/6278564-definissez-des-objets-et-leurs-attributs-avec-des-classes#/id/r-7178417" target="_blank">Les classes</a></h2>
+
+		<p>
+		La construction d'un objet à la main, par la notation à accolades vue précédemment, convient bien à des objets simples et uniques. Mais vous aurez souvent besoin de beaucoup d'objets du même type. C'est là que les classes sont utiles.
+		</p>
+
+		<p>
+		Une classe est un modèle pour un objet dans le code. Elle permet de construire plusieurs objets du même type (appelés instances de la même classe) plus facilement.
+		</p>
+
+		<p>
+		Pour cette classe, nous souhaitons que chaque <code class="line_code">Book</code> ait un titre, un auteur et un nombre de pages. Pour cela, vous utilisez ce qu'on appelle un constructor. Le <strong>constructor</strong> d'une classe est la fonction qui est appelée quand on crée une nouvelle instance de cette classe avec le mot clé <code class="line_code">new</code> (voir plus bas).
+		</p>
+
+		<p>
+		Pour attribuer le titre, l'auteur et le nombre de pages reçus à cette instance, utilisez le mot clé <code class="line_code">this</code> et la notation dot.
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+class Book {
+    constructor(title, author, pages) {
+        this.title = title; //this lie la propriété de son instance (après le '.') au contructeur et affecte le nom (ici title après le =) à celui-ci
+        this.author = author;
+        this.pages = pages;
+    }
+}
+			</code></pre>
+		</figure>
+
+		<p>
+		Ici, le mot clé <code class="line_code">this</code> fait référence à la nouvelle instance. Donc, il utilise la notation dot pour attribuer les valeurs reçues aux clés correspondantes.
+		</p>
+
+		<p>
+		Maintenant que la classe est terminée, vous pouvez créer des <strong>instances</strong> par le mot clé <code class="line_code">new</code> :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+let myBook = new Book("L'Histoire de Tao", "Will Alexander", 250);
+//Cette ligne crée l'objet suivant :
+{
+    title: "L'Histoire de Tao",
+    author: "Will Alexander",
+    pages: 250
+}
+			</code></pre>
+		</figure>
+
+		<p>
+		Il est important d’expliquer la notion de propriété de classe. C’est une variable interne à cette classe que l’on peut définir par défaut et faire évoluer au fur et à mesure de l’exécution de notre code. Il n’est pas rare d’utiliser le terme <strong>attribut</strong> au lieu de <strong>propriété</strong>, mais <strong>cela représente bien la même chose</strong>.
+		</p>
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript/6279381-definissez-des-methodes-dinstance-et-des-proprietes#/id/r-7176297" target="_blank">Les méthodes d'instance</a></h2>
+
+		<p>
+			<p>
+			Une méthode d'instance est une fonction faisant partie d'une classe, et qui agit sur une instance de cette classe. 
+			</p>
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+class BankAccount {
+   constructor(owner, balance) {
+      this.owner = owner; 	
+      this.balance = balance;
+   }
+   showBalance() {
+      console.log("Solde: " + this.balance + " EUR");
+   }
+}
+			</code></pre>
+		</figure>
+
+		<p>
+		La nouvelle méthode ci-dessus, déclarée par son nom suivi par (), utilise le mot clé <code class="line_code">this</code>  pour accéder à la propriété   balance  de l'instance, et l'afficher sur la console avec une mise en forme supplémentaire. Ceci signifie que vous pouvez utiliser la notation dot sur l'instance <code class="line_code">newAccount</code> pour appeler sa méthode <code class="line_code">showBalance()</code> :
+		</p>
+
+		<div class="em">Dans le corps d'une classe, le mot clé <code class="line_code">this</code> fait référence à l'instance créée de la classe. Dans cet exemple, il fait référence à <code class="line_code">newAccount</code>.</div>
+
+		<p>
+			Pour résumer
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+class NouvelleClass {
+   constructor(propriété, ouAttribut) {
+      this.propriété = propriété;	//this lie la propriété de son instance (après le '.') au contructeur et affecte le nom (ici title après le =) à celui-ci
+      this.ouAttribut = ouAttribut;
+   }
+   méthode() {
+      console.log("Solde: " + this.ouAttribut + " EUR");	//this utilisé pour faire référence à la proprité de l'instance en question
+   }
+}
+
+const instance_1 = new NouvelleClass(propriété, ouAttribut)
+			</code></pre>
+		</figure>
+
+		<div class="em">N'oubliez pas qu'un objet (une instance d'une classe est un objet) est un type par référence, donc vous pouvez toujours apporter des modifications à l'instance de <code class="line_code">NouvelleClass</code> – la partie constante désigne une référence à cette instance.</div>
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript/6279381-definissez-des-methodes-dinstance-et-des-proprietes#/id/r-7179793" target="_blank">Les méthodes statiques</a></h2>
+
+		<p>
+		Elle est différente des méthodes d'instance parce qu'elle n'est pas liée à une instance particulière d'une classe, mais à la classe elle-même. Utilisez-la pour créer des méthodes utilitaires (helper en anglais) où vous n'aurez pas besoin d'une instance d'une classe pour les utiliser. Vous pourrez vous en servir comme boîte à outils de fonctions que vous utiliserez souvent.
+		</p>
+
+		<p>
+		Par exemple, en JavaScript, l'objet Math  contient beaucoup de méthodes utiles :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+const randomNumber = Math.random(); // crée un nombre aléatoire sur l'intervalle [0, 1]
+
+const roundMeDown = Math.floor(495.966); // arrondit vers le bas à l'entier le plus proche, renvoie 495
+			</code></pre>
+		</figure>
+
+		<p>
+		Vous n'avez pas besoin de créer par <code class="line_code">new</code> une instance de l'objet <code class="line_code">Math</code> pour utiliser ces méthodes ; il suffit de les appeler sur l'objet <code class="line_code">Math</code> global.
+		</p>
+
+		<p>
+		Vous pouvez créer vos propres méthodes statiques par le mot clé <code class="line_code">static</code> !
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+class BePolite {
+    
+    static sayHello() {
+        console.log("Hello!");
+    }
+    
+    static sayHelloTo(name) {
+        console.log("Hello " + name + "!");
+    }
+    
+    static add(firstNumber, secondNumber) {
+        return firstNumber + secondNumber;
+    }
+}
+
+BePolite.sayHello(); // imprime "Hello!""
+
+BePolite.sayHelloTo("Will"); // imprime "Hello Will!""
+
+const sum = BePolite.add(2, 3); // sum = 5
+			</code></pre>
+		</figure>
+
+		<p>
+		Vous n'avez pas besoin d'ajouter un   constructor  à votre classe, car vous n'allez pas l'instancier.
+		</p>
+
+		<p>
+		Toutes ces fonctionnalités pourraient être des fonctions, mais l'avantage d'utiliser des méthodes de classe statiques est par exemple de pouvoir les regrouper par catégorie ou par type.
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
 
 		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917082-les-variables#/id/r-2262515" target="_blank">Intergire avec l'utilisateur : <code class="line_code">prompt()</code></a></h1>
 
@@ -368,6 +722,16 @@ alert(result); // Affiche « false » car cet opérateur compare aussi les types
 					<td>!</td>
 					<td>NON</td>
 					<td>!valeur</td>
+				</tr>
+				<tr>
+					<td>==</td>
+					<td>vérifie la valeur, mais pas le type</td>
+					<td>5 == "5" : true</td>
+				</tr>
+				<tr>
+					<td>====</td>
+					<td>vérifie à la fois la valeur et le type.</td>
+					<td>5 == "5" : fasle (number et string)</td>
 				</tr>
 			</table>
 		</p>
@@ -831,35 +1195,7 @@ alert(sayHello); // Affiche : « Yop ! »
 			</code></pre>
 		</figure>
 
-		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917996-les-objets-et-les-tableaux#/id/r-1917774" target="_blank">Introduction aux objets</a></h1>
-
-		<p>
-			Un objet est un concept, une idée ou une chose. Un objet possède une structure qui lui permet de pouvoir fonctionner et d'interagir avec d'autres objets. Le JavaScript met à notre disposition des objets natifs, c'est-à-dire des objets directement utilisables. Vous avez déjà manipulé de tels objets sans le savoir : un nombre, une chaîne de caractères ou même un booléen.<br />
-			Outre les objets natifs, le JavaScript nous permet de fabriquer nos propres objets. Ceci fera toutefois partie d'un chapitre à part, car la création d'objets est plus compliquée que l'utilisation des objets natifs.
-			<br />
-
-			<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917996-les-objets-et-les-tableaux#/id/r-1923941" target="_blank">Que contiennent les objets ?</a></h2>
-
-			<p>
-				Les objets contiennent trois choses distinctes :
-				<ul>
-					<li><strong>Un constructeur</strong> : Le constructeur est un code qui est exécuté quand on utilise un nouvel objet. Il permet d’effectuer des actions comme définir diverses variables au sein même de l'objet (comme le nombre de caractères d'une chaîne de caractères). Tout cela est fait automatiquement pour les objets natifs, nous en reparlerons quand nous aborderons l'orienté objet.</li>
-					<li><strong>Des propriétés</strong> : Toute valeur va être placée dans une variable au sein de l'objet : c'est ce que l'on appelle une propriété. Une propriété est une variable contenue dans l'objet, elle contient des informations nécessaires au fonctionnement de l'objet.</li>
-					<li><strong>Des méthodes</strong> : Enfin, il est possible de modifier l'objet. Cela se fait par l'intermédiaire des méthodes. Les méthodes sont des fonctions contenues dans l'objet, et qui permettent de réaliser des opérations sur le contenu de l'objet. Par exemple, dans le cas d'une chaîne de caractères, il existe une méthode qui permet de mettre la chaîne de caractères en majuscules.</li>
-				</ul>
-			</p>
-
-			<figure class="block_code">
-    			<pre><code>
-var myString = 'Ceci est une chaîne de caractères'; // On crée un objet String
-
-alert(myString.length); // On affiche le nombre de caractères, au moyen de la propriété « length »
-
-alert(myString.toUpperCase()); // On récupère la chaîne en majuscules, avec la méthode toUpperCase()
-
-//On remarque quelque chose de nouveau dans ce code : la présence d'un point. Ce dernier permet d'accéder aux propriétés et aux méthodes d'un objet. 
-				</code></pre>
-			</figure>
+		
 
 		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917996-les-objets-et-les-tableaux#/id/r-1917851" target="_blank">Les tableaux</a></h1>
 
@@ -889,6 +1225,58 @@ myArray[1] = 'Clarisse';  	// Modifie l'index n°1
 alert(myArray[1]); // Affiche : « Clarisse »
 			</code></pre>
 		</figure>
+
+		<p>
+		En JavaScript, les types primitifs tels que les nombres, les valeurs logiques et les chaînes sont passés par valeur. Ceci signifie que quand vous faites quelque chose comme :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+let numberOfGuests = 20;
+let totalNumberOfGuests = numberOfGuests; // 20
+			</code></pre>
+		</figure>
+
+		<p>
+		... c'est la valeur 20 qui est copiée dans la nouvelle variable (totalNumberOfGuests), et aucun lien n'est maintenu entre les deux variables.
+		</p>
+
+		<p>
+		Ce n'est pas le cas avec les objets et tableaux, qui sont passés par référence. Si vous n'y prenez pas garde, cela peut conduire à des comportements inattendus. Par exemple :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+let artistProfile = {
+    name: "Tao Perkington",
+    age: 27,
+    available: true
+};
+let allProfiles = [artistProfile]; // nouveau tableau contenant l'objet ci-dessus
+artistProfile.available = false; // modification de l'objet
+console.log(allProfiles) // affiche { nom: "Tao Perkington", âge: 27, disponible: false }
+			</code></pre>
+		</figure>
+
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript/6278664-regroupez-vos-donnees-avec-les-tableaux-et-les-objets#/id/r-7178622" target="_blank">Le comptage d'éléments</a></h2>
+
+		<figure class="block_code">
+    		<pre><code>
+let guests = ["Will Alexander", "Sarah Kate", "Audrey Simon"];
+let howManyGuests = guests.length; // 3
+			</code></pre>
+		</figure>
+
+		
+
+
+
+
+
+
+
+
 
 		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917996-les-objets-et-les-tableaux#/id/r-1924043" target="_blank">Ajouter et supprimer des items</a></h2>
 
@@ -956,6 +1344,92 @@ for (var i = 0; i < myArray.length; i++) {
 	
     alert(myArray[i]);
 		
+}
+			</code></pre>
+		</figure>
+
+		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript/6279104-utilisez-la-bonne-boucle-pour-repeter-les-taches-for-while#/id/r-7179222" target="_blank">Parcourir avec <code class="line_code">for ... in</code></a></h3>
+
+		<p>
+		Bien que le méthode ci-dessus fonctionne, il y a deux façons plus faciles de parcourir en boucle des tableaux (ou de faire une itération sur leurs éléments).
+		</p>
+
+		<p>
+		La boucle <code class="line_code">for…  in</code> est très comparable à l'exemple de boucle   for  normale, mais elle est plus facile à lire, et effectue tout le travail d'itération pour vous :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+const passengers = [
+    "Will Alexander",
+    "Sarah Kate'",
+    "Audrey Simon",
+    "Tao Perkington"
+]
+
+for (let i in passengers) {
+   console.log("Embarquement du passager " + passengers[i]);
+}
+			</code></pre>
+		</figure>
+
+		<p>
+		<code class="line_code">i</code> démarre automatiquement à zéro, et s'incrémente à chaque boucle. Vous imprimez donc  <code class="line_code">passengers[0]</code>, puis  <code class="line_code">passengers[1]</code>, etc., jusqu'à terminer l'itération sur tous les passagers. Vous pouvez bien sûr imprimer chaque élément sur la console, car chacun est une chaîne contenant le nom du passager.
+		</p>
+
+
+
+		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript/6279104-utilisez-la-bonne-boucle-pour-repeter-les-taches-for-while#/id/r-7179203" target="_blank">Parcourir avec <code class="line_code">for ... of</code></a></h3>
+
+		<p>
+		Pour les cas où l'indice précis d'un élément n'est pas nécessaire pendant l'itération, vous pouvez utiliser une boucle <code class="line_code">for… of</code>  :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+const passengers = [
+    "Will Alexander",
+    "Sarah Kate",
+    "Audrey Simon",
+    "Tao Perkington"
+]
+
+for (let passenger of passengers) {
+   console.log("Embarquement du passager " + passenger);
+}
+			</code></pre>
+		</figure>
+
+		<p>
+		C'est encore plus utile si le tableau est un peu plus complexe et contient par exemple des objets :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+const passengers = [
+    {
+        name: "Will Alexander",
+        ticketNumber: 209542
+    },
+    
+    {
+        name: "Sarah Kate",
+        ticketNumber: 169336
+    },
+    
+    {
+        name: "Audrey Simon",
+        ticketNumber: 779042
+    },
+    
+    {
+        name: "Tao Perkington",
+        ticketNumber: 703911
+    }
+]
+
+for (let passenger of passengers) {
+   console.log('Embarquement du passager ' + passenger.name + ' avec le ticket numéro ' + passenger.ticketNumber);
 }
 			</code></pre>
 		</figure>
@@ -1076,6 +1550,43 @@ var coords = getCoords();
 
 alert(coords.x); // 12
 alert(coords.y); // 21
+			</code></pre>
+		</figure>
+
+		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6175841-apprenez-a-programmer-avec-javascript/6279176-gerez-des-erreurs-et-des-exceptions-dans-votre-programme#/id/r-7179540" target="_blank">Gérer les erreurs</a></h1>
+
+		<p>
+			Il y a généralement 3 types d'erreur :
+			<ul>
+				<li>L'erreur de synthaxe : erreur de frappe, oublie de parenthèse, ... </li>
+				<li>L'erreur logique</li>
+				<li>L'erreur d'exécution</li>
+			</ul>
+		</p>
+
+		<p>Pour les erreurs de synthaxe et logique il faut chercher. Pour l'erreur d'exécution on peut faire ceci : </p>
+
+		<figure class="block_code">
+    		<pre><code>
+if (dataExists && dataIsValid) {
+// utiliser les données ici
+} else {
+// gérer l'erreur ici
+}
+			</code></pre>
+		</figure>
+
+		<p>
+			ou
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+try {
+// code susceptible à l'erreur ici
+} catch (error) {
+// réaction aux erreurs ici
+}
 			</code></pre>
 		</figure>
 

@@ -32,6 +32,83 @@
 
             <div class="element_1">
 
+                <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577651-comprenez-comment-fonctionne-lasynchrone-en-js#/id/r-5694610" target="_blank">L'asynchrone en JS</a></h1>
+
+                <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1919609-les-objets#/id/r-1925582" target="_blank">JavaScript est synchrone et mono-thread</a></h2>
+
+                <p>
+                Eh bien, tout simplement qu'il n'y a qu'un seul fil d'exécution du code source. Cela signifie que lorsque vous écrivez du code, chaque ligne sera exécutée l'une après l'autre en attendant la fin de l'exécution de la ligne précédente. Il n'y a pas d'autre code qui pourra être exécuté en parallèle. Il ne peut faire qu'une seule chose à la fois.
+                </p>
+
+                <p>
+                    Mais il est possible et même très facile de faire de l'asynchrone en JavaScript, mais l'exécution restera synchrone...
+                </p>
+
+                <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577651-comprenez-comment-fonctionne-lasynchrone-en-js#/id/r-5695050" target="_blank">L'event loop</a></h2>
+
+                <p>
+                En JavaScript, chaque ligne de code est exécutée de façon synchrone, mais il est possible de demander à exécuter du code de manière asynchrone. Et lorsque l'on demande à exécuter une fonction de façon asynchrone, la fonction en question est placée dans une sorte de file d'attente qui va exécuter toutes les fonctions qu'elle contient les unes après les autres. C'est ce qu'on appelle l'<strong>event loop</strong>. Tout le cœur du langage fonctionne autour de ça.
+                </p>
+                
+                <p>
+                Maintenant que vous comprenez un peu mieux ce qu'est l'event loop, voyons concrètement comment demander à exécuter du code de manière asynchrone. Il existe 3 fonctions pour faire ceci :
+                <ul>
+                    <li><code class="line-code">setTimeout</code> est la fonction la plus répandue lorsque l'on veut exécuter du code asynchrone sans bloquer le fil d'exécution en cours. Cette fonction prend 2 paramètres :
+                        <ul>
+                            <li>La fonction à exécuter de manière asynchrone (qui sera donc ajoutée à la file d'attente de l'event loop) ;</li>
+                            <li>Le délai, en millisecondes, avant d'exécuter cette fonction.</li>
+                        </ul>
+                    </li>
+                    <li><code class="line-code">setInterval</code> (documentation à retrouver <a href="https://www.w3schools.com/jsref/met_win_setinterval.asp" target="blank">ici</a>) : elle fonctionne exactement comme <code class="line-code">setTimeout</code>, à ceci près qu'elle exécute la fonction passée en paramètre en boucle à une fréquence déterminée par le temps en millisecondes passé en second paramètre. Il suffira de passer la valeur de retour de <code class="line-code">setInterval</code> à <code class="line-code">clearInterval</code> pour stopper l'exécution en boucle de la fonction ;</li>
+                    <li><code class="line-code">setImmediate</code> (documentation à retrouver <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate" target="blank">ici</a>). Cette fonction prend en seul paramètre la fonction à exécuter de façon synchrone.  La fonction en question sera placée dans la file d'attente de l'event loop, mais va passer devant toutes les autres fonctions, sauf certaines spécifiques au Javascript : les événements (les mêmes qu'on a vus au premier chapitre, et qui sont donc exécutés de façon asynchrone  😉), le rendu, et l'I/O. Il existe aussi <code class="line-code">nextTick</code>, qui permet, là, de court-circuiter tout le monde. À utiliser avec précaution, donc...</li>
+                </ul>
+                </p>
+
+                <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577651-comprenez-comment-fonctionne-lasynchrone-en-js#/id/r-5695071" target="_blank">Le cas de l'I/O</a></h2>
+
+                <p>
+                L'I/O correspond aux événements liés à l'input(les flux d'entrée) et l'output(les flux de sortie). Cela correspond notamment à la lecture/écriture des fichiers, aux requêtes HTTP, etc.
+                </p>
+
+                <p>
+                Vous avez dû remarquer que lorsque l'on exécutait la fonction <code class="line-code">fetch()</code> lors d'une requête HTTP, celle-ci ne bloquait pas l'exécution du code. On n'attend pas que la requête soit envoyée et une réponse reçue avant d'exécuter le reste du code. C'est donc une fonction asynchrone.
+                </p>
+
+                <p>
+                D’ailleurs, <code class="line-code">fetch()</code> retourne une Promise qui est une autre façon de faire de l’asynchrone car les fonctions <code class="line-code">then()</code> et <code class="line-code">catch()</code> sont appelées plus tard lorsque le travail (dans ce qu’on a vu dans le chapitre précédent il s’agissait d’une requête HTTP) est terminé. Et de la même manière, tout ce qui touche à l'I/O peut être exécuté de manière asynchrone. Et c'est tant mieux, car leur exécution peut prendre du temps. 😎
+                </p>
+
+                <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577676-gerez-du-code-asynchrone#/id/r-5697259" target="_blank">Les callbacks</a></h2>
+
+                <p>
+                    C'est la méthode la plus "vieille" mais toujours utilisée par beaucoup de modules JavaScript (nous verrons ce que sont les modules dans la dernière partie de ce cours). 
+                </p>
+
+                <p>
+                    Une callback est simplement une fonction que vous définissez. Le principe de la callback  est de la passer en paramètre d'une fonction asynchrone. Une fois que la fonction asynchrone a fini sa tâche, elle va appeler notre fonction callback en lui passant un résultat. Ainsi, le code que nous mettons dans notre fonction callback sera exécuté de manière asynchrone. Cela ne vous rappelle pas quelque chose ? Les événements ! Les événements sont un exemple typique de fonction asynchrone à laquelle on passe une fonction callback.
+                </p>
+
+                <figure class="block_code">
+                        <pre><code>
+element.addEventListener('click', function(e) {
+    // Do something here ... 
+});
+                        </code></pre>
+                    </figure>
+
+                    <p>
+                    Dans l'exemple ci-dessus, la fonction qui est envoyée à <code class="line-code">addEventListener</code> est une callback. Elle n'est pas appelée tout de suite, elle est appelée plus tard, dès que l'utilisateur clique sur l'élément. Ça ne bloque donc pas l'exécution du code et c'est donc asynchrone. 😁<br/>
+                    Les callbacks sont la base de l'asynchrone en JavaScript et sont très utilisées.
+                    </p>
+
+                    <p>
+                        ... à continuer ...
+                    </p>
+
+
+
+
+            
                 <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1919609-les-objets#/id/r-1925582" target="_blank">Les objets</a></h1>
 
                 <p>

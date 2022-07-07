@@ -48,6 +48,8 @@
 
             <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4735221-quest-ce-que-la-programmation-orientee-objet#/id/r-4735256" target="blank">Définir une classe pour créer des objets</a></h1>
 
+            <div class="em">Un fichier par class et le nom du fichier = nom de la class</div>
+            
             <p>
             Un objet est un ensemble de variables et de fonctions, regroupées dans un même endroit. On dit qu'on y encapsule les données.<br/>
             Pour pouvoir créer un objet, vous devez d'abord définir une <strong>classe</strong>. La classe est une sorte de plan qui indique comment créer des objets.
@@ -78,7 +80,7 @@ class Maison  (écrit en PascalCase=la première lettre de chaque mot d'un mot c
     private $longueur;
     private $nombreEtages;
     private $porte;
-    private $temperature;
+    private $temperature = 35;  // Par défaut
 
 
     // Fonctions membres
@@ -506,19 +508,23 @@ class Pont
 
             <div class="em">Par convention (ou par habitude) les développeurs préfixent ces méthodes là par get pour les getter et set pour les setter. En référence aux verbes anglais.</div>
 
-            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/7361681-utilisez-les-proprietes-et-methodes-statiques#/id/r-7361736" target="blank">Découvrez les méthodes statiques
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/7361681-utilisez-les-proprietes-et-methodes-statiques#/id/r-7361736" target="blank">Découvrez les méthodes statiques (<code class="line_code">self</code>, <code class="line_code">::</code>)
             </a></h2>
+
+            
 
             <p>
             Lors des précédents chapitres, nous avons étudiés les propriétés et méthodes qui se rattachaient à un objet, comme la longueur ou la largeur d’un pont. Vous allez maintenant découvrir les méthodes et propriétés qui se rapportent à une classe (donc communes à tous nos objets). On les appelle propriétés et méthodes statiques.
             </p>
+
+            <div class="em">On peut écrire comme cela toute les fonctions afférentes à un thème dans une Class pour les regrouper au même endroit</div>
 
             <p>
                 Parfois, créer une instance n’est pas nécessaire. Pour utiliser une méthode sans instance, elle doit être déclarée statique et nous ferons attention de manipuler uniquement des propriétés statiques. Lorsqu’une propriété est déclarée statique, la valeur qu’elle contient sera partagée pour toutes les instances.
             </p>
 
             <p>
-            Déclarons une première méthode statique avec le mot cléstatic :
+            Déclarons une première méthode statique avec le mot clé static :
             </p>
 
             <figure class="block_code">
@@ -640,11 +646,11 @@ echo $towerBridge->getSurface();
 
             <div class="em">Seules les expressions de type scalaire (bool, int, float et string) et des tableaux contenant uniquement des expressions scalaires sont acceptées pour les constantes.</div>
 
-            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/7306942-exploitez-les-methodes-communes-aux-objets#/id/r-7304311" target="blank">Exploitez les méthodes communes aux objets
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/7306942-exploitez-les-methodes-communes-aux-objets#/id/r-7304311" target="blank">Exploitez les méthodes communes aux objets (__construct, ...) 
             </a></h2>
 
             <p>
-            L'usage du mot clé  class  vous donne accès, dès le départ, à un jeu de méthodes sans que vous n'ayez rien à écrire. Ces méthodes sont prédéfinies par PHP, et sont appelées automatiquement dans la plupart des cas. Ce jeu de méthodes est un moyen d'intervenir dans le processus de création, modification et suppression des objets de PHP, afin d'y ajouter des comportements personnalisés.
+            L'usage du mot clé <code class="line_code">class</code> vous donne accès, dès le départ, à un jeu de méthodes sans que vous n'ayez rien à écrire. Ces méthodes sont prédéfinies par PHP, et sont appelées automatiquement dans la plupart des cas. Ce jeu de méthodes est un moyen d'intervenir dans le processus de création, modification et suppression des objets de PHP, afin d'y ajouter des comportements personnalisés.
             </p>
 
             <p>
@@ -713,9 +719,13 @@ echo $towerBridge->getSurface();
      }
  }
   
- $towerBridge = new Pont(286.0, 62.0);
+ $towerBridge = new Pont(286.0, 62.0);    // C'est ici que c'est imoortant 
 				</code></pre>
 			</figure>
+
+            <p>
+                __construct permet de passer en paramètre de la class des valeurs ! Assignées comme défini dans le __construct.
+            </p>
 
             <p>
             Depuis PHP8, vous pouvez aussi le rencontrer sous sa forme courte. En précisant la visibilité directement au niveau des arguments du constructeur, vous pouvez ne pas déclarer les propriétés et leur assignation. Ce sera fait automatiquement par PHP :
@@ -1223,7 +1233,132 @@ class Player extends User
 
             <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/7307099-specialisez-vos-objets-avec-les-espaces-de-noms#/id/video_Player_1" target="blank">Les espaces de noms - namespace</a></h1>
 
+            <p>
+                Résumer :
+            </p>
 
+
+            <figure class="block_code">
+    			<pre><code>
+&lt?php
+
+
+namespace Forum\Message;
+class Message
+{}
+
+namespace Messenger\Message;
+class Message
+{}
+				</code></pre>
+			</figure>
+
+            <figure class="block_code">
+    			<pre><code>
+&lt?php
+
+
+use Forum\Message;
+use Messenger\Message as ContactMessage; //as car Message est aussi utilisé pour forum
+use DataTime; // on import les class de php, on peut aussi juste mettre un \ devant la class (ex : new \DateTime)
+
+require_once 'class/message.php'
+require_once 'class/Contact/message.php'
+
+$nouvelleinstance0 = new Message
+$nouvelleinstance1 = new ContactMessage
+
+$php= new DateTime();
+
+{}
+				</code></pre>
+			</figure>
+
+            <p>
+                ------------------------------
+            </p>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://grafikart.fr/tutoriels/autoloader-composer-php-1144#autoplay" target="blank">L'autoload'</a></h2>
+
+            <p>
+                Pour éviter d'écrire les require_once on peut utiliser l'autoloader qui s'occupera de la faire pour nous. 
+            </p>
+
+            <p>
+                Il faut déjà télécharger composer (voir chap) et configurer le fichier composer.json à la racine de notre projet :
+            </p>
+
+            <figure class="block_code">
+    			<pre><code>
+{
+    "name": "adrien/tests",
+    "autoload": {
+        "psr-4": {
+            "Adrien\\Tests\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "adrien",
+            "email": "adrien.jean1989@gmail.com"
+        }
+    ],
+    "autoload":{
+        "psr-4" : {
+            "Namespace\\" : "dossier_où_il_situe/"
+        }
+    }
+    "require": {}
+}
+				</code></pre>
+			</figure>
+
+            <p>
+                Si c'est pas déjà fait comme ci-dessus ;)
+            </p>
+
+            <p>
+                Ensuite on lance l'autoload avec :
+            </p>
+
+            <figure class="block_code">
+    			<pre><code>
+composer dump-autoload
+				</code></pre>
+			</figure>
+
+            <p>
+                Cela génère un fichier autoload.php dans le dossier vendor. <br/>
+                Il suffit maintnenant de l'appeler avant le namespace comme ceci : 
+            </p>
+
+            <figure class="block_code">
+    			<pre><code>
+require 'vendor/autoload.php'
+
+use App\Guestbook\{
+    Guestbook,
+    Message 
+};
+				</code></pre>
+			</figure>
+
+            <p>
+                Si on veut installer toutes les dépendances d'un dossier comportant un fichier composer.json, on le faire avec :
+            </p>
+
+            <figure class="block_code">
+    			<pre><code>
+composer install
+				</code></pre>
+			</figure>
+
+
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/7307099-specialisez-vos-objets-avec-les-espaces-de-noms#/id/video_Player_1" target="blank">Namespace (détaillé)</a></h2>
+
+
+            
             <p>
             Une des règles à garder en tête lorsque l'on conçoit des classes, c'est de limiter leur rayon d'action. Une classe ne devrait posséder qu’une seule responsabilité. Il en va de même pour les méthodes qui la composent. Ça évite d'avoir des méthodes trop complexes, d'introduire des bugs, c'est plus facile de les tester et de les faire évoluer.
             </p>

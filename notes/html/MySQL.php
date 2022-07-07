@@ -127,6 +127,10 @@
 
     					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-7471362" target="blank">Accéder aux donnée en PHP avec PDO</a></h3>
 
+						<p>
+							Bonne vidéo <a href="https://grafikart.fr/tutoriels/pdo-php-1141#autoplay" target="blank">ici</a>
+						</p>
+
     					<p>
     						Pour pouvoir travailler avec la base de données en PHP, il faut d'abord s'y connecter. Il va donc falloir que PHP s'authentifie : on dit qu'il établit une connexion avec MySQL. Une fois que la connexion sera établie, vous pourrez faire toutes les opérations que vous voudrez sur votre base de données !
     					</p>
@@ -197,6 +201,34 @@ catch (Exception $e)
 							</ul>
 						</p>
 
+						<p>
+						On peut améliorer celà avec les méthodes de PDO : Notemment la méthode PDO::setAttribut et le paramètre PDO::ATTRMODE (maj =CONST STATIC) et PDO::ERRMODE_EXCEPTION
+						</p>
+
+						<p>
+							Le code devient :
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+&lt?php
+$db = new PDO('mysql:host=localhost;dbname=my_recipes;charset=utf8', 'root', 'root');
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$error = null;
+try		
+{
+	$query = $db->query('SELECT * FROM posts');
+	$posts = $query->fetchall(PDO::FETCH_OBJ);
+}
+catch (Exception $e)		
+{
+        $error = $e->getMessage();
+}
+?&gt	
+							</code></pre>
+						</figure>
+
+
 						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-914147" target="blank">Effectuez une première requête SQL</a></h2>
 
 						<p>Voici la première requête SQL que nous allons utiliser :</p>
@@ -217,6 +249,10 @@ SELECT * FROM recipes
 							Effectuons la requête  à l'aide de l'objet PDO :
 						</p>
 
+						<p>
+							Ici on effectue une requête préparée ce qui est mieux pour la sécurité du site, surtout concernant les injections SQL qui consisteraient à changer attribut GET de l'URL pour manipuler le DB depuis l'URL.
+						</p>
+
 						<figure class="block_code">
     						<pre><code>
 &lt?php
@@ -224,7 +260,7 @@ $recipesStatement = $db-&gtprepare('SELECT * FROM recipes');
 ?&gt	
 							</code></pre>
 						</figure>
-						<p>Le problème, c'est que $recipesStatement contient quelque chose d'inexploitable directement : un objet PDOStatement. Cet objet va contenir la requête SQL que nous devons exécuter, et par la suite, les informations récupérées en base de données.</p>
+						<p>Le problème, c'est que <code class="line_code">$recipesStatement</code> contient quelque chose d'inexploitable directement : un objet PDOStatement. Cet objet va contenir la requête SQL que nous devons exécuter, et par la suite, les informations récupérées en base de données.</p>
 						<p>Pour récupérer les données, demandez à cet objet d'exécuter la requête SQL et de récupérer toutes les données dans un format "exploitable" pour vous, c'est-à-dire sous forme d'un tableau PHP.</p>
 
 						<figure class="block_code">
@@ -243,6 +279,30 @@ $recipes = $recipesStatement-&gtfetchAll();		//fetch signifie "va chercher" en a
 						</p>
 
 						<img src="../images/6948946.png" alt=" résumer code complet "/>
+
+						<p>
+							Les méthodes fetch et fetchall peuvent prendre plusieurs paramètres <a href="https://www.php.net/manual/fr/pdostatement.fetch.php" target="blank">doc ici</a> :
+							<ul>
+								<li>PDO::FETCH_ASSOC renvoie un tableau associatif uniquement</li>
+								<li>PDO::FETCH_CLASS : récupère les données sous forme d'instance d'une class , indiquer en 2ème paramètre le nom de la class à instancier (dans la variable de récupération de fetch). Utiliser les mêmes nom de variable dans db et class (voir doc).</li>
+								<li>PDO::FETCH_PROPS_LATE : Le __constructeur est appelé avant les propriétés</li>
+								<li>PDO::FETCH_INTO : récupère les données sous forme d'instance d'une class déjà créée</li>
+								<li>PDO::OBJ : récupère les données sous forme d'instance d'un objet anonyme</li>
+							</ul>
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+&lt?php
+$recipesStatement-&gtexecute();
+$recipes = $recipesStatement-&gtfetchAll(PDO::OBJ);		//fetch signifie "va chercher" en anglais
+
+&lt?php foreach($posts as $post): ?&gt
+	&ltli&gt&lt?= $post->name .&gt&lt/li&gt //crée une stdclass sans __construct avec nom colonne en propriétés
+	&lt?php endforeach ?&gt			// Affiche une liste des posts
+?&gt	
+							</code></pre>
+						</figure>
 
 						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-accedez-aux-donnees-en-php-avec-pdo#/id/r-914221" target="blank">Filtrez vos données</a></h2>
 
@@ -538,7 +598,8 @@ SELECT DATE_FORMAT(c.created_at, "%d/%m/%Y") AS comment_date FROM recipes r LEFT
 
 						<figure class="block_code">
     						<pre><code>
-SELECT AVG(c.review) as rating FROM recipes r LEFT JOIN comments c on r.recipe_id = c.recipe_id WHERE r.recipe_id = 1								</code></pre>
+SELECT AVG(c.review) as rating FROM recipes r LEFT JOIN comments c on r.recipe_id = c.recipe_id WHERE r.recipe_id = 1								
+							</code></pre>
 						</figure>
 
 						<p>

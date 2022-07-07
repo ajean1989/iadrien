@@ -85,7 +85,11 @@
                 </ul>
                 Lorsque l'on crée des partitions, on ajoute généralement un chiffre représentant le numéro de la partition. Ainsi, si on a trois partitions sur notre disque hda, elles seront nommées hda1, hda2, hda3…
 
-                <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/43538-reprenez-le-controle-a-laide-de-linux/38351-la-structure-des-dossiers-et-fichiers#/id/r-2279477">La structure des dossiers et fichiers sous Linux</a></h3>
+                <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/43538-reprenez-le-controle-a-laide-de-linux/38351-la-structure-des-dossiers-et-fichiers#/id/r-2279477">La structure des dossiers et fichiers sous Linux et windows</a></h3>
+
+                <p>
+                    Sous windows <code class="line_code">/</code> est la racine, puis <code class="line_code">mnt</code> permet d'accéder aux disques c, ... 
+                </p>
 
                 Dans un système de fichiers, il y a toujours ce qu'on appelle une racine, c'est-à-dire un « gros dossier de base qui contient tous les autres dossiers et fichiers ». Sous Linux, il n'y a qu'une et une seule racine : « <code class="line_code">/</code> ». Comme vous le voyez, il n'y a pas de lettre de lecteur car justement, Linux ne donne pas de nom aux lecteurs comme le fait Windows. Il dit juste « La base, c'est <code class="line_code">/</code> ».
                 <figure>

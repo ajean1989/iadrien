@@ -35,9 +35,12 @@
             	<h1 id=<?php echo $ini ; $ini++ ;?>>Manipuler le code HTML, Le DOM.</h1>
 
             	<p>
-            		Le Document Object Model (abrégé DOM) est une interface de programmation pour les documents XML et HTML.<br/>
-			 		Une interface de programmation, qu'on appelle aussi une API (pour Application Programming Interface), est un ensemble d'outils qui permettent de faire communiquer entre eux plusieurs programmes ou, dans le cas présent, différents langages.
+				Le DOM, qui signifie Document Object Model (c'est-à-dire "modèle d'objet de document", en français), est une interface de programmation qui est une représentation du HTML d'une page web et qui permet d'accéder aux éléments de cette page web et de les modifier avec le langage JavaScript.
 			 	</p>
+
+				<p>
+				Il faut voir le DOM comme un arbre où chaque élément peut avoir zéro ou plusieurs enfants, qui peuvent avoir eux-mêmes zéro ou plusieurs enfants, qui peuvent avoir zéro ou plusieurs... 
+				</p>
 
 			 	<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918282-manipuler-le-code-html-partie-1-2#/id/r-1924301" target="_blank">L'objet <code class="line_code">window</code></a></h2>
 
@@ -124,10 +127,16 @@ var text = 'Variable globale !';
 						<img src="../images/htmldivelement.png" alt="fenêtre de résultat" />
 					</figure>
 
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918282-manipuler-le-code-html-partie-1-2#/id/r-2341641" target="_blank"><code class="line_code">getElementByClassName()</code></a></h3>
+
+					<p>
+					Cette méthode fonctionne de la même manière que la précédente, mais fera sa recherche sur la <code class="line_code">class</code> des éléments et retournera la liste des éléments qui correspondent.
+					</p>
+
 					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918282-manipuler-le-code-html-partie-1-2#/id/r-1924337" target="_blank"><code class="line_code">getElementsByTagName()</code></a></h3>
 
 					<p>
-						Cette méthode permet de récupérer, sous la forme d'un tableau, tous les éléments de la famille. Si, dans une page, on veut récupérer tous les <code class="line_code">&ltdiv&gt</code>, il suffit de faire comme ceci :
+						Cette méthode permet de récupérer, sous la forme d'un tableau, tous les éléments avec un nom de balise bien précis. Si, dans une page, on veut récupérer tous les <code class="line_code">&ltdiv&gt</code>, il suffit de faire comme ceci :
 					</p>
 					<figure class="block_code">
 			 			<pre><code>
@@ -165,8 +174,54 @@ for (var i = 0, c = divs.length ; i < c ; i++) {
 					</figure>
 					<p>
 						Ce sélecteur CSS stipule que l'on souhaite sélectionner les balises de type <code class="line_code">&ltspan&gt</code> contenues dans les classes <code class="line_code">.item</code> elles-mêmes contenues dans un élément dont l'identifiant est <code class="line_code">#menu</code>.<br />
-						<code class="line_code">querySelector()</code>, renvoie le premier élément trouvé correspondant au sélecteur CSS, tandis que <code class="line_code">querySelectorAll()</code> va renvoyer tous les éléments (sous forme de tableau) correspondant au sélecteur CSS fourni. 
+						<code class="line_code">querySelector()</code>, renvoie le premier élément trouvé correspondant au sélecteur CSS, tandis que <code class="line_code">querySelectorAll()</code> va renvoyer tous les éléments (sous forme de tableau) correspondant au sélecteur CSS fourni. Ils renvoient null si aucun élément n'a été trouvé. 
 					</p>
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918282-manipuler-le-code-html-partie-1-2#/id/r-1924355" target="_blank">Le recherche depuis un élément</a></h3>
+
+					<p>
+					Il n'y a pas qu'avec <code class="line_code">document</code> que vous pouvez rechercher des éléments. Comme nous l'avons vu au début du chapitre, chaque élément est un objet JavaScript avec ses propriétés et ses fonctions. Et parmi ces dernières, il en existe pour parcourir les enfants et le parent de chaque élément ! 
+					<ul>
+						<li><code class="line_code">element.children</code> : cette propriété nous retourne la liste des enfants de cet élément ;</li>
+						<li><code class="line_code">element.parentElement</code> : cette propriété nous retourne l'élément parent de celui-ci ;</li>
+						<li><code class="line_code">element.nextElementSibling</code> / <code class="line_code">element.previousElementSibling</code> : ces propriétés nous permettent de naviguer vers l'élément suivant / précédent de même niveau que notre élément.</li>
+					</ul>
+					Par exemple, avec le code HTML suivant :
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+						 <div id="parent">
+    &ltdiv id="previous"&gtPrécédent&lt/div&gt
+    &ltdiv id="main"&gt
+        &ltp&gtParagraphe 1&lt/p&gt
+        &ltp&gtParagraphe 2&lt/p&gt
+    &lt/div&gt
+    &ltdiv id="next"&gtSuivant&lt/div&gt
+&lt/div&gt
+ 						</code></pre>
+					</figure>
+
+					<p>
+					et si l'on considère que nous avons le code JavaScript suivant :
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+const elt = document.getElementById('main'); 						</code></pre>
+					</figure>
+
+					<P>
+					nous aurons ceci :
+					<ul>
+						<li><code class="line_code">elt.children</code> nous retournera les éléments de type  p  qui sont les enfants de l'élément <code class="line_code">#main</code></li>
+						<li><code class="line_code">elt.parentElement</code> nous retournera la  div  qui a l'id  <code class="line_code">parent</code></li>
+						<li><code class="line_code">elt.nextElementSibling</code> nous retournera l'élément qui a l'id </li>next</ul></li>
+						<li><code class="line_code">elt.previousElementSibling</code> nous retournera l'élément qui a l'id <code class="line_code">previous</code></li>
+					</ul>
+					</P>
+
+
 
 					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918282-manipuler-le-code-html-partie-1-2#/id/r-2341646" target="_blank">L'héritage des propriétés et des méthodes</a></h2>
 
@@ -208,6 +263,10 @@ for (var i = 0, c = divs.length ; i < c ; i++) {
 
 					<p>
 						Sinon, pour la plupart des éléments courants comme <code class="line_code">&lta&gt</code>, il est possible d'accéder à un attribut via une propriété. Ainsi, si on veut modifier la destination d'un lien, on peut utiliser la propriété <code class="line_code">href</code>, comme ceci :
+					</p>
+
+					<p>
+						Il existe aussi <code class="line_code">removeAttribute</code> : voir doc pour info
 					</p>
 
 					<figure class="block_code">
@@ -274,7 +333,7 @@ for (var i = 0, c = divs.length ; i < c ; i++) {
 						Faites attention : si votre élément comporte plusieurs classes (exemple : <code class="line_code">&lta class="external red u"&gt</code>) et que vous récupérez la classe avec <code class="line_code">className</code>, cette propriété ne retournera pas un tableau avec les différentes classes, mais bien la chaîne « external red u », ce qui n'est pas vraiment le comportement souhaité. Il vous faudra alors couper cette chaîne avec la méthode <code class="line_code">split()</code> pour obtenir un tableau.
 					</p>
 					<p>
-						Si le support d'Internet Explorer avant sa version 10 vous importe peu, vous pouvez aussi vous tourner vers la propriété <code class="line_code">classList</code> qui permet de consulter les classes sous forme d'un tableau et de les manipuler aisément :
+						Vous pouvez aussi vous tourner vers la propriété <code class="line_code">classList</code> qui permet de consulter les classes sous forme d'un tableau et de les manipuler aisément :
 					</p>
 
 					<figure class="block_code">
@@ -353,15 +412,13 @@ document.getElementById('myDiv').innerHTML += ' et &ltstrong&gtune portion mise 
 						<div class="em">Attention ! Si un jour il vous prend l'envie d'ajouter une balise <code class="line_code">&ltscript&gt</code> à votre page par le biais de la propriété <code class="line_code">innerHTML</code>, sachez que ceci ne fonctionne pas ! Il est toutefois possible de créer cette balise par le biais de la méthode <code class="line_code">createElement()</code> que nous étudierons au prochain chapitre.</div>
 					</p>
 
-					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918282-manipuler-le-code-html-partie-1-2#/id/r-2341673" target="_blank">InnerText et TextContent</a></h3>
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918282-manipuler-le-code-html-partie-1-2#/id/r-2341673" target="_blank"><code class="line_code">InnerText</code> et <code class="line_code">textContent</code></a></h3>
 
 					<p>
-						Penchons-nous maintenant sur deux propriétés analogues à <code class="line_code">innerHTML</code> : <code class="line_code">innerText</code> pour Internet Explorer et <code class="line_code"></code> pour les autres navigateurs.<br />
-						Le fonctionnement d'<code class="line_code">innerText</code> est le même qu'<code class="line_code">innerHTML</code> excepté le fait que seul le texte est récupéré, et non les balises. C'est pratique pour récupérer du contenu sans le balisage.
-					</p>
-					<p>
-						Comment faire un script qui fonctionne à la fois pour Internet Explorer et les autres navigateurs ? C'est ce que nous allons voir !<br />
-						Il est possible via une simple condition de tester si le navigateur prend en charge telle ou telle méthode ou propriété.
+					<ul>
+						<li><code class="line_code">innerHTML</code> demande à ce que vous entriez du texte représentant un contenu HTML.</li>
+						<li><code class="line_code">textContent</code>, quant à elle, demande un simple texte qui ne sera pas interprété comme étant du HTML.</li>
+					</ul>
 					</p>
 					<figure class="block_code">
 			 			<pre><code>
@@ -574,11 +631,29 @@ var newLink = document.createElement('a');
 						<div class='em'>Si vous travaillez dans une page Web, l'élément racine sera toujours <code class="line_code">document</code>, sauf dans le cas des frames. La création d'éléments au sein de fichiers XML sera abordée plus tard.</div>
 					</p>
 
+					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577491-modifiez-le-dom#/id/r-5591357" target="_blank">Supprimez et remplacez des éléments</a></h2>
+
+					<p>
+					Il existe les fonctions <code class="line_code">removeChild</code> et <code class="line_code">replaceChild</code>, afin de respectivement supprimer et remplacer un élément.
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+						 const newElt = document.createElement("div");
+let elt = document.getElementById("main");
+elt.appendChild(newElt);
+
+elt.removeChild(newElt);    // Supprime l'élément newElt de l'élément elt
+elt.replaceChild(document.createElement("article"), newElt);    // Remplace l'élément newElt par un nouvel élément de type article
+						</code></pre>
+					</figure>
+
 					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918600-manipuler-le-code-html-partie-2-2#/id/r-1924596" target="_blank">Affectation des attributs</a></h2>
 
 					<p>
 						Ici, c'est comme nous avons vu précédemment : on définit les attributs, soit avec <code class="line_code">setAttribute()</code>, soit directement avec les propriétés adéquates.
 					</p>
+
 
 					<figure class="block_code">
 			 			<pre><code>
@@ -772,6 +847,18 @@ function insertAfter(newElement, afterElement) {
 					<p>
 						Les événements permettent de déclencher une fonction selon qu'une action s'est produite ou non. Par exemple, on peut faire apparaître une fenêtre <code class="line_code">alert()</code> lorsque l'utilisateur survole une zone d'une page Web.
 					</p>
+
+					<p>
+					Un événement en JavaScript est représenté par un nom (<code class="line_code">click</code>,  <code class="line_code">mousemove</code> ...) et une fonction que l'on nomme une <code class="line_code">callback</code>. Un événement est par défaut propagé, c'est-à-dire que si nous n'indiquons pas à l'événement que nous le traitons, il sera transmis à l'élément parent, et ainsi de suite jusqu'à l'élément racine.
+					</p>
+
+					<p>
+					Cette fonction <code class="line_code">callback</code>, c'est nous qui allons la spécifier. Elle sera appelée à chaque fois que l'action que l'on désire suivre est exécutée. Cela signifie que si l'on désire suivre le clic sur un élément, notre fonction sera appelée à chaque fois que l'utilisateur cliquera sur cet élément. 
+					</p>
+
+					
+
+
 					<p>
 						Voici la liste des événements principaux, ainsi que les actions à effectuer pour qu'ils se déclenchent :
 						<table>
@@ -856,6 +943,10 @@ function insertAfter(newElement, afterElement) {
 							</tr>
 						</table>
 
+						<p>
+							Voici la liste des événement <a href="https://developer.mozilla.org/fr/docs/Web/Events" target="blank">ici</a>
+						</p>
+
 						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1924872" target="_blank">Le focus</a></h2>
 
 						<p>
@@ -870,7 +961,7 @@ function insertAfter(newElement, afterElement) {
 							nous allons passer à leur utilisation au travers de l'interface implémentée par Netscape que l'on appelle le DOM-0 puis au standard de base actuel : le DOM-2.
 						</p>
 
-						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1924934" target="_blank">Le DOM-0</a></h2>
+						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1924934" target="_blank">Le DOM-0 (désuet)</a></h2>
 
 						<p>
 							Cette interface est vieille mais n'est pas forcément dénuée d'intérêt. Elle reste très pratique pour créer des événements et peut parfois être préférée au DOM-2.
@@ -904,7 +995,7 @@ element.onclick = function() {};
 						</code></pre>
 					</figure>
 
-					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1924977" target="_blank">Le DOM-2</a></h2>
+					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1924977" target="_blank">Le DOM-2 (Old version de note, voir next chap)</a></h2>
 
 					<p>
 						En ce qui concerne le DOM-0, il a deux problèmes majeurs : il est vieux, et il ne permet pas de créer plusieurs fois le même événement.<br />
@@ -972,6 +1063,137 @@ element.removeEventListener('click', myFunction); // On supprime l'événement e
 					<p>
 						Toute suppression d'événement avec le DOM-2 se fait avec les mêmes paramètres utilisés lors de sa création ! Cependant, cela ne fonctionne pas aussi facilement avec les fonctions anonymes ! Tout événement DOM-2 créé avec une fonction anonyme est particulièrement complexe à supprimer, car il faut posséder une référence vers la fonction concernée, ce qui n'est généralement pas le cas avec une fonction anonyme.
 					</p>
+
+					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5578156-ecoutez-des-evenements#/id/r-5591279" target="_blank">Écoutez des événements</a></h2>
+
+					<p>
+					Afin de réagir lors d'un clic sur un élément, il faut écouter cet événement. Pour cela, nous avons à notre disposition la fonction <code class="line_code">addEventListener()</code>. Cette fonction nous permet d'écouter tous types d'événements (pas que le clic).
+					</p>
+
+					<div class="em">Réagir à un événement, c'est faire une action lorsque celui-ci se déclenche. Écouter, c'est vouloir être averti quand l'événement se déclenche.</div>
+
+					<p>
+					<code class="line_code">addEventListener(&ltevent&gt, &ltcallback&gt)</code> prend en paramètres le nom de l'événement à écouter (voici la liste des événements existants), et la fonction à appeler dès que l'événement est exécuté.
+					</p>		
+
+					<p>
+						Admettons que vous vouliez réagir au clic sur un lien. Vous allez tout d'abord devoir récupérer l'élément qui correspond à votre lien, comme nous l'avons vu précédemment. Ensuite, vous allez appeler la méthode <code class="line_code">element.addEventListener('click', onClick);</code> directement sur cet élément.
+					</p>
+
+					<p>
+					<code class="line_code">onClick</code> correspond à la fonction que vous allez définir et qui sera appelée à chaque fois que l'utilisateur cliquera sur votre lien. C'est donc vous qui choisissez ce que vous souhaitez faire : récupérer des informations depuis un serveur, afficher un message, etc. Le comportement par défaut de l'élément actionné sera tout de même exécuté. Ainsi, s'il y a un clic sur un lien, vous pouvez, dans votre fonction de callback, faire en sorte d'afficher un message.
+					</p>
+
+					<p>
+					Le navigateur va quand même ouvrir le lien. De la même manière, si le clic se fait sur un bouton de validation de formulaire, celui-ci sera envoyé. Il est possible de désactiver ce comportement par défaut, c'est ce que nous allons voir juste après.
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+const elt = document.getElementById('mon-lien');    // On récupère l'élément sur lequel on veut détecter le clic
+elt.addEventListener('click', function() {          // On écoute l'événement click
+    elt.innerHTML = "C'est cliqué !";               // On change le contenu de notre élément pour afficher "C'est cliqué !"
+});
+						</code></pre>
+					</figure>
+
+					<p>
+						Comme vous avez pu le voir si vous avez essayé de réagir aux clics sur votre lien, votre fonction est bien appelée, mais la page change. En effet, il s'agit d'un lien, et dès que l'on clique sur un lien, le navigateur nous redirige sur la page vers laquelle il pointe.
+					</p>
+
+					<p>
+					En appelant la fonction <code class="line_code">preventDefault()</code> dans votre callback, vous demandez au gestionnaire des événements de ne pas exécuter le comportement par défaut de votre élément (qui est la redirection vers une autre page pour un lien). Et cela marche aussi pour d'autres types d'éléments que le lien. Cette même fonction exécutée pendant un événement  <code class="line_code">onsubmit</code> sur un formulaire empêchera le formulaire de s'envoyer au serveur, par exemple.
+					</p>
+
+					<p>
+					Si on reprend notre exemple précédent, voici comment empêcher que notre navigateur ne change de page quand on clique sur le lien :
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+const elt = document.getElementById('mon-lien');    // On récupère l'élément sur lequel on veut détecter le clic
+elt.addEventListener('click', function(event) {     // On écoute l'événement click, notre callback prend un paramètre que nous avons appelé event ici
+    event.preventDefault();                         // On utilise la fonction preventDefault de notre objet event pour empêcher le comportement par défaut de cet élément lors du clic de la souris
+});
+						</code></pre>
+					</figure>
+
+					<p>
+					<code class="line_code">stopPropagation()</code> est une fonction de l'objet que votre fonction reçoit en paramètre. Son rôle est par contre très différent, car il nous permet d'empêcher la propagation de l'événement vers son parent. En effet, lorsqu'un événement est déclenché, il est d'abord reçu par l'élément cible, mais il est ensuite remonté vers les éléments parents qui sont aussi dans la cible.
+					</p>
+
+					<p>
+					Admettons par exemple que nous ayons un élément pour lequel nous voulons afficher un message lorsque l'on clique dessus. Mais à l'intérieur de cet élément, nous avons aussi un autre élément qui doit nous afficher un autre message lorsque l'on clique dessus.<br/>
+					Par défaut, si nous cliquons dans l'élément intérieur, le message va s'afficher, puis notre élément parent va lui aussi recevoir l'événement du clic et encore changer le message. Pour éviter cela, nous devons stopper la propagation de l'événement.</p>
+
+					<p>
+					Ainsi, dans l'élément intérieur, nous ferons ceci :</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+elementInterieur.addEventListener('click', function(event) {
+    event.stopPropagation();
+    elementAvecMessage.innerHTML = "Message de l'élément intérieur";
+});
+						</code></pre>
+					</figure>
+
+					<p>
+					De cette manière, lorsque l'on clique sur l'élément intérieur, l'élément parent ne recevra plus le clic, et seul l'élément intérieur affichera son message. Par contre, en cliquant directement dans l'élément parent, sans être dans l'élément intérieur, l'élément parent recevra bien l'événement et affichera bien son message.
+					</p>
+
+					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5578181-recuperez-des-donnees-utilisateurs-avec-les-evenements#/id/r-7200022" target="_blank">Récupérez des données utilisateurs avec les événements</a></h2>
+
+					<p>
+					Comme nous l'avons vu brièvement dans le chapitre précédent, lorsque l'on reçoit un événement, notre fonction callback reçoit un paramètre contenant des informations sur cet événement. Ces informations sont reçues sous la forme d'un objet qui dépendra du type d'événement reçu.
+					</p>
+
+					<p>
+					De plus, chaque événement implémente l'objet <code class="line_code">Event</code>. C'est-à-dire que chaque événement a au minimum les mêmes fonctions et propriétés que l'objet  Event . Cela comprend entre autres :
+					<ul>
+						<li><code class="line_code">preventDefault()</code> : empêche l'exécution du comportement par défaut de l'élément quand il reçoit l'événement ;</li>
+						<li><code class="line_code">stopPropagation()</code> : empêche la propagation de l'événement vers d'autres éléments ;</li>
+						<li>D'autres propriétés en fonction du type d'événement.</li>
+						<li>Pour avoir une liste exhaustive de ce que propose l'interface  Event , vous pouvez aller voir sa <a href="https://developer.mozilla.org/fr/docs/Web/API/Event" taget="blank">documentation</a>.</li>
+					</ul>
+					</p>
+
+
+
+
+					
+					
+
+	
+
+
+
+
+			
+					
+
+
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					
 
 					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1924995" target="_blank">Les phases de capture et de bouillonnement</a></h2>
 

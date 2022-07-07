@@ -42,9 +42,44 @@
     <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237816-preparez-votre-environnement-de-travail#/id/r-4443743" target="_blank">
     Configuration sous Linux</a></h1>
 
+    
+    <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237816-preparez-votre-environnement-de-travail#/id/r-7426821" target="_blank">
+    Le serveur PHP intégré</a></h1>
+
+    <p>
+        Dans une console terminal taper au niveau du dossier où se trouve le fichier :
+    </p>
+
+    <figure class="block_code">
+                <pre><code>
+                php -S localhost:8080
+                </code></pre>
+            </figure>
+
+            <p>
+            Ensuite, en accédant à http://localhost:8080/index.php, le retour de l'exécution de ce script PHP sera disponible ! Pratique, non ?
+            </p>
+
+
+
 
     <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4238821-configurez-php-pour-visualiser-les-erreurs#/id/r-4238841" target="_blank">
     Configurer PHP pour afficher les erreurs</a></h1>
+
+    <figure class="block_code">
+                <pre><code>
+phpinfo();
+die(); // comme exit();
+                </code></pre>
+            </figure>
+    
+    <p>
+        Affiche la page php info.
+    </p>
+
+    <p>
+        Quelques bonnes infos au début de cette vidéo <a href="https://grafikart.fr/tutoriels/curl-php-1138#autoplay" target="blank">ici</a>, notemment pour configurer PHP différemment pour le dev et la prod. Pour que les erreurs soient affichées en dev mais pas en prod. 
+    </p>
 
     <p>
         Par défaut, PHP n'affiche pas les erreurs pour éviter de donner trop d'indications aux utilisateurs pour des raisons de sécurité (un mantra à vous répéter : "moins l'utilisateur en sait sur mon application, mieux mon application se portera !").
@@ -320,6 +355,25 @@ Notice: Undefined index: nom in C:\wamp\www\tests\bonjour.php on line 9
     </p>
     <p>
         <em>Si vous préférez retirer les balises HTML que le visiteur a tenté d'envoyer plutôt que de les afficher, utilisez la fonction <code class="line_code">strip_tags</code>.</em>
+    </p>
+
+    <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://grafikart.fr/tutoriels/curl-php-1138#autoplay" target="_blank">
+    Utiliser une API avec cURL</a></h1>
+
+    <p>
+        Première étape : vérifier si cURL (une extension de php) est activée sur PHP avec phpinfo().
+    </p>
+
+    <p>
+        Si ce n'est pas installer, aller dans le dossier PHP/php.ini :
+        <ul>
+            <li>Décommenter extension_dir = "C:\MAMP\bin\php\php8.0.1\ext\"</li>
+            <li></li>
+        </ul>
+    </p>
+
+    <p>
+        à continuer ... 
     </p>
 
 

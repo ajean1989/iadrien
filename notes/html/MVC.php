@@ -301,6 +301,10 @@ require('affichageAccueil.php');
             <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/7848196-creez-un-routeur#/id/r-7848106" target="blank">Créer un routeur</a></h1>
 
             <p>
+                Vidéo pas mal <a href="https://grafikart.fr/tutoriels/router-php-1149#autoplay" target="blank">ici</a>. Avec les beaux url.
+            </p>
+
+            <p>
             Pour faciliter la maintenance, il est plus simple de passer par un contrôleur frontal, qui va jouer le rôle de routeur. Son objectif va être d'appeler le bon contrôleur (on dit qu'il route les requêtes).
             </p>
 
