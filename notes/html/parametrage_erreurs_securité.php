@@ -36,6 +36,34 @@
     <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237816-preparez-votre-environnement-de-travail#/id/r-4443661" target="_blank">
     Configuration sous windows</a></h1>
 
+    <p>
+        Pour installer PHP sur windows manuellement :
+        <ul>
+            <li>Télécharger la dernière version de PHP <a href="https://www.php.net/" target="blank">ici</a> version x64 Zip Non Thread Safe fera l'affaire</li>
+            <li>Copier l'archive dans un dossier qu'on peut appeler PHP placer par exemple dans C:/Programmes</li>
+            <li>Il faut entrer le chemin de ce dossier (qui contient php.exe) dans les variables d'environnement (rechercher variables d'environnement dans windows). Variables d'environnement/Variables d'environnement/Variables utilisateur->PATH->Modifier->Ajouter une ligne avec le chemin du dossier PHP. Valider</li>
+            <li>On peut vérifier que tout est ok en allant dans la console : <code class="line_code">php -v</code> renvoie la version de PHP</li>
+            <li>Il faut maintenant configurer le fichier php.ini qui configure php et ses extensions (mySQL, PDO, ...)</li>
+            <li>Dans le dossier php il existe deux fichier : php.ini-development et php.ini-production. Ce sont des exemples qu'on peut copier coller et appeler php.ini et configurer comme suit :
+                <li>Activer les extensions en décommentant le ligne <code class="line_code">extension_dir = "ext"</code> où ext est le dossier où sont les extensions</li>
+                <li>Décommentant les extensions souhaitées : <code class="line_code">extension=pdo_mysql</code> pour PDO et <code class="line_code">extension=mysqli</code> pour phpmyadmin</li> 
+                <li>Il faut redémarrer et faire un coup de phpinfo() pour vérifier si le module est bien installer</li>
+            </li>
+        </ul>
+    </p>
+
+    <p>
+        Pour installer phpMyAdmin sur windows manuellement :
+        <ul>
+            <li>Télécharger phpMyAdmin <a href="https://www.phpmyadmin.net/downloads/">ici</a></li>
+            <li>L'extraire dans le dossier projets (htdocs)</li>
+            <li>Copier coller le fichier <code class="line_code">config.sample.inc.php</code> et le renommer <code class="line_code">config.inc.php</code> et l'utiliser pour configurer phpMyAdmin</li>
+            <li>On entrera juste le mot de passe 32 caractères blowfish_secret</li>
+            <li>On accède à phpMyAdmin avec l'index.php du dossier phpMyAdmin. Il faut que le serveur MySQL soit actif (ouvrir windows/MySQL/MySQL command line mdp:ad..mY</li>
+            <li>identifiant de MySQL -> root - ad..mY</li>
+        </ul>
+    </p>
+
     <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237816-preparez-votre-environnement-de-travail#/id/r-4443692" target="_blank">
     Configuration sous Mac OS X</a></h1>
 
@@ -58,6 +86,10 @@
 
             <p>
             Ensuite, en accédant à http://localhost:8080/index.php, le retour de l'exécution de ce script PHP sera disponible ! Pratique, non ?
+            </p>
+
+            <p>
+                CTRL + c pour éteindre le serveur dans la console.
             </p>
 
 
