@@ -186,11 +186,14 @@ git push origin main
                             <li><a href="https://git-scm.com/docs/git-init" target="blank"><code class="line_code">git-init</code></a> - Create an empty Git repository or reinitialize an existing one</li>
                             <li><a href="https://git-scm.com/docs/git-add" target="blank"><code class="line_code">git-add</code></a> - Add file contents to the index</li>
                             <li><a href="https://git-scm.com/docs/git-commit" target="blank"><code class="line_code">git-commit</code></a> - Record changes to the repository</li>
-                            <li><a href="https://git-scm.com/docs/git-remote" target="blank"><code class="line_code">git-remote</code></a> - Manage set of tracked repositories</li>
+                            <li><a href="https://git-scm.com/docs/git-remote" target="blank"><code class="line_code">git-remote</code></a> - Manage set of tracked repositories
+                                <ul>
+                                    <li><code class="line_code">git remote add :nom: :url repo:</code> permet de donner un nom (origin) à un seul dossiers locals pour un url donné. Deux dossiers locals peuvent s'appeler origin et renvoyer à deux url différentes.</li>
+                                </ul></li>
                             <li><code class="line_code">git remote add</code> [-t &ltbranch&gt] [-m &ltmaster&gt] [-f] [--[no-]tags] [--mirror=(fetch|push)] &ltname&gt &ltURL&gt - Add a remote named &ltname&gt for the repository at &ltURL&gt.</li>
                             <li><a href="https://git-scm.com/docs/git-branch" target="blank"><code class="line_code">git-branch</code></a> - List, create, or delete branches </li>
                             <li><a href="https://git-scm.com/docs/git-push" target="blank"><code class="line_code">git-push</code></a> - Mettre à jour les références distantes avec les objets associés</li>
-
+                            <li><a href="https://www.git-scm.com/docs/git-clone" target="blank"><code class="line_code">git-clone</code></a> - Clone a repository into a new directory. Se placer dans le dossier projets (htdocs), va créer un nouveau dossier avec le nom du repository et va copier tout ce qu'il contient dans ce dossier. Si problème d'authentification pour git clone, on peut créer un token d'authentification sur le site github/settings/Developper settings/Personnal accès token/générate new token. Cela créera un password temporaire, avec des droits définis, pour le compte git en question.</li>
                         </ul>
                     </p>
 

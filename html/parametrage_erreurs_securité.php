@@ -33,8 +33,33 @@
     <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237816-preparez-votre-environnement-de-travail#/id/r-4443610" target="_blank">
     Apache, PHP, MySQL</a></h1>
 
+    <p><strong>Apache</strong></p>
+
+    <p>
+        C'est ce qu'on appelle un serveur web. Il s'agit du plus important de tous les programmes, car c'est lui qui est chargé de délivrer les pages web aux visiteurs. Cependant, Apache ne gère que les sites web statiques (il ne peut traiter que des pages HTML). Il faut donc le compléter avec d'autres programmes.
+    </p>
+
+    <p><strong>PHP</strong></p>
+
+    <p>
+        C'est un plug-in pour Apache qui le rend capable de traiter des pages web dynamiques en PHP. En clair, en combinant Apache et PHP, notre ordinateur sera capable de lire des pages web en PHP.
+    </p>
+
+    <p><strong>MySQL</strong></p>
+
+    <p>
+        C'est un logiciel de gestion de bases de données. Il permet d'enregistrer des données de manière organisée (comme la liste des membres de votre site). Nous n'en aurons pas besoin immédiatement, mais autant l'installer de suite.
+    </p>
+
+    <p>
+        Tous ces éléments sont libres et gratuits.
+    </p>
+
     <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237816-preparez-votre-environnement-de-travail#/id/r-4443661" target="_blank">
     Configuration sous windows</a></h1>
+
+    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.php.net/" target="_blank">
+    Installation de php sur windows</a></h2>
 
     <p>
         Pour installer PHP sur windows manuellement :
@@ -45,18 +70,42 @@
             <li>On peut vérifier que tout est ok en allant dans la console : <code class="line_code">php -v</code> renvoie la version de PHP</li>
             <li>Il faut maintenant configurer le fichier php.ini qui configure php et ses extensions (mySQL, PDO, ...)</li>
             <li>Dans le dossier php il existe deux fichier : php.ini-development et php.ini-production. Ce sont des exemples qu'on peut copier coller et appeler php.ini et configurer comme suit :
-                <li>Activer les extensions en décommentant le ligne <code class="line_code">extension_dir = "ext"</code> où ext est le dossier où sont les extensions</li>
-                <li>Décommentant les extensions souhaitées : <code class="line_code">extension=pdo_mysql</code> pour PDO et <code class="line_code">extension=mysqli</code> pour phpmyadmin</li> 
-                <li>Il faut redémarrer et faire un coup de phpinfo() pour vérifier si le module est bien installer</li>
+                <ul>
+                    <li>Activer les extensions en décommentant le ligne <code class="line_code">extension_dir = "ext"</code> où ext est le dossier où sont les extensions</li>
+                    <li>Décommentant les extensions souhaitées : <code class="line_code">extension=pdo_mysql</code> pour PDO et <code class="line_code">extension=mysqli</code> pour phpmyadmin</li> 
+                    <li>Il faut redémarrer et faire un coup de phpinfo() pour vérifier si le module est bien installer</li>
+                </ul>
             </li>
         </ul>
     </p>
+
+    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.php.net/" target="_blank">
+    Installation de MySQL sur windows</a></h2>
+
+    <p>
+		Rendez-vous sur <a href="https://dev.mysql.com/downloads/installer/" target="blank">https://dev.mysql.com/downloads/installer/ . Je vous conseille de télécharger le deuxième programme (la version “community”), qui dispose d’options supplémentaires par rapport au premier (la version “web”). </a>
+	</p>
+	
+    <p>
+		Pour lancer MySQL sur Windows, double-cliquez sur la console MySQL. Celle-ci doit avoir apparu dans vos programmes, suite à l’installation précédente.
+	</p>
+						
+    <p>
+		Pour créer le mot de passe “root”, utilisez la commande <code class="line_code">mysqladmin -u root password 'votresupermotdepassetrescomplique' </code>
+	</p>
+	
+    <p>
+		En informatique, et notamment dans le monde des bases de données, l’utilisateur dit “root” (ou racine) est un utilisateur qui a tous les droits (création, suppression, mise à jour). C’est celui qu’on utilise pour installer des logiciels sur notre machine. Mais attention à ne jamais l’utiliser en production ! En effet, il serait très dangereux qu’un utilisateur puisse l’utiliser, car il obtiendrait l’accès à toutes nos données. “Utiliser en production” désigne l’utilisation de votre base par votre application, depuis un serveur. Alors que “l’utilisation en local” signifie l’utilisation sur votre ordinateur, à des fins de développement uniquement.
+	</p>
+
+    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.phpmyadmin.net/downloads/" target="_blank">
+    Installation de phpmyadmin sur windows</a></h2>
 
     <p>
         Pour installer phpMyAdmin sur windows manuellement :
         <ul>
             <li>Télécharger phpMyAdmin <a href="https://www.phpmyadmin.net/downloads/">ici</a></li>
-            <li>L'extraire dans le dossier projets (htdocs)</li>
+            <li>L'extraire dans le dossier projets (htdocs -> htdocs/phpmyadmin/fichiersarchive</li>
             <li>Copier coller le fichier <code class="line_code">config.sample.inc.php</code> et le renommer <code class="line_code">config.inc.php</code> et l'utiliser pour configurer phpMyAdmin</li>
             <li>On entrera juste le mot de passe 32 caractères blowfish_secret</li>
             <li>On accède à phpMyAdmin avec l'index.php du dossier phpMyAdmin. Il faut que le serveur MySQL soit actif (ouvrir windows/MySQL/MySQL command line mdp:ad..mY</li>
@@ -69,6 +118,125 @@
 
     <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237816-preparez-votre-environnement-de-travail#/id/r-4443743" target="_blank">
     Configuration sous Linux</a></h1>
+
+    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.php.net/" target="_blank">
+    Installation de php sur ubuntu</a></h2>
+
+    <p>
+        La commande <code class="line_code">apt install php</code> est utilisée pour installer php, cependant il se peut que les dernières versions ne soient pas disponibles. Il faut alors mettre à jour le package avec <code class="line_code">apt install software-properties-common</code> puis <code class="line_code">add-apt-repository ppa:ondrej/php</code> (repository de qqun (ondrej sur github) qui a créer un package avec les dernières versions de php (semble moyennement recommandé)). On peut ensuite faire <code class="line_code">apt install php8.1</code> .<br/> Bonne vidéo pour expliqueer ça <a href="https://www.youtube.com/watch?v=bHTv0FmvrTo" target="blank">ici</a>
+    </p>
+
+    <p>
+        Sur linux il vaut mieux installer plusieurs versions de php côte à côte lorsqu'on upgrade.
+    </p>
+
+    <p>
+        On active le serveur intégré avec <code class="line_code">php -S localhost:8000 ou 8080</code> ; Sur linux on utilisera plutôt le serveur apache2 qui se démarre avec <code class="line_code">systemctl start apache2</code> et le dossier root (localhost:80) se situe là : /var/www/html dans lequel on place nos projets et phpmyadmin.
+    </p>
+
+    <p>
+        Le serveur apache2 est un serveur qui permet de lancer en local des pages web HTTP avec un module php associé. 
+    </p>
+
+    <p>
+        Pour associer la bonne version de php il faut avoir la dernière version de php, ici php8.1. dé associer le module php7.4 avec <code class="line_code">sudo a2dismod php7.4</code> et on associe php8.1 à apache avec <code class="line_code">sudo a2enmod php8.1</code>. Un coup de <code class="line_code">phpinfo();</code> pour vérifier si tout est ok.
+    </p>
+
+    <p>
+        On restart/start/stop le serveur avec <code class="line_code">sudo systemctl restart apache2</code>.
+    </p>
+
+    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://doc.ubuntu-fr.org/mysql" target="_blank">
+    Installation de MySQL sur Ubuntu</a></h2>
+
+    
+    <p><code class="line_code">sudo apt install mysql-server</code></p>
+
+    <p>
+        L'installation se fait sans identifiant ni mot de passe : Depuis Bionic 18.04, Ubuntu lie par défaut le compte root de Ubuntu avec le plugin <code class="line_code">auth_socket</code> en installant MySQL. Auparavant il fallait spécifier un mot de passe lors de l'installation.
+    </p>
+
+    <p>On démarre le serveur avec <code class="line_code">sudo systemctl start mysql</code> ou <code class="line_code">sudo /etc/init.d/mysqld start</code></p>
+
+    <p>On l'éteint avec <code class="line_code">sudo systemctl stop mysql</code> ou <code class="line_code">sudo /etc/init.d/mysqld stop</code></p>
+
+    <p>
+        On le redémarre avec <code class="line_code">sudo systemctl restart mysql</code>
+    </p>
+
+    <p>
+        Site avec infos et aide à la configuration <a href="https://doc.ubuntu-fr.org/mysql" target="blank">ici</a>
+    </p>
+
+    <p>
+        On lance la console mysql avec <code class="line_code">sudo mysql</code>
+    </p>
+
+
+    <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://doc.ubuntu-fr.org/phpmyadmin" target="_blank">
+    Installation de phpmyadmin sur ubuntu</a></h2>
+
+    <p>
+        phpmyadmin est juste un site, une interface graphique qui connecter à la db.
+    </p>
+
+    <p>
+        On l'installe avec <code class="line_code">sudo apt install phpmyadmin</code>, voir <a href="https://doc.ubuntu-fr.org/phpmyadmin" target="blank">doc ici</a>
+    </p>
+
+    <p>
+        J'ai jamais réussi à faire fonctionner phpmyadmin de cette manière ... 
+    </p>
+
+    <p>
+        J'ai donc télécharger l'archive <code class="line_code">.tar.gz</code> sur le site de phpmyadmin. L'ai décompressée et placé dans un fichier <code class="line_code">phpmyadmin/</code>, lui même placé dans le dossier root du serveur apache2, à savoir <code class="line_code">/var/www/html</code> (<code class="line_code">/var/www/html/phpmyadmin/fichiersdécompressés</code>)
+    </p>
+
+    <p>
+        On accède à phpmyadmin avec <code class="line_code">localhost/phpmyadmin</code> sur le navigateur
+    </p>
+
+    <div class="em">Astuce utile : la commande <code class="line_code">nautilus</code> permet d'ouvrir une fenêtre d'explorateur de fichier graphique en mode sudo.
+    </div>
+
+    <p>
+        Avec MySQL depuis Bionic 18.04, et MariaDB depuis Xenial 16.04, l'authentification de l'utilisateur root de MySQL se fait au moyen du plugin <code class="line_code">auth_socket</code>, donc avec sudo.<br/>
+        Cette méthode ne permet pas de se connecter avec phpMyAdmin, mais il est vivement déconseillé de modifier ce comportement. 
+        </p>
+
+        <p>
+        Si vous avez besoin d'un accès global à vos bases de données depuis un même compte, la solution conseillée est donc de créer un nouvel utilisateur et de lui attribuer tous les privilèges depuis la commande de mysql <code class="line_code">sudo mysql</code> :
+        </p>
+
+        <figure class="block_code">
+            <pre><code>
+CREATE USER 'nom_utilisateur_choisi'@'localhost' IDENTIFIED BY 'mot_de_passe_solide';
+GRANT ALL ON *.* TO 'nom_utilisateur_choisi'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+QUIT;                
+            </code></pre>
+        </figure>
+
+        <p>
+        user : adrien / adrMy
+        </p>
+
+        <p>
+            infos <a href="https://doc.ubuntu-fr.org/phpmyadmin#acces_root" target="blank">ici</a>
+        </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
     <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237816-preparez-votre-environnement-de-travail#/id/r-7426821" target="_blank">
