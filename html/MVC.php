@@ -301,8 +301,72 @@ require('affichageAccueil.php');
             <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/7848196-creez-un-routeur#/id/r-7848106" target="blank">Créer un routeur</a></h1>
 
             <p>
-                Vidéo pas mal <a href="https://grafikart.fr/tutoriels/router-php-1149#autoplay" target="blank">ici</a>. Avec les beaux url.
+                Vidéo pas mal <a href="https://grafikart.fr/tutoriels/router-php-1149#autoplay" target="blank">ici</a>. Avec les beaux url :
             </p>
+
+            <p>
+                MAJ : Faire de beaux URL -> On utilise la variable globale <code class="line_code">$_SERVER</code> qui renvoie : 
+            </p>
+
+            <figure class="block_code">
+    			<pre><code>
+Array
+(
+    [DOCUMENT_ROOT] => C:\Users\Adrien\desktop\htdocs
+    [REMOTE_ADDR] => ::1
+    [REMOTE_PORT] => 61091
+    [SERVER_SOFTWARE] => PHP 8.1.8 Development Server
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [SERVER_NAME] => localhost
+    [SERVER_PORT] => 8000
+    [REQUEST_URI] => /FUTUR4044/public/connexion
+    [REQUEST_METHOD] => GET
+    [SCRIPT_NAME] => /FUTUR4044/public/index.php
+    [SCRIPT_FILENAME] => C:\Users\Adrien\desktop\htdocs\FUTUR4044\public\index.php
+    [PATH_INFO] => /connexion
+    [PHP_SELF] => /FUTUR4044/public/index.php/connexion
+    [HTTP_HOST] => localhost:8000
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+    [HTTP_ACCEPT_LANGUAGE] => fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate, br
+    [HTTP_DNT] => 1
+    [HTTP_CONNECTION] => keep-alive
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [HTTP_SEC_FETCH_DEST] => document
+    [HTTP_SEC_FETCH_MODE] => navigate
+    [HTTP_SEC_FETCH_SITE] => none
+    [HTTP_SEC_FETCH_USER] => ?1
+    [REQUEST_TIME_FLOAT] => 1657716839.8482
+    [REQUEST_TIME] => 1657716839
+)
+
+				</code></pre>
+			</figure>
+
+            <p>
+                Dans laquelle on récupère la ligne <code class="line_code">[PATH_INFO]</code> tel que : 
+            </p>
+
+            <figure class="block_code">
+    			<pre><code>
+$uri = $_SERVER['PATH_INFO'];
+
+if($uri === '/connexion'){
+    // Affiche la page de connexion
+}
+else{
+    // Affiche une autre page
+}
+
+				</code></pre>
+			</figure>
+
+            <p>
+                Fin de MAJ
+            </p>
+
+
 
             <p>
             Pour faciliter la maintenance, il est plus simple de passer par un contrôleur frontal, qui va jouer le rôle de routeur. Son objectif va être d'appeler le bon contrôleur (on dit qu'il route les requêtes).

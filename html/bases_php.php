@@ -290,7 +290,7 @@ if (&variable <= 23)
 &lt?php
 $note = 10;
 
-switch (&note)      // on indique sur quelle variable on travaille  
+switch ($note)      // on indique sur quelle variable on travaille  
 {
     case 0:         // dans le cas où $note vaut 0
         echo "nul"

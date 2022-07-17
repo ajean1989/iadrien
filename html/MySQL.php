@@ -475,6 +475,24 @@ $deleteRecipeStatement-&gtexecute([
 
 						<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/7372786-ajoutez-des-commentaires-grace-aux-jointures-sql#/id/r-7373279" target="blank">Les jointures internes</a></h3>
 
+						<p>
+							MAJ : Très bonne explication <a href="https://sql.sh/cours/jointures/inner-join">ici</a>. 
+						</p>
+
+						<figure class="block_code">
+    						<pre><code>
+SELECT *
+FROM table1
+INNER JOIN table2
+ON table1.id = table2.fk_id
+WHERE table1.name = 'bleue'
+							</code></pre>
+						</figure>
+
+						<p>
+							Fusionne les tables avec uniquement les lignes où id=fk_id et name=bleue.
+						</p>
+
 
 						<figure class="block_code">
     						<pre><code>
@@ -489,6 +507,8 @@ ON u.user_id = c.user_id
 						<p>
 						Cette fois, on récupère les données depuis une table principale (ici, <code class="line_code">users</code> ) et on fait une jointure interne ( <code class="line_code">INNER JOIN </code> ) avec une autre table ( <code class="line_code">comments </code> ).
 						</p>
+
+						
 
 						<p>
 						La liaison entre les champs est faite dans la clause <code class="line_code">ON</code> un peu plus loin.

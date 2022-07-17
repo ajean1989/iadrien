@@ -260,6 +260,18 @@ QUIT;
                 CTRL + c pour éteindre le serveur dans la console.
             </p>
 
+            <p>
+            Démarrage avec un dossier racine spécifique : utiliser le drapeau -t 'nom du dossier' : 
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+                $ php -S localhost:8000 -t ./public
+                </code></pre>
+            </figure>
+
+
+
 
 
 
