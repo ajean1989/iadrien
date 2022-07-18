@@ -196,7 +196,7 @@ p
 		La police</a></h1>
 
 		<p>
-			La propriété CSS qui permet d'indiquer la police à utiliser estfont-family.Seulement, pour éviter les problèmes si l'internaute n'a pas la même police que vous, on précise en général plusieurs noms de police, séparés par des virgules :
+			La propriété CSS qui permet d'indiquer la police à utiliser est <code class="line_code">font-family</code>.Seulement, pour éviter les problèmes si l'internaute n'a pas la même police que vous, on précise en général plusieurs noms de police, séparés par des virgules :
 		</p>
 			<figure class="block_code">
 				<pre><code>

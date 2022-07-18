@@ -450,11 +450,11 @@ p
                     <pre><code>
 #conteneur
 {
-    disply: flex;
+    display: flex;
 }
 .element
 {
-    amrgin : auto;
+    margin : auto;
 }
                     </code></pre>
                 </figure>
@@ -644,6 +644,34 @@ p
         <p>
             Pour retirer un élément, rien de plus simple : nous utilisons la propriété <code class="line_code">display</code> à laquelle nous affectons la valeur <code class="line_code">none</code>.
         </p>
+
+        <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://css.developpez.com/tutoriels/css-guide-complet/" target="_blank">
+        Cours sur les grids</a></h1>
+
+        <p><a href="https://css.developpez.com/tutoriels/css-guide-complet/">ici !</a></p>
+
+        <p>
+            Résumer :
+            <ul>
+                <li><code class="line_code">.container{ display: grid | inline-grid }</code> : Définit l'élément en tant que container grid et établit un nouveau contexte de formatage de son contenu.</li>
+                <li><figure class="block_code" figcaption="Le premier élément peut grossir deux fois plus que le second élément">
+                <pre><code>
+.container{
+  grid-template-columns: 40px 50px auto 50px 40px;
+  grid-template-rows: 25% 100px auto;
+}
+                </code></pre>
+            </figure> : Définissent les colonnes et rangées de la grille via une liste de valeurs séparées par un espace. Peut être une longueur, un pourcentage, ou une fraction de l'espace libre dans la grille (via l'unité fr) ;
+            </li>
+            <li></li>
+            </ul>
+        </p>
+
+        <img src="../images/5233737.png" alt="grid-template"/>
+
+        <img src="../images/7367836783678.png" alt="grid-area"/>
+
+
 
     </div>
     

@@ -92,7 +92,7 @@
 
             <figure class="block_code">
                 <pre><code>
-&lt button class="btn btn-rounded btn-wide" &gt...²lt/button&gt
+&lt button class="btn btn-rounded btn-wide" &gt...&lt/button&gt
                 </code></pre>
             </figure>
 

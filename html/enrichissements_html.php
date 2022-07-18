@@ -402,6 +402,23 @@ td, th   /* Mettre une bordure sur les td et th */
             </ul>
         </p>
 
+        <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Animations/Using_CSS_animations" target="_blank">Animation CSS</a></h1>
+
+        <p>
+            Très bonne doc <a href="https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Animations/Using_CSS_animations">ici</a> pour la propriété animation.
+        </p>
+
+        <p>
+            Il existe aussi la propriété transition, <a href="https://developer.mozilla.org/fr/docs/Web/CSS/transition">ici</a>.
+        </p>
+
+        <p>
+            Article pour cahcer un élément <a href="https://la-cascade.io/articles/cacher-des-elements-avec-css">ici</a>
+        </p>.
+
+
+
+
 
            </div>
     

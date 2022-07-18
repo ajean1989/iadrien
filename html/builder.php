@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
         <script src="../js/highlight.pack.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
-        <title>Sass</title>
+        <title>Builder</title>
     </head>
 
     <body>
