@@ -1372,6 +1372,11 @@ setcookie('pays', 'France', time() + 365*24*3600, null, null, false, true); // O
             <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/916990-les-expressions-regulieres-partie-1-2#/id/video_Player_1" target="_blank">
             Les expressions régulières</a></h1>
 
+            
+            <p>
+                MAJ : Sites bien pratiks <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres">ici</a> et <a href="https://www.debuggex.com/?flavor=pcre">là</a>.
+            </p>
+            
             <p>
                 Les expressions régulières constituent un système très puissant et très rapide pour faire des recherches dans des chaînes de caractères (des phrases, par exemple). C'est une sorte de fonctionnalité Rechercher / Remplacer très poussée.
             </p>
@@ -1627,6 +1632,18 @@ setcookie('pays', 'France', time() + 365*24*3600, null, null, false, true); // O
 
             <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/917386-les-expressions-regulieres-partie-2-2#/id/r-2178446" target="_blank">
                 Créez votre bbCode</a></h2>
+
+            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/917386-les-expressions-regulieres-partie-2-2#/id/r-2178446" target="_blank">
+            Fioritures</a></h1>
+
+            <p>
+                <ul>
+                    <li><code class="line_code">haeder('location: /adresse')</code> : renvoie vers la page /adresse. Doit être appelé avant toutes sorties (echo, ... ), infos <a href="https://stackoverflow.com/questions/8028957/how-to-fix-headers-already-sent-error-in-php">ici</a>
+                    </li>
+                    <li><code class="line_code">$this->users = $statement->fetchall(PDO::FETCH_CLASS, 'Users');</code> : FETCH CLASS utilise une nouvelle instance de Users. Ici fetchall va placer toutes ces instances dans un tableau nommé users (this->users ici). Pour accéder à une propriété dans un foreach on utilise foreach(this->users as user){ user->prop ... }</li>
+                    <li>L'objet DateTime (lien <a href="https://grafikart.fr/tutoriels/datetime-object-php-1133">ici</a> et <a href="https://www.php.net/manual/fr/class.datetime.php">là</a> ): Date du jour en première prop $datetime d'une nouvelle instance.</li>
+                </ul>
+            </p>
 
 
 

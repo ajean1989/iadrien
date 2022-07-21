@@ -19,5 +19,8 @@
         <li><a href="linuxserveur.php">Linux</a></li>
         <li><a href="reseaux.php">Réseaux</a></li>
         <li><a href="git.php">Git & Github</a></li>
+        <li><a href="securite.php">Sécurité</a></li>
+        <li><a href="SOLIDPattern.php">SOLID / Design Pattern</a></li>
+        
     </ul>
 </nav>
