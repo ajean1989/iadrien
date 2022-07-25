@@ -1634,7 +1634,113 @@ setcookie('pays', 'France', time() + 365*24*3600, null, null, false, true); // O
                 Créez votre bbCode</a></h2>
 
             <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/917386-les-expressions-regulieres-partie-2-2#/id/r-2178446" target="_blank">
+            Uploader des images</a></h1>
+
+            <p>
+                Dans la balise form, ajouter <code class="line_code">enctype="multipart/form-data</code>
+            </p>
+
+            <figure class="block_code">
+                        <pre><code>
+&ltform method="post" action="index.php" enctype="multipart/form-data?&gt
+&ltinput type="hidden" name="MAX_FILE_SIZE" value="100000"&gt // limite la taille du fichier
+&ltinput type="file" name="img"/&gt
+&ltinput type="submit" name="envoyer"/&gt
+&lt/form&gt
+                </code></pre>
+            </figure>
+
+            <p>
+                L'image se récupère avec <code class="line_code">$_FILES</code>. Infos <a href="https://www.php.net/manual/fr/reserved.variables.files.php">ici</a>
+            </p>
+
+            <p>
+                $_FILES est un tableau avec le nom du fichier uploader et un sous tableau avec :
+                <ul>
+                    <li>$_FILES['userfile']['name'] : Le nom original du fichier, tel que sur la machine du client web.</li>
+                    <li>$_FILES['userfile']['type'] : Le type MIME du fichier, si le navigateur a fourni cette information. Par exemple, cela pourra être "image/gif".</li>
+                    <li>$_FILES['userfile']['size'] : La taille, en octets, du fichier téléchargé.</li>
+                    <li> $_FILES['userfile']['tmp_name'] : Le nom temporaire du fichier qui sera chargé sur la machine serveur.</li>
+                    <li> $_FILES['userfile']['error'] : Le code d'erreur associé au téléchargement de fichier.</li>
+                    <li> $_FILES['userfile']['full_path'] : Le chemin entier tel que soumit par le navigateur. Cette valeur ne contient pas toujours une vraie hiérarchie de dossier, et il ne faut pas lui faire confiance. Disponible à partir de PHP 8.1.0.</li>
+                </ul>
+            </p>
+
+            <p>
+                Dans un premier temps on veut déplacer l'images dans un dossier de notre projet :
+            </p>
+
+            <figure class="block_code">
+                        <pre><code>
+$img = $_FILES['img']  // $_FILES['img'] est un tableau avec les infos de notre intl_get_error_message
+//move_uploaded_file(string filename, string destination)
+move_uploaded_file($img['tmp_name'], "./images" . $img['name']) // arg2 n'accepte pas '/' juste './' Et il faut nommer le fichier après '.' 
+                </code></pre>
+            </figure>
+
+            <p>
+                On vérifie que l'extension est bien celle d'une image (Pour pas upload un .php par exemple et se faire h@ck)
+            </p>
+
+            <figure class="block_code">
+                        <pre><code>
+$ext = strtolower(substr($img['name'],-3));  // On récupère les 3 dernières lettres du fichier
+$allow_ext = array("jpg","png","gif");
+if(in_array($ext,$allow_ext))
+{
+    move_uploaded_file($img['tmp-name'], "./images" . $img['name'])
+}
+                </code></pre>
+            </figure>
+
+            <p>
+                Il est préférable de laisser les images sur le serveur et faire un script pour y accéder (en changeant le nom de l'image et lui passant un id par exemple pour mon site futur) que de le mettre en db type blob car la db est limitée en place et cela ralenti beaucoup la requête. 
+            </p>
+
+            <p>
+                Cependant voici un bon tuto pour placer l'image en db <a href="https://www.youtube.com/watch?v=XfobCv4YBdk">ici</a> et <a href="https://www.youtube.com/watch?v=pCgLPVltp5o">ici</a>.
+            </p>
+
+            <p>
+                Et pour sécuriser l'accès aux images du serveur avec un htacces, nous avons un bon tuto <a href="https://www.youtube.com/watch?v=_-W2wO5Sgro">ici</a>.
+            </p>
+
+            <p>
+                Plus de fioriture et notemment des contrôles <a href="https://antoine-herault.developpez.com/tutoriels/php/upload/">ici</a>.
+            </p>
+
+
+
+       
+
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.youtube.com/watch?v=UDYOlFgtF0o&list=PLozMbzD1vZ2IOIb-wltQp7hZw56J9hSry&index=4&t=873s" target="_blank">
             Fioritures</a></h1>
+
+            
 
             <p>
                 <ul>
