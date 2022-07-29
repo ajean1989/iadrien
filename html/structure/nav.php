@@ -3,6 +3,7 @@
         <li><a href="bases_html.php">Bases de l'HTML</a></li>
         <li><a href="structure_html.php">Structure de l'HTML</a></li>
         <li><a href="bases_css.php">CSS</a></li>
+        <li><a href="animation_css.php">Animations CSS</a></li>
         <li><a href="sass.php">Sass</a></li>
         <li><a href="builder.php">npm - composer</a></li>
         <li><a href="enrichissements_html.php">Enrichissements en HTML CSS</a></li>

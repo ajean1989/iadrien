@@ -153,6 +153,8 @@ a[title*="ici"]
     		</ul>
     	</p>
 
+		<div class="em">Il est possible de sélectionner un élément lorsqu'on <code class="line_code">:hover</code> un autre avec simplement <code class="line_code">firstElement:hover autreElement</code>.</div>
+
     	<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1605329-formatez-du-texte#/id/video_Player_1" target="_blank">
     	Formater du texte</a></h1>
     	
@@ -191,6 +193,8 @@ p
 				<li>Si vous voulez réduire le texte, inscrivez une valeur inférieure à 1, comme <code class="line_code">0.8em</code>.</li>
 			</ul>
 		</p>
+
+		
 
 		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1605329-formatez-du-texte#/id/r-1605200" target="_blank">
 		La police</a></h1>
@@ -591,9 +595,20 @@ a:visited /* quand le visiteur a déjà vu la page concernée */
 			<li><a href="https://developer.mozilla.org/fr/docs/Web/CSS/white-space"><code class="line_code">white-space</code></a> : La propriété white-space est utilisée pour décrire la façon dont les blancs sont gérés au sein de l'élément.</li>
 			<li><a href="https://developer.mozilla.org/fr/docs/Web/CSS/position" taget="blank"><code class="line_code">position</code></a> : définit la façon dont un élément est positionné dans un document. Avec attributs : static ; relative ; absolute ; fixed ; sticky. <br/>
 			Utiliser pour fixer un bloc (fixed : L'élément est retiré du flux normal), il est alors fixe par rapport à la page (flexbox ne fonctionne plus). <br/>Sticky pour fixer par rapport à un ancètre (La position de la boîte est calculée en fonction du flux normal du document)</li>
+			
 		</ul>
 
 		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Learn/Getting_started_with_the_web/CSS_basics" target="blank">Liens divers</a></h1>
+
+		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://la-cascade.io/articles/centrer-une-div-guide-complet" target="blank">Centrer une div</a></h1>
+
+		<p>
+			Easy avec display:flex; justify-content:center; align-item:center;
+		</p>
+
+		<p>
+			position : absolute; permet de faire dépasser d'un élément une div. Qu'on peut ensuite déplacer si besoin avec position : relative;
+		</p>
 
 		<ul>
 			<li><a href="https://www.pixelcrea.com/blog/pre-styles-css/">CSS pour la balise pre</a></li>

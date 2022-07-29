@@ -1231,6 +1231,9 @@ class Player extends User
             Le mot clé <code class="line_code">static</code> nous permet d’utiliser la déclaration de la constante la plus proche de la classe instanciée, dans la hiérarchie.
             </p>
 
+           
+            <div class="em">Toutes les fonctions définies dans l'interface doivent être utilisées dans l'implémentation.</div>
+
             <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/7307099-specialisez-vos-objets-avec-les-espaces-de-noms#/id/video_Player_1" target="blank">Les espaces de noms - namespace</a></h1>
 
             <p>
@@ -1619,6 +1622,53 @@ $user = new User;
             </p>
 
             <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/7345206-etablissez-des-contrats-avec-les-interfaces#/id/r-7345204" target="blank">Établissez des contrats avec les interfaces</a></h1>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.php.net/manual/fr/language.oop5.interfaces.php" target="blank"><code class="line_code">interface</code>/<code class="line_code">implements</code></a></h2>
+
+            <p>
+                Une interface est une sorte de structure de class qui définit des fonctions qui devront être utilisée dans les class implémentées par cette interface. Les fonctions ne seront pas décrites dans l'interface mais uniquement dans les implémentations. 
+            </p>
+
+            <p>
+                Utile pour structurer deux classes qui se ressemble dans leurs structure (ex: PostsInputs et UsersInputs implémentent Inputs / MySQLdDb et MariaDb implémentent ConnexionDb)
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+// Declaration de l'interface 'Template'
+interface Template
+{
+public function setVariable($name, $var);
+public function getHtml($template);
+}
+                </code></pre>
+            </figure>
+
+            <figure class="block_code">
+                <pre><code>
+class WorkingTemplate implements Template
+{
+private $vars = [];
+
+public function setVariable($name, $var)
+{
+$this->vars[$name] = $var;
+}
+
+public function getHtml($template)
+{
+foreach($this->vars as $name => $value) {
+$template = str_replace('{' . $name . '}', $value, $template);
+}
+
+return $template;
+}
+}
+                </code></pre>
+            </figure>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.php.net/manual/fr/language.oop5.interfaces.php" target="blank">suite</a></h2>
+
 
             <p>
             Les interfaces sont des idées. Elles se déclarent comme une classe, mais avec le mot clé <code class="line_code">interface</code> au lieu de <code class="line_code">class</code>, et ne peuvent contenir que des signatures de méthode.
