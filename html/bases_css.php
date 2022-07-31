@@ -595,6 +595,7 @@ a:visited /* quand le visiteur a déjà vu la page concernée */
 			<li><a href="https://developer.mozilla.org/fr/docs/Web/CSS/white-space"><code class="line_code">white-space</code></a> : La propriété white-space est utilisée pour décrire la façon dont les blancs sont gérés au sein de l'élément.</li>
 			<li><a href="https://developer.mozilla.org/fr/docs/Web/CSS/position" taget="blank"><code class="line_code">position</code></a> : définit la façon dont un élément est positionné dans un document. Avec attributs : static ; relative ; absolute ; fixed ; sticky. <br/>
 			Utiliser pour fixer un bloc (fixed : L'élément est retiré du flux normal), il est alors fixe par rapport à la page (flexbox ne fonctionne plus). <br/>Sticky pour fixer par rapport à un ancètre (La position de la boîte est calculée en fonction du flux normal du document)</li>
+			<li><a href="https://developer.mozilla.org/fr/docs/Web/CSS/background-size"><code class="line_code">background-size</code></a> : La propriété CSS background-size définit la taille des images d'arrière-plan pour l'élément. La taille de l'image peut être contrainte, complètement ou partiellement afin de conserver ses proportions.</li>
 			
 		</ul>
 
