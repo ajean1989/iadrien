@@ -527,6 +527,7 @@ try {
 catch(Exception $e) {
     // Si une erreur se produit, on arrive ici
 }
+
 				</code></pre>
 			</figure>
 
@@ -550,6 +551,24 @@ catch(Exception $e) {
 throw new Exception('Message d\'erreur à transmettre');
 				</code></pre>
 			</figure>
+
+            <p>
+            La classe <code class="line_code">Exception</code> possède un constructeur qui va pouvoir accepter un message d’erreur et un code d’erreur personnalisé de notre choix. Ici, je passe le message « Division par zéro impossible » et je choisis le code « 15 ».
+            </p>
+
+            <p>
+            Dès qu’une exception est lancée, il va falloir l’attraper. On va faire cela dans un deuxième bloc catch. Le but de ce bloc va déjà être de capturer une exception si une exception a été lancée. Ici, si c’est le cas, on place les informations liées à l’exception dans $e (le nom $e est choisi arbitrairement, vous pouvez choisir le nom de votre choix).
+            </p>
+
+            <p>
+            Pour comprendre ce code, vous devez savoir que $e est un objet de la classe Exception et que la classe Exception possède des méthodes dont notamment :
+            <ul>
+                <li><code class="line_code">getMessage()</code> qui va renvoyer le message d’erreur défini lors du lancement de l’exception ;</li>
+                <li><code class="line_code">getCode()</code> qui va renvoyer le code d’erreur défini lors du lancement de l’exception ;</li>
+                <li><code class="line_code">getFile()</code> qui va renvoyer le chemin du fichier depuis lequel l’exception a été lancée ;</li>
+                <li><code class="line_code">getLine()</code> qui va renvoyer la ligne du fichier depuis lequel l’exception a été lancée.</li>
+            </ul>
+            </p>
 
             <p>
             On va utiliser ce mécanisme dans notre code comme ceci :
@@ -615,6 +634,12 @@ catch(Exception $e) { // S'il y a eu une erreur, alors...
             Pour l'instant, notre bloc <code class="line_code">catch</code> affiche une erreur avec un simple <code class="line_code">echo</code>. Si nous voulons faire quelque chose de plus joli, nous pouvons appeler une vue  <code class="line_code">errorView.php</code> qui affiche joliment le message d'erreur.
             </p>
 
+            <p>
+                Le fait de remonter l'erreur au bloc catch permet de gérer l'erreur au niveau de la fonction d'appel et peut être effectué une action en rapport à cette fonction d'appel alors que l'erreur est plus générale et peut s'appliquer à plusieurs fonctions générales.
+            </p>
+
+            
+
             <figure class="block_code">
     			<pre><code>
 &lt?php
@@ -629,6 +654,10 @@ catch(Exception $e) {
 }
 				</code></pre>
 			</figure>
+
+            <p>
+                Globalement on utilise un try catch à chaque fois qu'un comportement peut ne pas se passer comme prévu.
+            </p>
 
             <h1 id=<?php echo $ini ; $ini++ ;?>>Pour résumer</a></h1>
 
