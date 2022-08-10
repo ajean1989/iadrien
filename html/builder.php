@@ -119,6 +119,10 @@ npm init
             La commande <code class="line_code">npm list</code> permet de voir tous les packages de notre projet ainsi que leur version.
         </p>
 
+        <p>
+            Dans le fichier package.json, dans la partie script, la ligne de script est la ligne qui sera executée lors d'un <code class="line_code">npm run nomdeligne</code>. Dans une extension il peut y avoir plusieurs scripts lancée à l'aide de <code class="line_code">npm run</code> en fonction de ce qu'on souhaite faire. 
+        </p>
+
         <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.youtube.com/watch?v=P3aKRdUyr0s" target="_blank">
         Le versionning</a></h2>
 

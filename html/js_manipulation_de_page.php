@@ -452,6 +452,59 @@ txt = div.textContent || div.innerText || '';
 						</code></pre>
 					</figure>
 
+					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7697016-creez-des-pages-web-dynamiques-avec-javascript/7911057-generez-le-contenu-de-votre-page-grace-au-dom#/id/r-7911056" target="_blank">Créer une portion de page (tuile) en JS</a></h2>
+
+					<p>
+					Commençons par choisir nos balises ! Le produit est composé d’un nom, d’un prix, d’une catégorie et d’une image. Les balises HTML les plus adaptées pour chacunes de ces informations sont :
+						<ul>
+							<li><code class="line_code">img</code>  pour l’image ;</li>
+							<li><code class="line_code">h2</code>  pour le nom (on considère que h1 servira au titre du document) ;</li>
+							<li><code class="line_code">p</code>  pour le prix et la catégorie.</li>
+						</ul>
+					</p>
+
+					<p>
+					Créons donc ces quatre balises avec createElement :
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+const ampoule = pieces[0];
+const imageElement = document.createElement("img");
+imageElement.src = ampoule.image;
+const nomElement = document.createElement("h2");
+nomElement.innerText = ampoule.nom;
+const prixElement = document.createElement("p");
+prixElement.innerText = ampoule.prix;
+const categorieElement = document.createElement("p");
+categorieElement.innerText = ampoule.categorie;
+						</code></pre>
+					</figure>
+
+					<p>
+					Les quatre éléments ont été créés mais ils ne s’affichent pas encore à l’écran. C’est normal car dans le navigateur, on distingue deux opérations : la création d’un élément, et son ajout réel à la page web. Une fois qu’il a été ajouté, on dit qu’on a rattaché l'élément au reste du document.
+					</p>
+
+					<p>
+					Pour faire ce rattachement, nous avons besoin d’un parent. En effet, le DOM structure les éléments sous forme d’arbre avec des enfants et des parents. Il faut donc trouver un parent pour accueillir nos nouveaux éléments. Ainsi, nous allons utiliser la fonction appendChild en JavaScript.
+					</p>
+
+					<p>
+					Notre page web contient une balise section avec la classe “fiches” que nous utiliserons comme parent. Nous la récupérons grâce à querySelector :
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+const sectionFiches = document.querySelector(".fiches");
+sectionFiches.appendChild(imageElement);
+sectionFiches.appendChild(nomElement);
+sectionFiches.appendChild(prixElement);
+sectionFiches.appendChild(categorieElement);
+						</code></pre>
+					</figure>
+
+					<img src="../images/16572715258243_image12.png" alt="résultat création tuile JS"/>
+
 					<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918600-manipuler-le-code-html-partie-2-2#/id/r-1918410" target="_blank">Naviguer entre les noeuds</a></h1>
 
 					<p>
@@ -1262,7 +1315,7 @@ element.addEventListener('click', function(e) { // L'argument « e » va récup�
 
 					<figure class="block_code">
 			 			<pre><code>
-@ltspan id="clickme"&gtCliquez-moi !&lt/span&gt
+&ltspan id="clickme"&gtCliquez-moi !&lt/span&gt
 
 &ltscript&gt
     var clickme = document.getElementById('clickme');

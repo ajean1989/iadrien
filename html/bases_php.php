@@ -30,12 +30,13 @@
             <div class="element_1">
 
         <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237646-decouvrez-le-fonctionnement-dun-site-ecrit-en-php#/id/video_Player_1" target="_blank">
-        Fonctionnement dd'un site en PHP</a></h1>
+        Fonctionnement d'un site en PHP</a></h1>
 
         <p>
             Les clients sont incapables de comprendre le code PHP : ils ne connaissent que le HTML et le CSS. Seul le serveur est capable de lire du PHP.<br/>
             Le rôle de PHP est justement de générer du code HTML (on peut aussi générer du CSS, mais c'est plus rare), code qui est ensuite envoyé au client de la même manière qu'un site statique, comme le montre la figure suivante.
         </p>
+        
         <figure>
             <img src="../images/207111.png" alt="schéma php" />
         </figure>
@@ -108,8 +109,68 @@
             </ul>
         </p>
 
-        <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/911847-les-variables#/id/r-911745" target="_blank">
-        Affecter une valeur à une variable</a></h1>
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.php.net/manual/fr/language.variables.scope.php" target="blank">Portée des variables</a></h2>
+
+        <p>
+        Pour la majorité des variables, la portée concerne la totalité d'un script PHP. Mais, lorsque vous définissez une fonction, la portée d'une variable définie dans cette fonction est locale à la fonction.
+        </p>
+
+        <p>
+        En PHP, une variable globale doit être déclarée à l'intérieur de chaque fonction afin de pouvoir être utilisée dans cette fonction. 
+        </p>
+
+        <figure class="block_code">
+            <pre><code>
+&lt?php
+$a = 1; /* portée globale */
+
+function test()
+{ 
+    echo $a; /* portée locale */
+}
+
+test();  // Rien, php utilise la variable locale $a
+
+            </code></pre>
+        </figure>
+
+
+
+        <figure class="block_code">
+            <pre><code>
+&lt?php
+$a = 1;
+$b = 2;
+function somme() {
+    global $a, $b;
+    $b = $a + $b;
+}
+somme();
+echo $b;  // 3
+
+            </code></pre>
+        </figure>
+
+        <p>
+            Équivalent à :
+        </p>
+
+        <figure class="block_code">
+            <pre><code>
+&lt?php
+$a = 1;
+$b = 2;
+function somme() {
+    $GLOBALS['b'] = $GLOBALS['a'] + $GLOBALS['b'];
+}
+somme();
+echo $b;
+
+            </code></pre>
+        </figure>
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/911847-les-variables#/id/r-911745" target="_blank">
+        Affecter une valeur à une variable</a></h2>
 
         <figure class="block_code">
             <pre><code>
@@ -1235,11 +1296,31 @@ setcookie('pays', 'France', time() + 365*24*3600, null, null, false, true); // O
                 Il faut refaire appel à  setcookie  en gardant le même nom de cookie, ce qui « écrasera » l'ancien.
             </p>
 
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/Set-Cookie/SameSite" target="_blank">
+        SameSite cookies</a></h2>
+
+        <p>
+        L'attribut SameSite de l'en-tête de réponse HTTP Set-Cookie vous permet de déclarer si vos cookies doivent être restreints au site visité, à des tiers, ou à des sous-domaines du site actuel.
+        </p>
+
         <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913492-lisez-et-ecrivez-dans-un-fichier#/id/r-2174475" target="_blank">
         Lire et écrire dans un fichier</a></h1>
 
         <p>
              Pour stocker ces informations longtemps, il faut les écrire sur le disque dur. Quoi de plus logique pour cela que de créer des fichiers ? PHP permet justement d'enregistrer des données dans des fichiers sur le disque dur du serveur.
+        </p>
+
+        <p>
+        L'attribut SameSite accepte trois valeurs possibles :
+        <ul>
+            <li>Lax : Les cookies sont transférables depuis le site actuel vers des sites de niveaux inférieurs et seront envoyés lors de requêtes GET initialisées par des sites tiers. C'est la valeur par défaut des navigateurs les plus récents.</li>
+            <li>Strict : Les cookies ne seront envoyés qu'avec les requêtes effectuées sur le domaine de même niveau, et ne seront pas envoyées sur les requêtes provenant de sites tiers.</li>
+            <li>None : Les cookies seront envoyés dans tous les contextes, rendant possibles les requêtes de type cross-origin. None était la valeur par défaut des navigateurs, mais les navigateurs les plus récents optent désormais pour la valeur Lax comme valeur par défaut pour une meilleure défense contre les attaques de type cross-site request forgery (CSRF).</li>
+        </ul>
+        </p>
+
+        <p>
+        Les dernières versions des navigateurs récents fournissent une valeur par défaut de SameSite plus sécurisée pour vos cookies, il se peut donc que le message suivant apparaisse dans la console de votre navigateur : Some cookies are misusing the “sameSite“ attribute, so it won’t work as expected. Cookie “myCookie” has “sameSite” policy set to “lax” because it is missing a “sameSite” attribute, and “sameSite=lax” is the default value for this attribute. Cette alerte apparait car la stratégie de SameSite pour le cookie n'a pas été spécifiée explicitement. Même si vous pouvez compter sur la valeur par défaut SameSite=Lax des navigateurs récents, vous devriez tout de même spécifier la stratégie à appliquer pour ce cookie afin de communiquer clairement votre intention. Cela améliorera également l'expérience sur les autres navigateurs si ceux-ci n'utilisent pas encore la valeur par défaut Lax.
         </p>
 
         <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913492-lisez-et-ecrivez-dans-un-fichier#/id/r-913378" target="_blank">

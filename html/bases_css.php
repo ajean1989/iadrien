@@ -114,7 +114,7 @@ h3 em
     					<pre><code>
 h3 + p 
 {
-    /* Sélectionne la première balise<code class="line_code">&ltp&gt</code>située après un titre<code class="line_code">&lth3&gt</code>./*
+    /* Sélectionne la première balise<code class="line_code">&ltp&gt</code>située directement après un titre<code class="line_code">&lth3&gt</code>./*
 }
     					</code></pre>
     				</figure>
@@ -150,6 +150,16 @@ a[title*="ici"]
     				</figure>
     			</li>
     			<li>D'autres sélecteurs existent ! voir <a href="https://www.w3.org/Style/css3-selectors-updates/WD-css3-selectors-20010126.fr.html#selectors" target="_blank">site du W3C</a></li>
+				<li>Sélection des frères si l'élément a un parent.
+    				<figure class="block_code">
+    					<pre><code>
+span:nth-child(2)
+
+Permettra de cibler un élément &ltspan&gt qui est le deuxième fils de son parent.. (les enfants peuvent être différents de span)
+
+    					</code></pre>
+    				</figure>
+    			</li>
     		</ul>
     	</p>
 

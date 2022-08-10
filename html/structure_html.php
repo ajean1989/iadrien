@@ -560,6 +560,10 @@ p
                 <em>La propriété <code class="line_code">flex</code> est en fait une super-propriété qui combine <code class="line_code">flex-grow</code> (capacité à grossir), <code class="line_code">flex-shrink</code> (capacité à maigrir) et <code class="line_code">flex-basis</code> (taille par défaut). J'utilise simplement flex comme je vous l'ai montré ici, mais si vous voulez en savoir plus, je vous invite à vous renseigner sur ces autres propriétés.</em>
             </p>
 
+
+        <img src= "../images/flex1.png" alt="flex1"/>
+        <img src= "../images/flex2.png" alt="flex2"/>
+
         <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1607616-utilisez-le-responsive-design-avec-les-media-queries#/id/video_Player_1" target="_blank">
         Responsive design avec les Media Queries</a></h1>
 
@@ -644,6 +648,36 @@ p
         <p>
             Pour retirer un élément, rien de plus simple : nous utilisons la propriété <code class="line_code">display</code> à laquelle nous affectons la valeur <code class="line_code">none</code>.
         </p>
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/HTML/Viewport_meta_tag" target="_blank">
+        S'adapter au smartphone</a></h2>
+
+        <p>
+        Les appareils à écran étroit (par exemple, les mobiles) rendent les pages dans une fenêtre virtuelle ou viewport, qui est généralement plus large que l'écran, puis réduisent le résultat rendu afin qu'il puisse être vu en une seule fois. Les utilisateurs et utilisatrices peuvent alors effectuer un panoramique et un zoom pour voir différentes zones de la page. Par exemple, si l'écran d'un téléphone mobile a une largeur de 640 pixels, les pages peuvent être affichées dans une fenêtre virtuelle de 980 pixels, puis réduites pour tenir dans l'espace de 640 pixels.
+        </p>
+
+        <p>
+        Cependant, ce mécanisme n'est pas aussi bon pour les pages qui sont optimisées pour les écrans étroits à l'aide de media queries - si le viewport virtuel est de 980px par exemple, les media queries qui se déclenchent à 640px, 480px ou moins ne seront jamais utilisées, ce qui limite l'efficacité de ces techniques de responsive design.
+        </p>
+
+        <p>
+        Un site type, optimisé pour les mobiles, contient quelque chose comme ce qui suit :
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+&ltmeta name="viewport" content="width=device-width, initial-scale=1"&gt
+                </code></pre>
+        </figure>
+
+        <p>
+        La propriété width contrôle la taille de la zone d'affichage. Elle peut être définie sur un nombre spécifique de pixels comme <code class="line_code">width=600</code> ou sur la valeur spéciale <code class="line_code">device-width</code>, qui est la largeur de l'écran en pixels CSS à une échelle de 100%. (Il existe des valeurs <code class="line_code">height</code> et <code class="line_code">device-height</code> correspondantes, qui peuvent être utiles pour les pages comportant des éléments qui changent de taille ou de position en fonction de la hauteur du viewport).
+        </p>
+
+        <p>
+        Un pixel n'est pas un pixel
+        </p>
+
 
         <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://css.developpez.com/tutoriels/css-guide-complet/" target="_blank">
         Cours sur les grids</a></h1>

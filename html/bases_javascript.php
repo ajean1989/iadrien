@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
         <script src="../js/highlight.pack.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
-        <title>Javascript</title>
+        <title>Javascript - Bases</title>
     </head>
 
     <body>
@@ -85,45 +85,70 @@
 			De manière générale, les instructions doivent être séparées par un point-virgule que l'on place à la fin de chaque instruction. En réalité le point-virgule n'est pas obligatoire si l'instruction qui suit se trouve sur la ligne suivante. En revanche, si vous écrivez plusieurs instructions sur une même ligne, comme dans l'exemple suivant, le point-virgule est fortement recommandé.
 		</p>
 
-		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917082-les-variables#/id/r-1923132" target="_blank">Déclarer une variable</a></h1>
+		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917082-les-variables#/id/r-1923132" target="_blank">Les variables</a></h1>
 
-		<figure class="block_code">
-    		<pre><code>
-&ltbody&gt
-
-	&ltscript&gt
-		var myvariable; //On déclare la varible, à ce stade = null
-		myvariable =2; 	//On affecte une valeur à la variable
-
-		// Ou directement :
-
-		var myvariable2 = 3; 	// Sensible à la casse
-
-		var my variable1, myvariable2=3, Myvariable3; // plusieurs variable en même temps
-
-		myvariable1 = myvariable2 = 2; 
-	&lt/script&gt
-
-&lt/body&gt
-
-			</code></pre>
-		</figure>
+		<div class="em">Important : Dans la console Firefox, lorsqu'on la clear, les variables restent déclarées. Ce qui provoque une erreur de réassignation. Pour s'en prémunir, placer le code dans une portée : {code}. On peut aussi utiliser un navigateur basé sur chromium</div>
 
 		<p>
 		La convention de nommage la plus courante est camel case. Dans cette convention, les noms sont constitués de plusieurs mots dont l'initiale est en capitale. Par exemple <code class="line_code">numberOfCats</code>, <code class="line_code">finalAnswer</code>, <code class="line_code">howLongCanThisVariableNameGet</code>, etc.
 		</p>
 
-		<div class="em">Attention : dans beaucoup de démonstrations JavaScript, vous pourrez croiser le mot clé <code class="line_code">var</code> plutôt que <code class="line_code">let</code>. Bien qu'il y ait une différence subtile entre les deux (que nous détaillerons dans le chapitre sur la portée), pour l'instant vous pouvez simplement voir <code class="line_code">var</code> comme l'ancienne version de <code class="line_code">let</code> : c'est une autre façon de créer une variable.</div>
+		
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/var" target="_blank"><code class="line_code">var</code></a></h2>
+
+		
+
+		<p>
+		<code class="line_code">var</code> est très peu utilisé car il peut entrainer des effets de bords dû à sa portée dans le code. 
+		</p>
+
+		<p>
+			Quand on déclare une variable grâce à <code class="line_code">var</code>, celle-ci est accéssible à tout le code. au bloc, ainsi qu'à l'extérieur du bloc.
+		</p>
 
 		<figure class="block_code">
     		<pre><code>
-let numberOfCats = 3;
-numberOfCats = 4;
+var x = 1;
+
+if (x === 1) {
+  var x = 2;
+
+  console.log(x);
+  // expected output: 2
+}
+
+console.log(x);
+// expected output: 2
+
+			</code></pre>
+		</figure>
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/let" target="_blank"><code class="line_code">let</code></a></h2>
+
+
+		<figure class="block_code">
+    		<pre><code>
+let x = 1;
+
+if (x === 1) {
+  let x = 2;
+
+  console.log(x);
+  // expected output: 2
+}
+
+console.log(x);
+// expected output: 1
+
 			</code></pre>
 		</figure>
 
 		<p>
-		En JavaScript, les variables créées par <code class="line_code">let</code> ou <code class="line_code">const</code> ne peuvent être vues ou utilisées qu'à l'intérieur du bloc de code dans lequel elles sont déclarées. Un bloc de code, aussi souvent appelé bloc tout court, est une section de code incluse entre accolades {}.
+		En JavaScript, les variables créées par <code class="line_code">let</code> ou <code class="line_code">const</code> ne peuvent être vues ou utilisées qu'à l'intérieur du bloc de code dans lequel elles sont déclarées. Ainsi qu'aux blocs contenus dans le bloc.
+		</p>
+		
+		<p>Un bloc de code, aussi souvent appelé bloc tout court, est une section de code incluse entre accolades {}.
 		</p>
 
 		<p>
@@ -140,18 +165,58 @@ if (userLoggedIn) {
    let welcomeMessage = 'Welcome new user!';
 }
 
-console.log(welcomeMessage); // renvoie une erreur
+console.log(welcomeMessage); // renvoie une erreur car welcomeMessage est dans un bloc
 			</code></pre>
 		</figure>
 
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/let" target="_blank"><code class="line_code">const</code></a></h2>
+
 		<p>
-		<code class="line_code">var</code> sera accessible partout.
+		La déclaration const permet de créer une constante nommée accessible uniquement en lecture. Cela ne signifie pas que la valeur contenue est immuable, uniquement que l'identifiant ne peut pas être réaffecté. Autrement dit la valeur d'une constante ne peut pas être modifiée par des réaffectations ultérieures. Une constante ne peut pas être déclarée à nouveau.
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+const number = 42;
+
+try {
+  number = 99;
+} catch (err) {
+  console.log(err);
+  // expected output: TypeError: invalid assignment to const `number'
+  // Note - error messages will vary depending on browser
+}
+
+console.log(number);
+// expected output: 42
+
+			</code></pre>
+		</figure>
+
+
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.pierre-giraud.com/javascript-apprendre-coder-cours/portee-variable-return-fonction/" target="_blank">La portée des variables</a></h2>
+
+		<p>
+		En JavaScript, il n’existe que deux espaces de portée différents : l’espace global et l’espace local. Pour rester très simple, l’espace global désigne l’entièreté d’un script à l’exception de l’intérieur de nos fonctions. L’espace local désigne, à l’inverse, l’espace dans une fonction. 
+		</p>
+
+		<p>
+		Ici, vous devez bien retenir la chose suivante : une variable définie dans l’espace global d’un script va être accessible à travers tout le script, même depuis une fonction. En revanche, une variable définie dans une fonction n’est accessible que dans cette même fonction et ne peut pas être manipulée depuis l’espace global du script. 
+		</p>
+
+		<p>
+		Lorsqu’on utilise la syntaxe <code class="line_code">let</code> pour définir une variable à l’intérieur d’une <strong>fonction</strong> en JavaScript, la variable va avoir une portée dite « de bloc » : la variable sera accessible dans le bloc dans lequel elle a été définie et dans les blocs que le bloc contient. 
+		</p>
+
+		<p>
+		En revanche, en définissant une variable avec le mot clef <code class="line_code">var</code> dans une fonction, la variable aura une portée élargie puisque cette variable sera alors accessible <strong>dans tous les blocs de la fonction</strong>. 
 		</p>
 
 
 
 
-		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917082-les-variables#/id/r-2262505" target="_blank">Les types de variables</a></h1>
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917082-les-variables#/id/r-2262505" target="_blank">Les types de variables</a></h2>
 
 		<p>
 			Trois types :
@@ -729,7 +794,7 @@ alert(result); // Affiche « false » car cet opérateur compare aussi les types
 					<td>5 == "5" : true</td>
 				</tr>
 				<tr>
-					<td>====</td>
+					<td>===</td>
 					<td>vérifie à la fois la valeur et le type.</td>
 					<td>5 == "5" : fasle (number et string)</td>
 				</tr>
@@ -847,6 +912,20 @@ var startMessage = 'Votre catégorie : ',
 endMessage = adult ? '18+' : '-18'; // Ternaire : si adult=true : '18+', si adult=false : '-18'.
 
 alert(startMessage + endMessage);
+			</code></pre>
+		</figure>
+
+		<p>
+			Il existe aussi l'opérateur <strong>nullish</strong> lorsque vous pensez avoir une information dans une variable mais que finalement, il n’y en a pas.
+		</p>
+
+		<p>
+		L’opérateur s’écrit avec deux ?? sous la forme suivante : <code class="line_code">expression à tester ?? valeur de substitution</code>
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+Element.innerText = piece.categorie ?? "(aucune catégorie)";
 			</code></pre>
 		</figure>
 
@@ -1002,7 +1081,9 @@ for (initialisation; condition; incrémentation) {
 			</ul>
 		</p>
 
-		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923716" target="_blank">Créer une fonction</a></h1>
+		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923716" target="_blank">Les fonctions</a></h1>
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923716" target="_blank">Créer une fonction</a></h2>
 
 		<figure class="block_code">
     		<pre><code>
@@ -1016,7 +1097,7 @@ function myFunction(argument1, argument2) {
 			<div class='em'>Bien entendu, tout comme les variables, les noms de fonctions sont limités aux caractères alphanumériques (dont les chiffres) et aux deux caractères suivants : _ et $.</div>
 		</p>
 
-		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1917567" target="_blank">La portée des variables</a></h2>
+		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1917567" target="_blank">La portée des variables</a></h3>
 
 		<p>
 			toute variable déclarée dans une fonction n'est utilisable que dans cette même fonction ! Ces variables spécifiques à une seule fonction ont un nom : <strong>les variables locales</strong>.<br />
@@ -1066,9 +1147,9 @@ calculate();
 			</code></pre>
 		</figure>
 
-		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923822" target="_blank">Les arguments</a></h2>
+		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923822" target="_blank">Les arguments</a></h3>
 
-		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923785" target="_blank">La portée des arguments</a></h3>
+		<h4 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923785" target="_blank">La portée des arguments</a></h4>
 
 		<p>
 			lorsqu'une fonction reçoit un argument, celui-ci est stocké dans une variable dont vous avez choisi le nom lors de la déclaration de la fonction. Voici, en gros, ce qui se passe quand un argument est reçu dans la fonction :
@@ -1086,13 +1167,13 @@ function scope(arg) {
 			</code></pre>
 		</figure>
 
-		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923821" target="_blank">Les arguments facultatifs</a></h3>
+		<h4 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923821" target="_blank">Les arguments facultatifs</a></h4>
 
 		<p>
 			Et c'est là que l'argument facultatif entre en scène ! Un argument facultatif est évidemment facultatif (eh oui ! :D ) mais doit généralement posséder une valeur par défaut dans le cas où l'argument n'a pas été rempli.
 		</p>
 
-		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923834" target="_blank">Les valeurs de retour</a></h2>
+		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923834" target="_blank">Les valeurs de retour</a></h3>
 
 		<p>
 			Pour faire retourner une valeur à notre fonction, rien de plus simple, il suffit d'utiliser l'instruction <code class="line_code">return</code> suivie de la valeur à retourner. Exemple :
@@ -1115,7 +1196,14 @@ alert(sayHello()); // Ici on affiche la valeur retournée par la fonction sayHel
 			<div class="em">Il est tout d'abord important de préciser que les fonctions ne peuvent retourner qu'une seule et unique valeur chacune, pas plus ! Il est possible de contourner légèrement le problème en renvoyant un tableau ou un objet, mais vous étudierez le fonctionnement de ces deux éléments dans les chapitres suivants, nous n'allons pas nous y attarder dans l'immédiat.</div>
 		</p>
 
-		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1917727" target="_blank">Les fonctions anonymes</a></h1>
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1917727" target="_blank">Les fonctions anonymes</a></h2>
+
+		<p>
+			<a href="https://developer.mozilla.org/fr/docs/Glossary/IIFE">MDN</a> 
+		</p>
+		<p>
+		Ou IIFE (Immediately Invoked Function Expression) (Expression de fonction invoquée immédiatement) est une fonction JavaScript qui est exécutée dès qu'elle est définie.
+		</p>
 
 		<p>
 			Comme leur nom l'indique, ces fonctions spéciales sont anonymes car elles ne possèdent pas de nom ! Voilà la seule et unique différence avec une fonction traditionnelle, ni plus, ni moins. Pour déclarer une fonction anonyme, il vous suffit de faire comme pour une fonction classique mais sans indiquer de nom :
@@ -1145,14 +1233,19 @@ sayhello(); 	// Affiche : "bonjour !"
 		</figure>
 
 		<p>
-			On peut dire, en quelque sorte, que la variablesayHelloest devenue une fonction ! En réalité, ce n'est pas le cas, nous devrions plutôt parler de référence, mais nous nous pencherons sur ce concept plus tard.
+			On peut dire, en quelque sorte, que la variable <code class="line_code">sayHelloest</code> devenue une fonction ! En réalité, ce n'est pas le cas, nous devrions plutôt parler de référence.
 		</p>
+
+		<p>
+		En fait, affecter l'IIFE à une variable ne la stocke pas mais reçoit son résultat.
+		</p>
+
 		<p>
 			<div class="em">Certains d'entre vous auront sûrement noté le point-virgule après l'accolade fermante de la fonction dans le deuxième code, pourtant il s'agit d'une fonction, on ne devrait normalement pas en avoir besoin ! Eh bien si ! <br />
 			En JavaScript, il faut savoir distinguer dans son code les structures et les instructions. Ainsi, les fonctions, les conditions, les boucles, etc. sont des structures, tandis que tout le reste (assignation de variable, exécution de fonction, etc.) sont des instructions.</div>
 		</p>
 
-		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923914" target="_blank">Les fonctions anonymes : isoler son code</a></h2>
+		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917728-les-fonctions#/id/r-1923914" target="_blank">Isoler son code</a></h3>
 
 		<p>
 			Une utilisation intéressante des fonctions anonymes concerne l'isolement d'une partie de votre code, le but étant d'éviter qu'une partie de votre code n'affecte tout le reste. <br />
@@ -1194,6 +1287,199 @@ var sayHello = (function() {
 alert(sayHello); // Affiche : « Yop ! »
 			</code></pre>
 		</figure>
+
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank">Les fonctions fléchées</a></h2>
+
+		<p>
+		Une expression de fonction fléchée (arrow function en anglais) permet d’avoir une syntaxe plus courte que les expressions de fonction et ne possède pas ses propres valeurs pour this, arguments, super, ou new.target. Les fonctions fléchées sont souvent anonymes et ne sont pas destinées à être utilisées pour déclarer des méthodes.
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+([param] [, param]) => {
+   instructions
+}
+
+(param1, param2, …, param2) => expression
+// équivalent à
+(param1, param2, …, param2) => {
+  return expression;
+}
+			</code></pre>
+		</figure>
+
+		<p>
+		Jusqu’a l’apparition des fonctions fléchées, chaque nouvelle fonction définissait son propre <code class="line_code">this</code>, Cela a pu entraîner des confusions lorsqu’on utilisait un style de programmation orientée objet.
+		</p>
+
+		<p>
+		Les fonctions fléchées ne créent pas de nouveau contexte, elles utilisent la valeur this de leur contexte. Aussi, si le mot-clé this est utilisé dans le corps de la fonction, le moteur recherchera la référence à cette valeur dans une portée parente. 
+		</p>
+
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917996-les-objets-et-les-tableaux#/id/r-1917851" target="_blank"><code class="line_code">this</code> dans une fonction</a></h2>
+
+		<p>
+		En JavaScript, le mot-clé <code class="line_code">this</code> se comporte légèrement différemment des autres langages de programmation. Son comportement variera également légèrement selon qu'on utilise le mode strict ou le mode non-strict.
+		</p>
+
+		<p>
+		Dans la plupart des cas, la valeur de <code class="line_code">this</code> sera déterminée à partir de la façon dont une fonction est appelée. Il n'est pas possible de lui affecter une valeur lors de l'exécution et sa valeur peut être différente à chaque fois que la fonction est appelée. La méthode <code class="line_code">bind()</code> a été introduite avec ECMAScript 5 pour définir la valeur de this pour une fonction, indépendamment de la façon dont elle est appelée. ECMAScript 2015 (ES6) a ajouté les fonctions fléchées dans lesquelles <code class="line_code">this</code> correspond à la valeur du contexte englobant.
+		</p>
+
+		<p>
+			Sa valeur par défaut est l'objet JavaScript représentant le contexte dans lequel le code courant est exécuté.
+		</p>
+
+		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/this#dans_le_contexte_global" target="_blank">Dans le contexte global</a></h3>
+
+		<figure class="block_code">
+    		<pre><code>
+// Si l'environnement de script est un navigateur,
+// l'objet window sera l'objet global
+console.log(this === window); // true
+
+this.a = 37;
+console.log(window.a); // 37
+
+this.b = "MDN";
+console.log(window.b); // "MDN"
+console.log(b);        // "MDN"
+
+			</code></pre>
+		</figure>
+
+		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/this#dans_le_contexte_dune_fonction" target="_blank">Dans le contexte d'une fonction</a></h3>
+
+		<p>
+		S'il est utilisé dans une fonction, la valeur de this dépendra de la façon dont la fonction a été appelée.
+		</p>
+
+		<p>
+		Avec un appel simple  :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+function f1(){
+  return this;
+}
+
+// Dans un navigateur
+f1() === window; // true (objet global)
+
+// Côté serveur (ex. Node)
+f1() === global; // true
+
+			</code></pre>
+		</figure>
+
+		<p>
+		Dans cet exemple, la valeur de this n'est pas définie lors de l'appel. Le code n'étant pas en mode strict, this doit toujours être un objet et ce sera donc l'objet global (soit window pour un navigateur).
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+function f2(){
+  "use strict"; // on utilise le mode strict
+  return this;
+}
+
+f2() === undefined; // true
+
+			</code></pre>
+		</figure>
+
+		<p>
+		En mode strict, la valeur de this est conservée (il reste le même) entre le moment de sa définition et l'entrée dans le contexte d'exécution. S'il n'est pas défini, il reste undefined. Il pourrait être défini avec n'importe quelle autre valeur, telle que null ou 42 ou "Je ne suis pas this".
+		</p>
+
+		<p>
+		Dans ce deuxième exemple, <code class="line_code">this</code> vaut <code class="line_code">undefined</code> car <code class="line_code">f2</code> a été appelé sans « base » (ex. : <code class="line_code">window.f2()</code>). Cette fonctionnalité ne fut pas correctement implémentée dans certains navigateurs aux débuts du mode strict, en effet, certains renvoyaient alors l'objet window.
+		</p>
+
+		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/this#la_m%C3%A9thode_bind" target="_blank">La méthode <code class="line_code">bind</code></a></h3>
+
+		<p>
+		Avec ECMAScript 5, une nouvelle fonction fut introduite : Function.prototype.bind(). Lorsqu'on appelle f.bind(unObjet), on crée une nouvelle fonction qui possède le même corps et la même portée que f, mais où this sera lié, de façon permanente, au premier argument passé à bind, quelle que soit la façon dont la méthode est utilisée.
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+function f2(){
+  "use strict"; // on utilise le mode strict
+  return this;
+}
+
+f2() === undefined; // true
+
+			</code></pre>
+		</figure>
+
+		<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/this#en_tant_que_m%C3%A9thode_dun_objet" target="_blank">En tant que méthode d'un objet</a></h3>
+
+		<p>
+		Lorsqu'une fonction est appelée comme méthode d'un objet, this correspondra à l'objet possédant la méthode qu'on appelle.
+		</p>
+
+		<p>
+		Ainsi, dans l'exemple suivant, lorsqu'on appelle o.f(), le this contenu à l'intérieur de la fonction correspond à l'objet o.
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+var o = {
+  prop: 37,
+  f: function() {
+    return this.prop;
+  }
+};
+
+console.log(o.f()); // 37
+
+			</code></pre>
+		</figure>
+
+		<p>
+		On notera que ce comportement n'est pas du tout affecté par la façon ou l'endroit de la définition de la fonction. Dans l'exemple précédent, on aurait très bien pu définir la fonction plus tard et la rattacher à une propriété de o plutôt que de la déclarer de cette façon. On aura le même résultat en faisant ainsi :
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+var o = {prop: 37};
+
+function indépendante() {
+  return this.prop;
+}
+
+o.f = indépendante;
+
+console.log(o.f()); // 37
+
+			</code></pre>
+		</figure>
+
+		<p>
+		On voit ici que ce qui importe est la façon dont la fonction est appelée et non pas la façon dont elle est définie. Ici la fonction est appelée comme une propriété (méthode) de o.
+		</p>
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		
 

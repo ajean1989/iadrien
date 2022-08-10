@@ -55,6 +55,81 @@
         Tous ces éléments sont libres et gratuits.
     </p>
 
+    <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://wpformation.com/htaccess-wordpress/" target="_blank">
+    Le fichier .htaccess</a></h1>
+
+    <p>
+        Lien dans le titre et <a href="http://sdz.tdct.org/sdz/le-htaccess-et-ses-fonctionnalites.html">ici</a>.
+    </p>
+
+    <p>
+    Le fichier htaccess (contraction de « Hypertext Access ») est un fichier de configuration pour Apache.
+    </p>
+
+    <p>
+    Le fichier .htaccess se situe à la racine de votre site web. Il permet de donner des instructions sur les modalités d’accès au contenu de votre site grâce à des fichiers de configuration spécifiques aux serveurs web Apache. Cela peut sous entendre des règles d’accès, de blocage, de cache, etc…
+    </p>
+
+    <p>
+        Quelques règles : 
+        <ul>
+            <li>Le caractère « # » désigne les commentaires et n’agit pas sur la configuration établie.</li>
+            <li>La directive RewriteEngine active ou désactive l’exécution du moteur de réécriture. Si vous mettez Off, aucune des règles que vous aurez spécifié seront activées. <code class="line_code">RewriteEngine On</code></li>
+            <li><code class="line_code">RewriteBase /</code>Cette balise indique où se trouve la racine de votre site web. Si vous l’avez placé dans un sous dossier tel que www, alors vous écrirez <code class="line_code">RewriteBase /www/</code>.</li>
+            <li><code class="line_code"> %{} </code> détermine une variable. Ici il s’agit de la variable indiquant le chemin exact du fichier dans la base de données de votre serveur.</li>
+            <li><code class="line_code"> %{} </code> : « f »  représente un fichier et « d » un répertoire. Le point d’exclamation permet d’ajouter une négation pour indiquer que ces fichiers ne devront pas être concernés par le code qui suivra.</li>
+            <li><code class="line_code">RewriteRule . /index.php [L]</code> : RewriteRule demande la réécriture de l’expression régulière (« . ») par l’adresse /index.php. Cette règle ne s’applique ni aux fichiers ni aux répertoires réels grâce au code précédent ».</li>
+        </ul>
+    </p>
+
+    <p>
+        D'autres : 
+        <ul>
+            <li>C (chained with next rule)</li>
+            <li>CO=cookie (set specified cookie)</li>
+            <li>E=var:value (set environment variable var to value)</li>
+            <li>F (forbidden - sends a 403 header to the user)</li>
+            <li>G (gone - no longer exists)</li>
+            <li>H=handler (set handler)</li>
+            <li>L (last - stop processing rules) </li>
+            <li>N (next - continue processing rules)</li>
+            <li>NC (case insensitive)</li>
+            <li>NE (do not escape special URL characters in output)</li>
+            <li>NS (ignore this rule if the request is a subrequest)</li>
+            <li>P (proxy - i.e., apache should grab the remote content specified in the substitution section and return it)</li>
+            <li>PT (pass through - use when processing URLs with additional handlers, e.g., mod_alias)</li>
+            <li>R (temporary redirect to new URL)</li>
+            <li>R=301 (permanent redirect to new URL)</li>
+            <li>QSA (append query string from request to substituted URL)</li>
+            <li>S=x (skip next x rules)</li>
+            <li>T=mime-type (force specified mime type)</li>
+        </ul>
+        Flags are added to the end of a rewrite rule to tell Apache how to interpret and handle the rule
+    </p>
+
+
+    <p>
+        Le code utilisé actuellement :
+    </p>
+
+    <figure class="block_code">
+            <pre><code>
+RewriteEngine On
+
+# Redirection sur le protocole HTTPS 
+
+RewriteCond %{SERVER_PORT} 80
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Redirection des fichiers et dossiers inexistant sur /index.php
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]               
+            </code></pre>
+        </figure>
+
+
     <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237816-preparez-votre-environnement-de-travail#/id/r-4443661" target="_blank">
     Configuration sous windows</a></h1>
 
@@ -78,6 +153,9 @@
             </li>
         </ul>
     </p>
+
+
+    
 
     <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.php.net/" target="_blank">
     Installation de MySQL sur windows</a></h2>
