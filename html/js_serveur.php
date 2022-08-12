@@ -361,6 +361,29 @@ echo $code;
 }
                         </code></pre>
                     </figure>
+
+                    <p>
+                        Ou au format tableau :
+                    </p>
+
+                    <figure class="block_code">
+                        <pre><code>
+[
+    {
+        "nom": "Ampoule LED",
+        "prix": 60,
+        "categorie": "Optiques"
+    },
+    {
+        "nom": "Plaquettes de frein (x4)",
+        "prix": 40,
+        "categorie": "Freinage"
+    }
+]
+                        </code></pre>
+                    </figure>
+
+
                     <p>
                         Cela ne vous dit rien ? Il s'agit pourtant d'un objet classique, comme ceux auxquels vous êtes habitués ! Tout comme avec le XML, vous recevez ce code sous forme de chaîne de caractères ; cependant, le parseur ne se déclenche pas automatiquement pour ce format. Il faut utiliser l'objet nommé <code class="line_code">JSON</code>, qui possède deux méthodes bien pratiques :
                         <ul>
@@ -388,6 +411,30 @@ alert(typeof obj + ' : ' + obj); // Affiche : « object : [object Object] »
                     <p>
                         Le JSON est très pratique pour recevoir des données, mais aussi pour en envoyer, surtout depuis que le PHP 5.2 permet le support des fonctions <code class="line_code">json_decode()</code> et <code class="line_code">json_encode()</code>.
                     </p>
+
+                    <h4 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7697016-creez-des-pages-web-dynamiques-avec-javascript/7911123-projetez-des-donnees-avec-la-fonction-map" target="_blank">Fonctions utiles</a></h4>
+
+                    <p>
+                        Pour te tri dans les tableaux et objets.
+                    </p>
+
+                    <p>
+                    <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code class="line_code">map()</code></a>  va nous aider à récupérer le nom de chaque élément d'une propriété.
+                    </p>
+
+                    <img src="../images/16576178003032_P2C2-1 (1).png" alt="focntion map"/>
+
+                    <figure class="block_code">
+                        <pre><code>
+const noms = pieces.map(piece => piece.nom);
+                        </code></pre>
+                    </figure>
+
+                    <p>
+                    Sachez que vous n’êtes pas limité à retourner une propriété d’un objet avec map. Vous avez accès à toutes les capacités du langage JavaScript dans la fonction lambda. Vous pouvez, par exemple, ne conserver que les prix auxquels vous ajoutez 1 euro, si c’est ce que vous voulez :
+                    </p>
+
+
 
                     <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/FormData" target="_blank">Le FormData</a></h3>
 
@@ -1042,7 +1089,8 @@ echo $_POST['champ1'] . ' - ' . $_POST['champ2']; // Affiche : « valeur1 - vale
                         Response fournit plusieurs méthodes basées sur les promesses pour accéder au corps dans différents formats :
                         <ul>
                             <li><code class="line_code">response.text()</code> – lit la réponse et retourne sous forme de texte.</li>
-                            <li><code class="line_code">response.json()</code> – analyse la réponse en JSON. Le plus simple et courament utilisé. Retourne un objet, une string ou ce que contient l'objet JSON.</li>
+                            <li><code class="line_code">response.json()</code> – analyse la réponse en JSON. Le plus simple et courament utilisé. Retourne un objet, une string ou ce que contient l'objet JSON.
+                            <strong>Le résultat n'est pas JSON mais plutôt le résultat de la prise de JSON en entrée et de son analyse (parse) pour produire un objet JavaScript.</strong></li>
                             <li><code class="line_code">response.formData()</code> – retourne la réponse en tant que objet FormData.</li>
                             <li><code class="line_code">response.blob()</code> – retourne la réponse en tant que Blob (donnée binaire avec type pour images par exemple).</li>
                             <li>...</li>

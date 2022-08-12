@@ -354,15 +354,15 @@ $note = 10;
 switch ($note)      // on indique sur quelle variable on travaille  
 {
     case 0:         // dans le cas où $note vaut 0
-        echo "nul"
+        echo "nul";
     break;          // break demande à PHP de sortir du switch
 
     case 10:
-        echo "bien"
+        echo "bien";
     break;
 
     case 20:
-        echo "super"
+        echo "super";
     break;
 
     default:        // Si aucun cas, 

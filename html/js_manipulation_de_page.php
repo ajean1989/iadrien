@@ -681,8 +681,27 @@ var newLink = document.createElement('a');
 						</code></pre>
 					</figure>
 					<p>
-						<div class='em'>Si vous travaillez dans une page Web, l'élément racine sera toujours <code class="line_code">document</code>, sauf dans le cas des frames. La création d'éléments au sein de fichiers XML sera abordée plus tard.</div>
+						<div class='em'>Si vous travaillez dans une page Web, l'élément racine sera toujours <code class="line_code">document</code>, sauf dans le cas des frames.</div>
 					</p>
+
+					<div class="em">Bel exemple ci dessous :</div>
+
+					<figure class="block_code">
+			 			<pre><code>
+let selector = document.querySelector('.public__content');
+
+const ul = document.createElement('ul');
+
+for(let line of data)
+{
+	const li = document.createElement('li');
+	PublicLi.textContent = line.username + ' ' + line.note_name;
+	publicUl.appendChild(li);
+}
+
+selector.appendChild(ul);
+						</code></pre>
+					</figure>
 
 					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577491-modifiez-le-dom#/id/r-5591357" target="_blank">Supprimez et remplacez des éléments</a></h2>
 

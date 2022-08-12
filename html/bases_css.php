@@ -61,6 +61,99 @@
     		</ul>
     	</p>
 
+		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://la-cascade.io/articles/la-difference-entre-block-et-inline" target="_blank">Block, Inline et Inline-Block</a></h1>
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://la-cascade.io/articles/la-difference-entre-block-et-inline" target="_blank">Block</a></h2>
+
+		<p>
+		Un élément block a les caractéristiques suivantes, non limitatives :
+		<ul>
+			<li>Si aucune largeur n'est définie, il prendra toute la largeur de son élément parent.
+Il peut avoir des marges et des paddings.</li>
+			<li>Si aucune hauteur n'est définie, il prendra la hauteur de ses éléments enfants (en supposant qu'il n'y a pas de "float" ou de positionnement sur des éléments environnants).</li>
+			<li>Il peut avoir des marges et des paddings.</li>
+			<li>Il ignore la propriété <code class="line_code">vertical-align</code>.</li>
+		</ul>
+		</p>
+
+		<p>
+		Il est donc inutile pour un élément block de définir une largeur ou de lui donner une width: 100% si vous voulez qu'il s'étende sur la largeur de son élément parent. Cela pourrait même avoir des effets indésirables.
+		</p>
+
+		<p>
+		Exemples d'éléments block :<br/>
+		<code class="line_code">p</code>, <code class="line_code">div</code>, <code class="line_code">form</code>, <code class="line_code">header</code>, <code class="line_code">nav</code>, <code class="line_code">ul</code>, <code class="line_code">li</code>, et <code class="line_code">h1</code>.
+		</p>
+
+		<p>
+			Il se place naturellement sous l'élément précédent.
+		</p>
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://la-cascade.io/articles/la-difference-entre-block-et-inline" target="_blank">Inline</a></h2>
+
+		<p>
+		Un élément inline a les caractéristiques suivantes, non limitatives :
+		<ul>
+			<li>Il s'inscrit dans le flux du texte</li>
+			<li>et donc ne 'saute' pas à la ligne comme le ferait un élément block</li>
+			<li>Il accepte la propriété <code class="line_code">white-space</code>.</li>
+			<li>Il ignore les marges top et bottom mais applique les marges left et right, ainsi que tout padding.</li>
+			<li>Il ignore les propriétés <code class="line_code">width</code> et <code class="line_code">height</code>.</li>
+			<li>S'il est floatté à gauche ou à droite, il devient automatiquement un élément de niveau block, et prend toutes ses caractéristiques.</li>
+			<li>Il accepte la propriété <code class="line_code">vertical-align</code>.</li>
+		</ul>
+		</p>
+
+		<p>
+		Exemples d'éléments inline : <code class="line_code">a</code>, <code class="line_code">span</code>, <code class="line_code">b</code>, <code class="line_code">em</code>, <code class="line_code">i</code>, <code class="line_code">cite</code>, <code class="line_code">mark</code>, et <code class="line_code">code</code>.
+		</p>
+
+		<p>
+		D'une manière générale, vous pouvez inclure n'importe quel élément block à l'intérieur d'un autre élément block. Vous pouvez également inclure n'importe quel élément inline dans un élément block et n'importe quel élément inline dans un autre élément inline. La seule chose qu'on ne puisse pas faire, c'est inclure un élément block à l'intérieur d'un élément inline, à une exception près : l'élément a peut envelopper n'importe quel type de contenu, block comme inline ou les deux.
+		</p>
+
+		<p>
+		Vous pouvez changer tout élément block en inline et vice-versa, en utilisant la propriété CSS display.
+		</p>
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://la-cascade.io/articles/la-difference-entre-block-et-inline" target="_blank">Inline-Block</a></h2>
+
+		<p>
+		Avec Inline-block, l'élément génère une boîte block qui est mise en forme comme s'il s'agissait d'une boîte inline. Un inline-block est placé inline (c'est à dire sur la même ligne que le contenu adjacent), mais il se comporte comme un block. En gros, c'est une manière de mettre les éléments inline tout en préservant leurs capacités d'éléments block, tels que la possibilité de définir une largeur et une hauteur, des marges et paddings top et bottom, etc.
+		</p>
+
+
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://la-cascade.io/articles/la-difference-entre-block-et-inline" target="_blank">Propriétés liées</a></h2>
+
+		<p>
+			<a href="https://developer.mozilla.org/fr/docs/Web/CSS/white-space"><strong>white-space</strong></a>: La propriété white-space est utilisée pour décrire la façon dont les blancs (espaces, tab, saut de ligne, espace en fin de ligne) sont gérés au sein de l'élément. Peut servir de pre.
+		</p>
+
+		<p>
+			<a href="https://developer.mozilla.org/fr/docs/Web/CSS/vertical-align"><strong>vertical-align</strong></a>: La propriété CSS vertical-align définit l'alignement vertical d'une boîte en ligne (inline), en ligne / bloc (inline-block) ou d'une boîte de cellule de tableau.. 
+		</p>
+
+		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/CSS/percentage" target="_blank">Pourcentage</a></h1>
+
+		<p>
+		De nombreuses propriétés CSS utilisent des valeurs en pourcentages, la plupart du temps pour déterminer des tailles en fonction de la taille des éléments parent.
+		</p>
+
+		<p>
+		Seules les valeurs calculées sont héritées. Ainsi, même si une valeur en pourcentage est utilisée sur la propriété parent, une valeur réelle, comme une largeur en pixel pour une valeur <a href="https://developer.mozilla.org/fr/docs/Web/CSS/length">length</a>, sera accessible sur la propriété héritée, pas la valeur en pourcentage.
+		</p>
+
+		<p>
+			Autrement dit, il faut une valeur réelle (px, mm, vh, ...) sur le parent pour utiliser % sur l'enfant. Et cela est sensible à min-xxx ou max-xxx. Il faut réutiliser la propriété exacte de l'élément parent.
+		</p>
+
+		<div class="em">Dans les propriétés <a href="https://developer.mozilla.org/fr/docs/Web/CSS/padding"><strong>padding</strong></a> et <a href="https://developer.mozilla.org/fr/docs/Web/CSS/margin"><strong>margin</strong></a>, % définit un écart relatif à la <strong>largeur</strong> du bloc englobant.</div>
+
+
+
+
+
+
     	
     	<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1605060-mettez-en-place-le-css#/id/r-1605059" target="_blank"> Les sélecteurs avancés</a></h1>
     	<p>
@@ -611,19 +704,19 @@ a:visited /* quand le visiteur a déjà vu la page concernée */
 
 		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Learn/Getting_started_with_the_web/CSS_basics" target="blank">Liens divers</a></h1>
 
-		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://la-cascade.io/articles/centrer-une-div-guide-complet" target="blank">Centrer une div</a></h1>
-
-		<p>
-			Easy avec display:flex; justify-content:center; align-item:center;
-		</p>
-
-		<p>
-			position : absolute; permet de faire dépasser d'un élément une div. Qu'on peut ensuite déplacer si besoin avec position : relative;
-		</p>
-
 		<ul>
 			<li><a href="https://www.pixelcrea.com/blog/pre-styles-css/">CSS pour la balise pre</a></li>
 		</ul>
+
+		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://la-cascade.io/articles/centrer-une-div-guide-complet" target="blank">Centrer une div</a></h1>
+
+		<p>
+			Easy avec <code class="line_code">display:flex; justify-content:center; align-item:center;</code>
+		</p>
+
+		<p>Bon article aussi <a href="https://www.pierre-giraud.com/centrer-horizontalement-verticalement-element-html-css/">ici</a></p>.
+
+
 
 		   </div>
     

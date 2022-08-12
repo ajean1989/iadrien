@@ -281,7 +281,7 @@ $recipes = $recipesStatement-&gtfetchAll();		//fetch signifie "va chercher" en a
 						<img src="../images/6948946.png" alt=" résumer code complet "/>
 
 						<p>
-							Les méthodes fetch et fetchall peuvent prendre plusieurs paramètres <a href="https://www.php.net/manual/fr/pdostatement.fetch.php" target="blank">doc ici</a> :
+							Les méthodes fetch peuvent prendre plusieurs paramètres <a href="https://www.php.net/manual/fr/pdostatement.fetch.php" target="blank">doc ici</a> :
 							<ul>
 								<li>PDO::FETCH_ASSOC renvoie un tableau associatif uniquement</li>
 								<li>PDO::FETCH_CLASS : récupère les données sous forme d'instance d'une class , indiquer en 2ème paramètre le nom de la class à instancier (dans la variable de récupération de fetch). Utiliser les mêmes nom de variable dans db et class (voir doc).</li>
@@ -291,6 +291,10 @@ $recipes = $recipesStatement-&gtfetchAll();		//fetch signifie "va chercher" en a
 							</ul>
 						</p>
 
+						<p>
+							Concernant fetchall, on retourn un tableau. Voir la <a href="https://www.php.net/manual/fr/pdostatement.fetchall.php">doc ici</a>.
+						</p>
+						
 						<figure class="block_code">
     						<pre><code>
 &lt?php

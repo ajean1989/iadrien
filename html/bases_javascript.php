@@ -258,6 +258,16 @@ var texté = '2'; //Avec des apostrophes
 			</code></pre>
 		</figure>
 
+		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://grafikart.fr/tutoriels/scope-hoisting-770#autoplay" target="_blank">Hoisting</a></h1>
+
+		<p>
+			Les variables définies par <code class="line_code">var</code> sont hoistées - c'est à dire remontées au début du code avant l'execution -  Ce qui n'est pas le car pour <code class="line_code">let</code> et <code class="line_code">const</code>
+		</p>
+
+		<p>
+			Les fonctions sont hoistées lorsque définies comme cela : <code class="line_code">function test(){...}</code> mais pas lorsqu'elle sont placées dans une variable <code class="line_code">let test = function(){...}</code>
+		</p>
+
 		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917082-les-variables#/id/r-2262512" target="_blank">Les opérateurs arithmétiques</a></h1>
 
 		<p>
