@@ -688,22 +688,27 @@ var newLink = document.createElement('a');
 
 					<figure class="block_code">
 			 			<pre><code>
-let selector = document.querySelector('.public__content');
+const leftUlSelector = document.querySelector('.public__content__left ul');
+const leftTitleSelector = document.querySelector('.public__content__left h3');
 
-const ul = document.createElement('ul');
+leftTitleSelector.textContent = '';
 
-for(let line of data)
-{
-	const li = document.createElement('li');
-	PublicLi.textContent = line.username + ' ' + line.note_name;
-	publicUl.appendChild(li);
-}
-
-selector.appendChild(ul);
+for(let i in resultArray)
+	{
+        const leftLi = document.createElement('li');
+        leftLi.id = 'public__noteName__' + [i];
+        leftLi.textContent = resultArray[i].username + ' ' + resultArray[i].note_name;
+        leftUlSelector.appendChild(leftLi);
+        resultArray_length++;
+    }
 						</code></pre>
 					</figure>
 
 					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577491-modifiez-le-dom#/id/r-5591357" target="_blank">Supprimez et remplacez des éléments</a></h2>
+
+					<p>
+						<a href="https://developer.mozilla.org/fr/docs/Web/API/Node/removeChild">MDN ici</a>
+					</p>
 
 					<p>
 					Il existe les fonctions <code class="line_code">removeChild</code> et <code class="line_code">replaceChild</code>, afin de respectivement supprimer et remplacer un élément.
@@ -717,6 +722,17 @@ elt.appendChild(newElt);
 
 elt.removeChild(newElt);    // Supprime l'élément newElt de l'élément elt
 elt.replaceChild(document.createElement("article"), newElt);    // Remplace l'élément newElt par un nouvel élément de type article
+						</code></pre>
+					</figure>
+
+					<figure class="block_code">
+			 			<pre><code>
+// Supprime tous les enfants d'un élément
+var element = document.getElementById("top");
+while (element.firstChild) {
+  element.removeChild(element.firstChild);
+}
+
 						</code></pre>
 					</figure>
 
@@ -1019,6 +1035,26 @@ function insertAfter(newElement, afterElement) {
 							Voici la liste des événement <a href="https://developer.mozilla.org/fr/docs/Web/Events" target="blank">ici</a>
 						</p>
 
+						<h2 id=<?php echo $ini ; $ini++ ;?>>Quelques exemples</h2>
+
+						<p>
+							Valider un textarea avec 'entrer' et à la ligne avec 'shift+entrer'.
+						</p>
+
+						<figure class="block_code">
+			 			<pre><code>
+modifyFormSelect.addEventListener('keyup', (e) => {
+    if(e.keyCode == 13) { 			// KeyCode de la touche entrée
+        if (e.shiftKey == false){	// KeyCode de la touche shit
+                        alert('hey');
+        }
+	}
+});
+						</code></pre>
+					</figure>
+
+						
+
 						<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1924872" target="_blank">Le focus</a></h2>
 
 						<p>
@@ -1138,6 +1174,8 @@ element.removeEventListener('click', myFunction); // On supprime l'événement e
 
 					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5578156-ecoutez-des-evenements#/id/r-5591279" target="_blank">Écoutez des événements</a></h2>
 
+					<div class="em">Attention : L'élément doit être conecté au DOM pour pourvoir agire dessus (node.isConnected). Pas d'ajout d'élément avec innerHTML mais avec createElement(). </div>
+
 					<p>
 					Afin de réagir lors d'un clic sur un élément, il faut écouter cet événement. Pour cela, nous avons à notre disposition la fonction <code class="line_code">addEventListener()</code>. Cette fonction nous permet d'écouter tous types d'événements (pas que le clic).
 					</p>
@@ -1214,6 +1252,33 @@ elementInterieur.addEventListener('click', function(event) {
 					De cette manière, lorsque l'on clique sur l'élément intérieur, l'élément parent ne recevra plus le clic, et seul l'élément intérieur affichera son message. Par contre, en cliquant directement dans l'élément parent, sans être dans l'élément intérieur, l'élément parent recevra bien l'événement et affichera bien son message.
 					</p>
 
+					<div class="em">La notation est <code class="line_code">el.addEventListener("click", modifyText)</code> sans <code class="line_code">()</code> C'est une fonction <a href="https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener#fonction_de_rappel_pour_le_gestionnaire_d%C3%A9v%C3%A8nement">callback</a>. Si on souhaite passer une fonction avec des paramètres on utilisera <code class="line_code">el.addEventListener("click", () => {modifyText("quatre")};</code> ou <code class="line_code">el.addEventListener("click", function(){modifyText("quatre")});</code> Notez que si les fonctions anonymes et fléchées sont similaires, elles ont des liaisons <code class="line_code">this</code> différentes. Alors que les fonctions anonymes (et toutes les fonctions JavaScript traditionnelles) créent leurs propres liaisons <code class="line_code">this</code>, les fonctions fléchées héritent la liaison <code class="line_code">this</code> de la fonction contenante. <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/this">Voir la page sur l'opérateur <code class="line_code">this</code> pour plus d'informations.</a> </div>
+
+					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5578181-recuperez-des-donnees-utilisateurs-avec-les-evenements#/id/r-7200022" target="_blank"><code class="line_code">removeEventListener</code></a></h2>
+
+
+					<figure class="block_code">
+			 			<pre><code>
+function foo(event) {
+              app.addSpot(event.clientX,event.clientY);
+              app.addFlag = 1;
+          }
+ area.addEventListener('click',foo,true);
+ area.removeEventListener('click',foo,true);
+						</code></pre>
+					</figure>
+					<p>
+						
+					<p>
+						Pour fonctionner, il faut qu'il y ai exactement les mêmes paramètres, sous forme d'une fonction callback appelé sans (). 
+					</p>
+
+					<p>
+						Des plus les callbacks doivent avoir la même signature, donc à appeler dans la continuité. 
+					</p>
+
+
+
 					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5578181-recuperez-des-donnees-utilisateurs-avec-les-evenements#/id/r-7200022" target="_blank">Récupérez des données utilisateurs avec les événements</a></h2>
 
 					<p>
@@ -1233,41 +1298,17 @@ elementInterieur.addEventListener('click', function(event) {
 
 
 
-					
-					
-
-	
-
-
-
-
-			
-					
-
-
-					
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-					
 
 					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1924995" target="_blank">Les phases de capture et de bouillonnement</a></h2>
+
+
+					<p>
+						<a href="https://www.youtube.com/watch?v=tWJxQqMYJJE">Bon tuto ici</a>
+					</p>
+
+					<p>
+						<a href="https://fr.javascript.info/bubbling-and-capturing#event-target">Et ici.</a>
+					</p>
 
 					<p>
 						Ces deux phases sont deux étapes distinctes de l'exécution d'un événement. La première, la <strong>capture</strong> (capture en anglais), s'exécute avant le déclenchement de l'événement, tandis que la deuxième, le <strong>bouillonnement</strong> (bubbling en anglais), s'exécute après que l'événement a été déclenché. Toutes deux permettent de définir le sens de propagation des événements.<br />
@@ -1294,8 +1335,151 @@ elementInterieur.addEventListener('click', function(event) {
 					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1918910" target="_blank">L'objet Event</a></h2>
 
 					<p>
+						<a href="https://fr.javascript.info/introduction-browser-events">info javascript.info</a> 
+					</p>
+
+					<p>Cest l'objet qui est passer en argument de la callback (aussi appelé handler) de addEventListener. Souvent appelé <code class="line_code">e</code>. Un petit <code class="line_code">console.log(e)</code> dans le handler donnera plein d'info sympa. </p>
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://fr.javascript.info/introduction-browser-events#event-handlers" target="_blank">Le handler</a></h3>
+
+					<p>
+					A handler can be set in HTML with an attribute named <code class="line_code">on&ltevent&gt</code>.
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+&ltinput value="Click me" onclick="alert('Click!')" type="button"&gt
+						</code></pre>
+					</figure>
+
+					<p>
+					We can also assign a handler using a DOM property <code class="line_code">on&ltevent&gt</code>.
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+&ltinput id="elem" type="button" value="Click me"&gt
+&ltscript&gt
+  elem.onclick = function() {
+    alert('Thank you');
+  };
+&lt/script&gt
+						</code></pre>
+					</figure>
+
+					<p>The value of <code class="line_code">this</code> inside a handler is the element.</p>
+
+					<p>
+					In the code below <code class="line_code">button</code> shows its contents using <code class="line_code">this.innerHTML</code>
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+&ltbutton onclick="alert(this.innerHTML)"&gtClick me&lt/button&gt
+						</code></pre>
+					</figure>
+
+					<p>
+					Il ne faut pas utiliser le handler comme vu ci-dessus (bien qu'on trouve encore du code comme cela), il faut uitiliser <code class="line_code">element.addEventListener(event, handler, [options]);</code>
+					</p>
+
+					<p>
+						Attention : handler et non handler().
+					</p>
+
+					<p>
+To remove the handler, use <code class="line_code">element.removeEventListener(event, handler, [options]);</code>
+					</p>
+
+					<p>
+To remove a handler we should pass exactly the same function as was assigned.
+					</p>
+
+					<p>
+This doesn’t work:	
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+elem.addEventListener( "click" , () => alert('Thanks!'));
+// ....
+elem.removeEventListener( "click", () => alert('Thanks!'));
+						</code></pre>
+					</figure>
+
+					<p>
+					The handler won’t be removed, because removeEventListener gets another function – with the same code, but that doesn’t matter, as it’s a different function object.
+					</p>
+
+					<p>
+					Here’s the right way:
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+function handler() {
+  alert( 'Thanks!' );
+}
+
+input.addEventListener("click", handler);
+// ....
+input.removeEventListener("click", handler);
+						</code></pre>
+					</figure>
+
+					<p>
+Please note – if we don’t store the function in a variable, then we can’t remove it. There’s no way to “read back” handlers assigned by addEventListener.
+					</p>
+
+					<p>
+					Multiple calls to addEventListener allow to add multiple handlers, like this:
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+						 <input id="elem" type="button" value="Click me"/>
+  function handler1() {
+    alert('Thanks!');
+  };
+
+  function handler2() {
+    alert('Thanks again!');
+  }
+
+  elem.addEventListener("click", handler1); // Thanks!
+  elem.addEventListener("click", handler2); // Thanks again!
+
+						</code></pre>
+					</figure>
+
+					<p>
+					When an event happens, the browser creates an event object, puts details into it and passes it as an argument to the handler.
+					</p>
+
+					<p>
+						On peut aussi utiliser un objet à la place d'une focntion. Détails <a href="https://fr.javascript.info/introduction-browser-events#object-handlers-handleevent">ici</a>.
+					</p>
+
+
+
+
+
+
+
+
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://fr.javascript.info/introduction-browser-events#event-handlers" target="_blank">L'objet Event</a></h3>
+
+
+
+					<p>
 						Tout d'abord, à quoi sert cet objet ? À vous fournir une multitude d'informations sur l'événement actuellement déclenché. Par exemple, vous pouvez récupérer quelles sont les touches actuellement enfoncées, les coordonnées du curseur, l'élément qui a déclenché l'événement… Les possibilités sont nombreuses !
 					</p>
+
+					<p>
+					When an event happens, the browser creates an event object, puts details into it and passes it as an argument to the handler.
+					</p>
+
 					<p>
 						Cet objet est bien particulier dans le sens où il n'est accessible que lorsqu'un événement est déclenché. Son accès ne peut se faire que dans une fonction exécutée par un événement, cela se fait de la manière suivante avec le DOM-0 :
 					</p>
@@ -1317,16 +1501,24 @@ element.addEventListener('click', function(e) { // L'argument « e » va récup�
 						</code></pre>
 					</figure>
 					<p>
-						Il est important de préciser que l'objet <code class="line_code">Event</code> peut se récupérer dans un argument autre quee! Vous pouvez très bien le récupérer dans un argument nommé <code class="line_code">test</code>, <code class="line_code">hello</code>, ou autre… Après tout, l'objet <code class="line_code">Event</code> est tout simplement passé en référence à l'argument de votre fonction, ce qui vous permet de choisir le nom que vous souhaitez.
+						Il est important de préciser que l'objet <code class="line_code">Event</code> peut se récupérer dans un argument autre que <code class="line_code">e</code>! Vous pouvez très bien le récupérer dans un argument nommé <code class="line_code">test</code>, <code class="line_code">hello</code>, ou autre… Après tout, l'objet <code class="line_code">Event</code> est tout simplement passé en référence à l'argument de votre fonction, ce qui vous permet de choisir le nom que vous souhaitez.
 					</p>
 
-					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1925070" target="_blank">Les fonctionnalités de l'objet <code class="line_code">Event</code></a></h3>
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/Event/type" target="_blank"><code class="line_code">event.type</code></a></h3>
 
 					<p>
-						Vous avez déjà découvert la propriété <code class="line_code">type</code> qui permet de savoir quel type d'événement s'est déclenché. Passons maintenant à la découverte des autres propriétés et méthodes que possède cet objet (attention, tout n'est pas présenté, seulement l'essentiel).
+					Event type, here it’s "click".
 					</p>
 
-					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1925016" target="_blank">Récupérer l'élément de l'événement actuellement déclenché</a></h3>
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/Event/target" target="_blank"><code class="line_code">event.target</code></a></h3>
+
+					<div class="em">Belle expléication <a href="https://fr.javascript.info/bubbling-and-capturing#event-target">ici</a><br/>
+					<code class="line_code">event.target</code> est l'élément le plus profond où on a cliqué<br/>
+					<code class="line_code">event.currentTarget</code> = <code class="line_code">this</code> est l'élément le moins profond où on a cliqué</div>
+
+					<p>
+					C'est une référence à l'objet qui a envoyé l'événement. C'est une propriété différente de event.currentTarget lorsque le gestionnaire d'événements est appelé au cours de la phase de propagation ou de la phase de capture de l'événement.
+					</p>
 
 					<p>
 						Une des plus importantes propriétés de notre objet se nomme <code class="line_code">target</code>. Celle-ci permet de récupérer une référence vers l'élément dont l'événement a été déclenché, ainsi vous pouvez très bien modifier le contenu d'un élément qui a été cliqué :
@@ -1346,7 +1538,7 @@ element.addEventListener('click', function(e) { // L'argument « e » va récup�
 						</code></pre>
 					</figure>
 
-					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1925028" target="_blank">Récupérer l'élément à l'origine du déclenchement de l'événement</a></h3>
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1925028" target="_blank"><code class="line_code">Event.target</code></a></h3>
 
 					<p>
 						certains événements appliqués à un élément parent peuvent se propager d'eux-mêmes aux éléments enfants ; c'est le cas des événements <code class="line_code">mouseover</code>, <code class="line_code">mouseout</code>, <code class="line_code">mousemove</code>, <code class="line_code">click</code>… <br />
@@ -1354,7 +1546,23 @@ element.addEventListener('click', function(e) { // L'argument « e » va récup�
 						La solution est simple : utiliser la propriété <code class="line_code">currentTarget</code> au lieu de <code class="line_code">target</code>. 
 					</p>
 
-					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1925037" target="_blank">Récupérer la position du curseur</a></h3>
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1925028" target="_blank"><code class="line_code">Event.currentTarget</code></a></h3>
+
+					<p>
+						Identifie la cible courante pour l'évènement lorsque celui-ci traverse le DOM. Elle fait toujours référence à l'élément sur lequel le gestionnaire d'évènement a été attaché tandis que Event.target identifie l'élément à partir duquel l'évènement s'est produit (event.target peut donc être un descendant de event.currentTarget).
+					</p>
+
+					<div class="em">Note : La valeur de event.currentTarget est uniquement disponible lorsque l'évènement est géré. Ainsi, on ne pourra pas observer la valeur de currentTarget a posteriori (ex. si on a stocké la valeur d'event dans une variable lors de la gestion de l'évènement puis qu'on utilise celle-ci plus tard, event.currentTarget aura la valeur null).</div>
+
+					<p>
+					certains événements appliqués à un élément parent peuvent se propager d'eux-mêmes aux éléments enfants ; c'est le cas des événements <code class="line_code">mouseover</code>, <code class="line_code">mouseout</code>, <code class="line_code">mousemove</code>, <code class="line_code">click</code>
+					…
+					La propriété <code class="line_code">target</code> renvoie toujours l'élément déclencheur de l'événement, or nous souhaitons obtenir l'élément sur lequel a été appliqué l'événement. Autrement dit, on veut connaître l'élément à l'origine de cet événement, et non pas ses enfants.
+					
+					La solution est simple : utiliser la propriété <code class="line_code">currentTarget</code> au lieu de <code class="line_code">target</code>. 
+					</p>
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1925037" target="_blank"><code class="line_code">event.clientX</code> / <code class="line_code">event.clientY</code></a></h3>
 
 					<p>
 						La position du curseur est une information très importante, beaucoup de monde s'en sert pour de nombreux scripts comme le drag & drop. Généralement, on récupère la position du curseur par rapport au coin supérieur gauche de la page Web, cela dit il est aussi possible de récupérer sa position par rapport au coin supérieur gauche de l'écran. Toutefois, dans ce tutoriel, nous allons nous limiter à la page Web. Regardez la <a href='https://developer.mozilla.org/en/DOM/event' target="_blank">documentation de l'objet Event</a> si vous souhaitez en apprendre plus. ;)<br />
@@ -1375,7 +1583,7 @@ element.addEventListener('click', function(e) { // L'argument « e » va récup�
 						</code></pre>
 					</figure>
 
-					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1925044" target="_blank">Récupérer l'élément en relation avec un événement de souris</a></h3>
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1925044" target="_blank"><code class="line_code">relatedTarget</code></a></h3>
 
 					<p>
 						Cette fois nous allons étudier une propriété un peu plus « exotique » assez peu utilisée mais qui peut pourtant se révéler très utile ! Il s'agit de <code class="line_code">relatedTarget</code> et elle ne s'utilise qu'avec les événements <code class="line_code">mouseover</code> et <code class="line_code">mouseout</code>.<br />
@@ -1392,7 +1600,7 @@ element.addEventListener('click', function(e) { // L'argument « e » va récup�
 						L'événement <code class="line_code">keypress</code>, lui, est d'une toute autre utilité : il sert uniquement à capter les touches qui écrivent un caractère, oubliez donc les <code class="line_code">Ctrl</code>, <code class="line_code">Alt</code> et autres touches de ce genre qui n'affichent pas de caractère. Alors, forcément, vous vous demandez probablement à quoi peut bien servir cet événement au final ? Eh bien son avantage réside dans sa capacité à détecter les combinaisons de touches ! Ainsi, si vous faites la combinaison <code class="line_code">Maj</code> + <code class="line_code">A</code>, l'événement <code class="line_code">keypress</code> détectera bien un <code class="line_code">A</code> majuscule là où les événements <code class="line_code">keyup</code> et <code class="line_code">keydown</code> se déclencheront deux fois, une fois pour la touche <code class="line_code">Maj</code> et une deuxième fois pour la touche <code class="line_code">A</code>.
 					</p>
 					<p>
-						Si nous devions énumérer toutes les propriétés capables de vous fournir une valeur, il y en aurait trois : <code class="line_code">keyCode</code>, <code class="line_code">charCode</code> et <code class="line_code">which</code>. Cependant, la propriété <code class="line_code">keyCode</code> est amplement suffisante dans tous les cas.<br />
+						Si nous devions énumérer toutes les propriétés capables de vous fournir une valeur, il y en aurait trois : <code class="line_code">keyCode</code>, <code class="line_code">charCode</code> et <code class="line_code">which</code>. Cependant, la propriété <code class="line_code">keyCode</code> est amplement suffisante dans tous les cas.<br /> Mais elle n'est plus d'actualité ! voir Event.key <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key">ici</a>.
 						Ces propriétés renvoient chacune un code ASCII correspondant à la touche pressée. <br/>
 						La méthode <code class="line_code">fromCharCode()</code> est conçue pour convertir les valeurs ASCII vers des caractères lisibles. Faites donc bien attention à n'utiliser cette méthode qu'avec un événementkeypressafin d'éviter d'afficher, par exemple, le caractère d'un code correspondant à la touche Ctrl, cela ne fonctionnera pas !<br />
 						cette méthode s'utilise avec le préfixe <code class="line_code">String.</code>, comme suit :
@@ -1425,6 +1633,274 @@ String.fromCharCode(/* valeur */);
 					</figure>
 
 					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1918968-les-evenements#/id/r-1918967" target="_blank">Résoudre les problèmes d'héritage des événements</a></h2>
+
+					<h2 id=<?php echo $ini ; $ini++ ;?>>Quelques tricks</h2>
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>>Valider au clic en dehors de l'élément</h3>
+
+					<figure class="block_code">
+			 			<pre><code>
+//Validation avec enter
+
+document.addEventListener('keydown', (e) => {
+	if(e.key === 'Enter') {
+		if (e.shiftKey == false){
+			e.preventDefault();
+			
+			thingsToValide();  
+		}
+	}
+}, {once: true}); 	
+// Effectue l'action qu'une fois (sinon l'event (ici sous-event) reste enregistrer si rechargement de la page )
+
+
+// Validation avec un clic outside 
+
+document.addEventListener('click', (e)=>{
+	e.preventDefault();
+	
+	thingsToValide();
+
+}, {once: true}); 
+
+
+
+entireForm.addEventListener('click', (e) => {
+	e.stopPropagation();		
+	// Au clic sur le form, il ne se passe rien (pour agire dans le form) et on stoppe la propagation (du rien) au body qui lui valide.
+	
+ 
+}); 
+						</code></pre>
+					</figure>
+
+					<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API" target="_blank">Le drag and drop</a></h1>
+
+					<p>
+					L'interface HTML Drag and Drop (pour glisser-déposer) permet à des applications d'utiliser des fonctionnalités de glisser-déposer dans le navigateur.
+					</p>
+
+					<p>
+					L'utilisateur pourra sélectionner des éléments déplaçables à la souris et les déplacer vers un élément où on peut déposer en relâchant le bouton de la souris. Une représentation translucide de l'élément déplacé suit le pointeur lors de l'opération.
+					</p>
+
+					<p>
+					Une opération de déplacement commence généralement lorsqu'un utilisateur sélectionne un élément déplaçable puis qu'il le déplace sur un élément de destination avant de relâcher l'élément déplacé.
+					</p>
+
+					<p>
+						On utilise pour cela l'event <a href="https://developer.mozilla.org/en-US/docs/Web/API/DragEvent"></a><code class="line_code">DragEvent</code></p> qui possède les type suivant :
+						<ul>
+							<li><strong>drag</strong> (ondrag): …un objet déplaçable (que ce soit un élément ou une sélection de texte) est déplacée.</li>
+							<li><strong>dragend</strong> (ondragend): …une opération de déplacement se termine (en relâchant le bouton de la souris ou en utilisant la touche Echap)</li>
+							<li><strong>dragenter</strong> (ondragenter) : …un élément en cours de déplacement arrive sur une zone de dépôt valide (voir indiquer une cible de destination (en-US)).</li>
+							<li><strong>dragexit</strong> (ondragexit): …un élément n'est plus la sélection immédiate du déplacement.</li>
+							<li><strong>dragleave</strong> (ondragleave): …un élément en cours de déplacement quitte une zone de dépôt valide.</li>
+							<li><strong>dragover</strong> (ondragover) : …un élément en cours de déplacement est en cours de survol d'une zone de dépôt valide (cet évènement est déclenché toutes les quelques centaines de millisecondes).</li>
+							<li><strong>dragstart</strong> (ondragstart): …l'utilisateur commence à déplacer un élément.</li>
+							<li><strong>drop</strong> (ondrop): …un élément est déposé sur une cible valide.</li>
+						</ul>
+					</p>
+
+					<p>
+					Note : Les évènements dragstart et dragend ne sont pas déclenchés lors qu'on glisse-dépose un fichier de l'appareil dans le navigateur.
+					</p>
+
+					<p>
+					L'interface <code class="line_code">DragEvent</code> (possède un constructeur et une propriété dataTransfer qui est un objet <code class="line_code">DataTransfer</code>.
+					</p>
+
+					<p>
+					Les objets <a href="https://developer.mozilla.org/fr/docs/Web/API/DataTransfer">DataTransfer</a> incluent l'état du glisser-déposer, le type de déplacement (copy ou move), les données déplacées (un ou plusieurs objets) et le type MIME de chaque objet déplacé. Les objets DataTransfer possèdent également des méthodes permettant d'ajouter ou de retirer des objets aux données déplacées.
+					</p>
+
+					<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API#bases" target="_blank">Mode op'</a></h2>
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API#identifier_ce_qui_peut_%C3%AAtre_d%C3%A9plac%C3%A9" target="_blank">Identifier ce qui peut être déplacé</a></h3>
+
+					<p>
+					Pour qu'un élément puisse être déplacé, il faut lui ajouter l'attribut <code class="line_code">draggable</code> ainsi que le gestionnaire d'évènement global <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragstart_event"><code class="line_code">ondragstart</code></a> ou <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/dragstart_event"><code class="line_code">dragstart </code></a> :
+					</p>
+
+					<div class="em">Attention : e.preventDefault() sur dragstart retire le draggable. Ne pas l'utiliser sur cette fonction.</div>
+
+					<figure class="block_code">
+			 			<pre><code>
+&ltscript&gt
+function dragstart_handler(ev) {
+ // On ajoute l'identifiant de l'élément cible à l'objet de transfert
+ ev.dataTransfer.setData("text/plain", ev.target.innerText);
+}
+&lt/script&gt
+
+&ltp id="p1" draggable="true" ondragstart="dragstart_handler(event)"&gtCet élément est déplaçable.&lt/p&gt
+
+
+
+// ou avec addEventListener
+&ltp id="p1" draggable="true"&gtCet élément est déplaçable.&lt/p&gt
+
+//et
+p1.addEventListener('dragstart',dragstart_handler);
+						</code></pre>
+					</figure>
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API#d%C3%A9finir_les_donn%C3%A9es_d%C3%A9plac%C3%A9es" target="_blank">Définir les données déplacées</a></h3>
+
+					<p>
+					Chaque <code class="line_code">DragEvent</code> possède une propriété <code class="line_code">dataTransfer</code> contenant les données transportées. Cette propriété (un objet DataTransfer) possède des méthodes pour gérer les données transportées. La méthode <a href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/setData"><code class="line_code">setData()</code></a> permet d'ajouter un objet aux données transportées :
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+function dragstart_handler(ev) {
+  // On ajoute différents types de données transportées
+  ev.dataTransfer.setData("text/plain", ev.target.innerText);
+  ev.dataTransfer.setData("text/html", ev.target.outerHTML);
+  ev.dataTransfer.setData("text/uri-list", ev.target.ownerDocument.location.href);
+}
+						</code></pre>
+					</figure>
+
+					<p>
+					info sur <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Recommended_drag_types">les types recommandés</a>
+					</p> 
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API#d%C3%A9finir_limage_pour_le_d%C3%A9placement" target="_blank">Définir l'image pour le déplacement</a></h3>
+
+					<p>
+					Par défaut, le navigateur fournit une image qui apparaît à côté du pointeur lors de l'opération de déplacement. Toutefois, une application peut définir une image personnalisée grâce à la méthode <a href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/setData"><code class="line_code">setDragImage()</code></a> :
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+function dragstart_handler(ev) {
+  // On crée une image qu'on utilise pour le déplacement
+  // Note : on changera "example.gif" vers une vraie image
+  // (sinon l'image par défaut sera utilisée)
+  var img = new Image();
+  img.src = 'example.gif';
+  ev.dataTransfer.setDragImage(img, 10, 10);
+}
+
+						</code></pre>
+					</figure>
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API#d%C3%A9finir_leffet_de_d%C3%A9placement" target="_blank">Définir l'effet de déplacement</a></h3>
+
+					<p>
+					La propriété <a href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/dropEffect"><code class="line_code">dropEffect</code></a> est utilisée pour fournir un retour à l'utilisateur qui effectue l'opération de glisser/déposer. Généralement, cela se traduit par la modification du curseur affiché par le navigateur lors du déplacement.
+					</p>
+
+					<p>
+					Il est possible de définir trois effets :
+					<ul>
+						<li><strong>copy</strong> : indique que les données déplacées seront copiées depuis l'emplacement source vers la cible.</li>
+						<li><strong>move</strong> : indique que les données déplacées seront déplacées depuis l'emplacement source vers la cible.</li>
+						<li><strong>link</strong> : indique qu'une relation ou une connexion sera créée entre la source et la cible.</li>
+					</ul>
+					</p>
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API#d%C3%A9finir_la_zone_o%C3%B9_d%C3%A9poser_l%C3%A9l%C3%A9ment_d%C3%A9plac%C3%A9" target="_blank">Définir la zone où déposer l'élément déplacé</a></h3>
+
+					<p>
+					Par défaut, le navigateur empêche de déposer quoi que ce soit sur la plupart des éléments HTML. Pour modifier ce comportement, il faut qu'un élément devienne une zone cible ou qu'il soit identifié comme "droppable". L'élément doit avoir les deux gestionnaires d'évènements <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event"><code class="line_code">ondragover</code></a> et <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event"><code class="line_code">ondrop</code></a> comme attributs. Dans l'exemple suivant, on montre comment utiliser ces attributs et on fournit des gestionnaires d'évènements simples associés :
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+&ltscript&gt
+function dragover_handler(ev) {
+ ev.preventDefault();
+ ev.dataTransfer.dropEffect = "move";
+}
+function drop_handler(ev) {
+ ev.preventDefault();
+ // On récupère l'identifiant de la cible et on ajoute l'élément déplacé au DOM de la cible
+ var data = ev.dataTransfer.getData("text/plain");
+ ev.target.appendChild(document.getElementById(data));
+}
+&ltscript&gt
+
+&ltp id="target" ondrop="drop_handler(event)" ondragover="dragover_handler(event)"&gtZone pour déposer&lt/p&gt
+
+						</code></pre>
+					</figure>
+
+					<p>
+					On voit ici que chaque gestionnaire invoque preventDefault() afin d'éviter toute gestion d'évènement ultérieure (comme les évènements tactiles ou les évènements de pointeur).
+					</p>
+
+					<p>
+						Avec addEventListener :
+					</p>
+
+					<figure class="block_code">
+			 			<pre><code>
+&ltdiv class="dropzone"&gt
+  &ltdiv id="draggable" draggable="true"&gt
+    This div is draggable
+  &lt/div&gt
+&lt/div&gt
+&ltdiv class="dropzone" id="droptarget"&gt&lt/div&gt
+						</code></pre>
+					</figure>
+
+					<figure class="block_code">
+			 			<pre><code>
+let dragged = null;
+
+const source = document.getElementById("draggable");
+source.addEventListener("dragstart", (event) => {
+  // store a ref. on the dragged elem
+  dragged = event.target;
+});
+
+const target = document.getElementById("droptarget");
+target.addEventListener("dragover", (event) => {
+  // prevent default to allow drop
+  event.preventDefault();
+});
+
+target.addEventListener("drop", (event) => {
+  // prevent default action (open as link for some elements)
+  event.preventDefault();
+  // move dragged element to the selected drop target
+  if (event.target.className === "dropzone") {
+    dragged.parentNode.removeChild(dragged);
+    event.target.appendChild(dragged);
+  }
+});
+						</code></pre>
+					</figure>
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API#g%C3%A9rer_le_d%C3%A9p%C3%B4t_de_lobjet" target="_blank">Gérer le dépôt de l'objet</a></h3>
+
+					<p>
+					Le gestionnaire de l'évènement <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/drop_event"><code class="line_code">drop</code></a> permet de gérer les données déposées avec la logique de l'application. Généralement, une application utilisera <a href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/getData"><code class="line_code">getData()</code></a> afin de récupérer les données déplacées et les traitera. L'application peut choisir d'avoir un comportement différent selon la valeur de <code class="line_code">dropEffect</code> et/ou celles des autres propriétés.
+					</p>
+
+					<h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API#terminer_lop%C3%A9ration_de_glisserd%C3%A9poser" target="_blank">Terminer l'opération de glisser/déposer</a></h3>
+
+					<p>
+					À la fin de l'opération, c'est l'évènement <a href="https://developer.mozilla.org/fr/docs/Web/API/Document/dragend_event"><code class="line_code">dragend</code></a> qui est déclenché sur l'élément source (celui qui a été "saisi" au début). Cet évènement est déclenché lorsque l'opération est terminée ou qu'elle a été annulée. Le gestionnaire d'évènement pour <a href="https://developer.mozilla.org/fr/docs/Web/API/Document/dragend_event"><code class="line_code">dragend</code></a> peut vérifier la valeur de la propriété dropEffect (en-US) afin de déterminer si l'opération a réussi ou non.
+					</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 					<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1919022-les-formulaires#/id/r-1918992" target="_blank">Les formulaires</a></h1>
 

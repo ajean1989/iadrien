@@ -423,6 +423,57 @@ const sum = BePolite.add(2, 3); // sum = 5
 		Toutes ces fonctionnalités pourraient être des fonctions, mais l'avantage d'utiliser des méthodes de classe statiques est par exemple de pouvoir les regrouper par catégorie ou par type.
 		</p>
 
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes/extends" target="_blank"><code class="line_code">extends</code></a></h2>
+
+                    <p>
+                    Le mot-clé <code class="line_code">extends</code> peut être utilisé pour créer des sous-classes de classes existantes (natives ou non).
+                    </p>
+
+                    <figure class="block_code">
+                        <pre><code>
+class maDate extends Date {
+  constructor() {
+    super();
+  }
+                        </code></pre>
+                    </figure>
+
+                    <p>
+                    Le mot-clé <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/super"><code class="line_code">super</code></a> est utilisé afin d'appeler ou d'accéder à des fonctions définies sur l'objet parent.
+                    </p>
+
+                    <figure class="block_code">
+                        <pre><code>
+class Carre extends Rectangle {
+  constructor(longueur) {
+
+    // Ici, on appelle le constructeur de Rectangle
+    // qui est l'objet « parent » de Carré
+    super(longueur, longueur);
+
+    // Pour les classes dérivées, super() doit être appelé
+    // avant d'utiliser 'this' sinon cela entraînera une
+    // exception ReferenceError.
+    this.name = 'Carré';
+  }
+}
+                        </code></pre>
+                    </figure>
+
+                    <figure class="block_code">
+                        <pre><code>
+ class PublicInside extends PublicOutside{
+
+    constructor(user_id, username, note_id, note_name, share, insideContent){
+        super(user_id, username, note_id, note_name, share);
+        this.insideContent = insideContent;  
+
+    }
+                        </code></pre>
+                    </figure>
+
+
+
 
 
                     <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1919609-les-objets#/id/r-1919560" target="_blank">Les namespaces</a></h1>
@@ -1285,6 +1336,13 @@ Sat, 04 May 1991 20:00:00 GMT+02:00
                     <p>
                         Cette date représente donc le samedi 4 mai 1991 à 20h pile avec un décalage de deux heures supplémentaires par rapport à l'horloge de Greenwich.
                     </p>
+
+                    
+
+
+
+
+
 
                     <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1920527-la-gestion-du-temps#/id/r-1926575" target="_blank">Les méthodes des instances de l'objet <code class="line_code">Date</code></a></h2>
 

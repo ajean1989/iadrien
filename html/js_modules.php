@@ -109,6 +109,8 @@ import { default as def } from './increment.js'
                     </code></pre>
                 </figure>
 
+                <div class="em">Ajouter <code class="line_code">type="module"</code> dans la balise script : <code class="line_code">&ltscript type="module" src="index.js"&gt&lt/script&gt</code></div>
+
 
                 <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://grafikart.fr/tutoriels/configuration-906#autoplay" target="_blank">Les bundlers</a></h1>
 

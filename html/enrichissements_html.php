@@ -337,6 +337,30 @@ td, th   /* Mettre une bordure sur les td et th */
             <em>On peut changer le texte affiché à l'intérieur des boutons avec l'attribut <code class="line_code">value</code>.</em>
         </p>
 
+        <h2 id=<?php echo $ini ; $ini++ ;?>>CSS pour formulaire</h2>
+        
+
+        <figure class="block_code">
+            <pre><code>
+.form{
+    &--main{
+        border-style : none;    // Bordure de l'input
+        background : $background-color;
+        font-family: roboto-light;
+        height : auto;
+        resize: none;   // Empêche de se resizer
+
+        &:focus{
+            outline-style: dotted;  // Outline est le cadre du focus
+            outline-width: 2px;
+            outline-color : $primary-color;
+        }
+    }
+}
+            </code></pre>
+        </figure>
+
+
         <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1607438-enrichissez-votre-site-avec-de-la-video-et-de-laudio#/id/video_Player_1" target="_blank">Enrichir son site avec de la vidéo et de l'audio</a></h1>
 
         <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1607438-enrichissez-votre-site-avec-de-la-video-et-de-laudio#/id/r-1607359" target="_blank">Insertion d'un élément audio</a></h2>

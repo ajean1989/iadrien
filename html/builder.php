@@ -154,6 +154,8 @@ npm init
         <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://getcomposer.org/" target="_blank">
         Composer</a></h1>
 
+        <p>Tuto grafikart <a href="https://grafikart.fr/tutoriels/composer-require-1146#autoplay">ici</a>.</p>
+
         <p>
         Avec l’arrivé de PHP5, les notions de bibliothèques, composants, package, n’ont jamais été si présent dans le développement web. En effet, grâce à l’ajout des objets et des namespaces, le langage PHP est devenu comme tous les autres langages de programmation, un langage souple, modulable et réutilisable. La très forte communauté a donc créé des milliers de composants, bibliothèques, mais très vite, le surplus est devenu fouillis et il fallait mettre de l’ordre dans tout ça.
         </p>
@@ -196,6 +198,43 @@ npm init
         <p>
         Premièrement, nous voyons que le fichier est un simple tableau au format json. Les premiers éléments sont un ensemble d’attributs définissant le projet. Ce qui nous interesse est la clé « require », c’est ici que sont définit les dépendances. Il y en a deux, chacun avec un nom et une version. Il vous faudra donc PHP 5.3.3 minimum et zendframework dans sa version 2.2 la plus récente.
         </p>
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://getcomposer.org/doc/00-intro.md" target="_blank">
+        Installation</a></h2>
+
+        <p>
+            Suivre le get started <a href="https://getcomposer.org/doc/00-intro.md">ici</a>.
+        </p>
+
+        <p>
+        Composer s'installe globalement. On peut ensuite rechercher une librairie existante sur <a href="https://packagist.org/">packagist.org</a>. On peut regarder le code et quelques exemples d'utilisation sur son dépôt github. 
+        </p>
+
+        <p>
+        Il est ensuite indiquer quel ligne de commande entrer pour l'installer : <code class="line_code">composer require erusev/parsedown</code>. 
+        </p>
+
+        <p>
+            Cela va installer les fichiers nécéssaires (y compris d'autre lib dont dépend notre libraire) dans le dossier /vendor et remplir le fichier composer.json avec les informations qui permettrons de télécharger ces librairies si le fichier vendor est absent grâce à <code class="line_code">composer install</code>. Cela complète aussi l'autoloader. 
+        </p>
+
+        <p>
+            Dans composer.json, cela complète "require".
+        </p>
+
+        <p>
+            On peut aussi installer des librairie de développement avec composer --dev (cela est précisé sur packagist). Si on ne veut pas installer les lib de dev on fait <code class="line_code">composer install --no-dev</code>.
+        </p>
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://getcomposer.org/doc/00-intro.md" target="_blank">
+        update</a></h2>
+
+        <p>
+        <code class="line_code">composer update</code> met à jour les différentes dépendances (librairies). Dans composer.json version : ^1.2.3 mettra à jour tant que le premier chiffre ne change pas. ~1.2.3 n'ira pas plus loin que 1.2.3
+        </p>
+
+
+
 
 
 

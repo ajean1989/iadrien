@@ -64,7 +64,7 @@ function main_titres(i){								// return le titre peu import si il est dans h1 
 
 for(var i = 0; i<titres.length; i++){			// essayer avec switch  et créer une fonction string(n)
 	if (typetitre[i]=='h1'){					// affiche titre1 (1, 2, ... ) devant + change le href
-		string += '<' + typetitre[i] + '><a href="#' + i + '">' + titre1 + '. ' + titres[i].innerHTML + '</' + typetitre[i] + '><br/>' ;
+		string += '<' + typetitre[i] + '><a href="#' + i + '">' + titre1 + '. ' + titres[i].innerHTML + '</a></' + typetitre[i] + '><br/>' ;
 		document.getElementById(i).innerHTML = titre1 + '. ' + main_titres(i) ; 		//titres[i].parentNode.innerHTML ;
 		titre1++;
 	} else if (typetitre[i]=='h2'){				// affiche titre2 (I, II, ... ) devant + change le href	

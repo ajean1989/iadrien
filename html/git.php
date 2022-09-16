@@ -529,6 +529,8 @@ git reset notreCommitCible --hard
                         Cette commande permet de revenir à n'importe quel commit mais en oubliant absolument tout ce qu'il s'est passé après ! Quand je dis tout, c'est TOUT ! Que vous ayez fait des modifications après ou d'autres commits, tout sera effacé ! C'est pourquoi il est extrêmement important de revérifier plusieurs fois avant de la lancer, vous pourriez perdre toutes vos modifications si elle est mal faite.
                     </p>
 
+                    <div class="em">git reset HEAD --hard pour revenir à l'état du dernier commit, y compris en modifiant l'espace de travail. </div>
+
                     <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github/7165651-utilisez-git-reset#/id/r-7481864"><code class="line_code">git reset --mixed</code></a></h3>
 
                     <p>

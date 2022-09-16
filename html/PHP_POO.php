@@ -1811,6 +1811,8 @@ namespace Messenger {
 
             <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/7307123-gerez-vos-cas-derreur#/id/r-7318117" target="blank">Gérez vos cas d'erreur</a></h1>
 
+            
+
 
 
 

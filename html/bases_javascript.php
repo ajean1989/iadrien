@@ -1600,6 +1600,30 @@ myArray.pop(); // Retire « Guillaume »
 			</code></pre>
 		</figure>
 
+		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank">Filtrer un tableau</a></h2>
+
+		<p>
+		La méthode <code class="line_code">filter()</code> crée et retourne un nouveau tableau contenant tous les éléments du tableau d'origine qui remplissent une condition déterminée par la fonction callback.
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result = words.filter(word => word.length > 6);
+
+console.log(result);
+// expected output: Array ["exuberant", "destruction", "present"]
+
+			</code></pre>
+		</figure>
+
+		<figure class="block_code">
+    		<pre><code>
+let selectedContent = insideContent.filter(el => el.page_id = selectedResulteLine.page_id)
+			</code></pre>
+		</figure>
+
 		<h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1917996-les-objets-et-les-tableaux#/id/r-1924055" target="_blank">Chaînes de caractères et tableaux</a></h2>
 
 		<p>
@@ -1883,6 +1907,81 @@ try {
 } catch (error) {
 // réaction aux erreurs ici
 }
+			</code></pre>
+		</figure>
+
+
+		<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/dialog" target="_blank">Créer une modale</a></h1>
+
+		<p>
+			On utilise pour cela la balise HTML <code class="line_code">&ltdialog&gt</code>, dans laquelle on place le code de ce qu'on souhaite afficher dans cette modale. 
+		</p>
+
+
+
+		<p>
+			Pour afficher la modale, il faut l'appeler (grâce à son id) avec la fonction JS <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal"><code class="line_code">showModal()</code></a>.
+		</p>
+
+		<p>
+			On referme cette modale avec la méthode <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close"><code class="line_code">close()</code></a>.
+		</p>
+
+		<figure class="block_code">
+    		<pre><code>
+&lt!-- Boîte de dialogue contextuelle simple contenant un formulaire --&gt
+&ltdialog id="favDialog"&gt
+  &ltform method="dialog"&gt
+    &ltp&gt&ltlabel&gtAnimal préféré :
+      &ltselect&gt
+        &ltoption&gt&lt/option&gt
+        &ltoption&gtCrevette en saumure&lt/option&gt
+        &ltoption&gtPanda rouge&lt/option&gt
+        &ltoption&gtSinge-araignée&lt/option&gt
+      &lt/select&gt
+    &lt/label&gt&lt/p&gt
+    &ltmenu&gt
+      &ltbutton value="cancel"&gtAnnuler&lt/button&gt
+      &ltbutton id="confirmBtn" value="default"&gtConfirmer&lt/button&gt
+    &lt/menu&gt
+  &lt/form&gt
+&lt/dialog&gt
+
+&ltmenu&gt
+  &ltbutton id="updateDetails"&gtMettre à jour les détails&lt/button&gt
+&lt/menu&gt
+
+&ltoutput aria-live="polite"&gt&lt/outputgt
+
+			</code></pre>
+		</figure>
+
+		<figure class="block_code">
+    		<pre><code>
+let updateButton = document.getElementById('updateDetails');
+let favDialog = document.getElementById('favDialog');
+let outputBox = document.querySelector('output');
+let selectEl = document.querySelector('select');
+let confirmBtn = document.getElementById('confirmBtn');
+
+// Le bouton "Mettre à jour les détails" ouvre le <dialogue> ; modulaire
+updateButton.addEventListener('click', function onOpen() {
+  if (typeof favDialog.showModal === "function") {
+    favDialog.showModal();
+  } else {
+    console.error("L'API <dialog> n'est pas prise en charge par ce navigateur.");
+  }
+});
+// L'entrée "Animal favori" définit la valeur du bouton d'envoi.
+selectEl.addEventListener('change', function onSelect(e) {
+  confirmBtn.value = selectEl.value;
+});
+// Le bouton "Confirmer" du formulaire déclenche la fermeture
+// de la boîte de dialogue en raison de [method="dialog"]
+favDialog.addEventListener('close', function onClose() {
+  outputBox.value = favDialog.returnValue + " bouton cliqué - " + (new Date()).toString();
+});
+
 			</code></pre>
 		</figure>
 

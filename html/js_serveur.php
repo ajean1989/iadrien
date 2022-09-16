@@ -439,8 +439,37 @@ const noms = pieces.map(piece => piece.nom);
                     <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/FormData" target="_blank">Le FormData</a></h3>
 
                     <p>
-                    L'interface FormData permet de construire facilement un ensemble de paires clé/valeur représentant les champs du formulaire et leurs valeurs, qui peuvent ensuite être facilement envoyées avec l'API fetch puis traité en PHP avec <code class="line_code">$_POST</code>. Elle utilise le même format qu'utilise un formulaire si le type d'encodage est mis à <code class="line_code">"multipart/form-data"</code>. Auquel on ajoutera toujours <code class="line_code">Boundary</code> à compléter.
+                        <a href="https://www.derpturkey.com/node-multipart-form-data-explained/">Belle explication ici</a>
                     </p>
+
+                <p>
+                    L'interface FormData permet de construire facilement un ensemble de paires clé/valeur représentant les champs du formulaire et leurs valeurs, qui peuvent ensuite être facilement envoyées avec l'API fetch puis traité en PHP avec <code class="line_code">$_POST</code>. Elle utilise le même format qu'utilise un formulaire si le type d'encodage est mis à <code class="line_code">"multipart/form-data"</code>. Auquel on ajoutera toujours <code class="line_code">Boundary</code>.
+                </p>
+
+                    <p>
+                        <a href="https://stackoverflow.com/questions/3508338/what-is-the-boundary-in-multipart-form-data">Infos sur le boundary ici</a>. Le boundary sert de séparateur au données envoyées. Il ne doit pas apparaitre dans les données envoyées. 
+                        <figure class="block_code">
+                        <pre><code>
+Content-Type: multipart/form-data; charset=utf-8; boundary="another cool boundary"
+
+--another cool boundary
+Content-Disposition: form-data; name="foo"
+
+bar
+--another cool boundary
+Content-Disposition: form-data; name="baz"
+
+quux
+--another cool boundary--
+                        </code></pre>
+                    </figure>
+                    <p>
+                    The form with <code class="line_code">enctype="multipart/form-data"</code> attribute will have a request header <code class="line_code">Content-Type : multipart/form-data; boundary --- WebKit193844043-h</code> (browser generated value).
+                    </p>
+
+
+                    </p>
+                    
 
                     <p>
                         Le constructeur <code class="line_code">FormData()</code> Crée un nouvel objet FormData. 
@@ -1151,7 +1180,14 @@ echo $_POST['champ1'] . ' - ' . $_POST['champ2']; // Affiche : « valeur1 - vale
                     <p>
                         Pour faire une requête POST, ou une requête avec une autre méthode, nous devons utiliser les options fetch :
                         <ul>
-                            <li><code class="line_code">method</code> – HTTP-method, par exemple <code class="line_code">POST</code></li>
+                            <li><code class="line_code">method</code> – <a href="https://developer.mozilla.org/fr/docs/Web/HTTP/Methods"> methodes HTTP </a>,<code class="line_code">POST</code>, <code class="line_code">GET</code>, ... </li>
+                            <li><code class="line_code">Content-Type</code> : 
+                                <ul>
+                                    <li><code class="line_code">text/html; charset=utf-8</code></li>
+                                    <li><code class="line_code">multipart/form-data; boundary=something</code> (Ne pas le préciser à headers, il le fera seul. Sinon risque de bug)</li>
+                                    <li><code class="line_code">application/json;charset=utf-8</code></li>
+                                </ul>
+                            </li>
                             <li><code class="line_code">body</code> – le corps de la requête, un parmi ceux-ci : 
                                 <ul>
                                     <li>une chaîne de caractères (par exemple encodé en JSON)</li>
@@ -1199,6 +1235,55 @@ echo $_POST['champ1'] . ' - ' . $_POST['champ2']; // Affiche : « valeur1 - vale
                     </p>
 
                     <div class="em">Lorsqu'on envoie les données, la réponse reçue par la promise resolved se fait après traitement des données par la page fetched.</div>
+
+                    <h4 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.youtube.com/watch?v=c3qWHnJJbSY&t=441s" target="_blank">POST pour soumission d'un formulaire en FormData</a></h4>
+
+                    <figure class="block_code">
+                        <pre><code>
+let selectedForm = document.getElementById('form__connexion');
+
+async function test(selectedForm){
+    let formConnexion = new FormData(selectedForm);
+    let fetchOptions = {method:'POST', body: formConnexion};
+
+    let response = await Fetch.jsonFetchPOST('private/connexion',fetchOptions);
+}
+
+selectedForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    test(selectedForm)
+    }); 
+} 
+                        </code></pre>
+                    </figure>
+
+                    <p>
+                        On créé un nouvel objet FormData qui contiendra notre formulaire, séléctionné à l'aide de son <code class="line_code">id</code> par exemple.
+                    </p>
+
+                    <p>
+                        La soumission du formaulaire se fait avec un evenement <code class="line_code">'submit'</code> (Attention, submit est un événement sur le formulaire et pas sur le <code class="line_code">&ltbutton&gt</code> ou <code class="line_code">&ltinput type='submit'&gt</code>)
+                    </p>
+
+                    <p>
+                        Il faut penser à désactiver l'action par défaut du bouton avec <code class="line_code">e.preventDefault()</code>. <a href="https://grafikart.fr/tutoriels/events-775#autoplay">Tuto sympa ici</a>.
+                    </p>
+
+                    <p>
+                        Le formulaire est soumis par la méthode fetch avec les headers ci-dessus.
+                    </p>
+
+                    <p>
+                        On peut à présent récupérer les entrées du formulaire dans la page appelée par fetch à l'aide de <code class="line_code">$_POST</code>.
+                    </p>
+
+                    <p>
+                        Dans les options de fetch, ne pas mettre le 'Content-Type'. Le navigateur le fera lui même correctement. À la main ça ne fonctionne pas :(. multipart/form-data est pour envoyer des blob mais pas uniquement. <a href="https://muffinman.io/blog/uploading-files-using-fetch-multipart-form-data/">Voir ici</a>
+                    </p>
+
+
+
+
 
                     <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/API/Headers#exemples" target="_blank">Headers</a></h3>
 

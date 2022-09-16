@@ -799,6 +799,19 @@ input {
                 On peut utiliser les mots 'and' et 'or' pour demander plusieurs conditions. Ainsi que tous les opérateurs logiques habituels (avec == pour égal)
             </p>
 
+
+<figure class="block_code">
+                <pre><code>
+@for $i from 1 through 1000{
+    #type_#{$i} {
+        height : 20px;
+        width : 20px;
+        background: $primary-color;
+    }
+}
+                 </code></pre>
+            </figure>
+
             <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/6106181-simplifiez-vous-le-css-avec-sass/6599091-creez-et-utilisez-des-fonctions#/id/r-6599112" target="_blank">
             Les fonctions</a></h1>
 

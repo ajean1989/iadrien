@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
         <script src="../js/highlight.pack.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
-        <title>Sécurité</title>
+        <title>SOLID & DDD</title>
     </head>
 
     <body>
@@ -476,6 +476,143 @@ $userRestApiRepository = new UserRepository(new RestApiClient());
             <p>
                 ...
             </p>
+
+            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5647281-appliquez-le-principe-du-domain-driven-design-a-votre-application/6827306-tirez-un-maximum-de-ce-cours#/id/video_Player_1" target="blank">Le DDD : Domain-Driven Design</a></h1>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5647281-appliquez-le-principe-du-domain-driven-design-a-votre-application/6827331-resolvez-des-problemes-de-conception-avec-les-modeles-de-domaines#/id/r-6848863" target="blank">Découvrez le modèle de domaine</a></h2>
+
+            <p>
+            Un modèle de domaine est une représentation conceptuelle des éléments clés qui doivent être compris par tous, pour créer la solution souhaitée par le client. Vous pouvez le considérer comme l'idée qui constitue le fondement même d'un programme, mais qui serait compréhensible à la fois par les parties prenantes et par les développeurs. 
+            </p>
+
+            <p>
+            Dans le cas de modèles de domaine complexes, vous regrouperez les différents éléments dans des domaines distincts. On les appelle contextes délimités (boundedcontext, en anglais). 
+            </p>
+
+            <p>
+            Il y a plusieurs façons de représenter un modèle de domaine. Cela peut prendre la forme d'une liste à puces sur des pages wiki, ou être plus formel. L'un des moyens les plus courants consiste à utiliser des diagrammes. 
+            </p>
+
+            <p>
+            Ici, nous sommes bien dans une logique descendante, contrairement à un modèle du domaine du point de vue du programme, ou approche ascendante, qui s'intéresse à comment créer. À ce stade, nous ne nous préoccupons ni de bases de données, ni d'objets, de déploiements cloud ou de toute autre réalisation technique.
+            </p>
+
+            <p>
+            L'objectif de l'utilisation du Domain-Driven Design est de construire un modèle qui fonctionne du début de la collaboration (client) jusqu'au développement (web). Et pour y parvenir, vous devez discuter avec vos parties prenantes.
+            </p>
+
+            <p>
+            Le Domain-Driven Design se concentre sur deux questions clés :
+            <ul>
+                <li>Pour qui suis-je en train de concevoir cette application ?</li>
+                <li>Que veulent-ils réaliser ? </li>
+            </ul>
+            </p>
+
+            <p>
+            Dans un modèle de domaine, le juste équilibre consiste à créer un modèle qui donne les informations nécessaires sans s'encombrer de détails inutiles.
+            </p>
+
+            <p>
+            Identifiez les acteurs : les utilisateurs de l'application. 
+            </p>
+
+            <p>
+            Identifiez les cas d'utilisation ou use cases : ce que les acteurs essaient de faire
+            </p>
+
+            <p>
+            Identifiez les entités : définissez les concepts de votre programme. Pour cela, il faut analyser les interactions des récits utilisateur, et rechercher les idées pérennes, c'est-à-dire celles qui vont durer. Ces idées constituent les entités de votre modèle de domaine.
+            </p>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5647281-appliquez-le-principe-du-domain-driven-design-a-votre-application/6831496-formalisez-votre-modele-de-domaine-avec-un-diagramme-de-cas-dutilisation#/id/video_Player_1" target="blank">l'UML</a></h2>
+
+            <p>
+            UML signifie Unified Modeling Language (langage unifié de modélisation). C'est un standard de notation que vous pouvez utiliser pour modéliser ou représenter de manière visuelle une application informatique. 
+            </p>
+
+            <p>
+            Au début, il existait de nombreuses manières de représenter un programme. Chacun avait sa façon de procéder. Certains utilisaient des cercles, d'autres des rectangles, ou des nuages en pointillés... Aucune cohérence. 🙄 Finalement, un consensus a été trouvé sur les images qui devraient être utilisées pour modéliser telle ou telle idée (comme le personnage en bâtons pour un acteur). Vous comprenez donc maintenant d'où vient le terme "unifié" dans l'appellation langage unifié de modélisation.
+            </p>
+
+            <p>
+            La version standardisée actuelle est composée de 13 types de diagrammes différents. Normalement, vous ne les utiliserez pas tous pour modéliser votre application. Dans ce cours, nous nous concentrerons seulement sur les deux types les plus courants.
+            </p>
+
+            <p>
+            Avec les informations que vous avez recueillies jusqu'ici, vous êtes en mesure de construire un type de diagramme UML : le diagramme de cas d'utilisation. C'est un moyen de capturer, en image, ce que votre programme peut faire pour plusieurs utilisateurs. Il permet de représenter les informations que vous avez récoltées jusqu'à maintenant sur les utilisateurs de l'application, et ce qu'ils veulent qu'elle exécute pour eux. 
+            </p>
+
+            <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5647281-appliquez-le-principe-du-domain-driven-design-a-votre-application/6831496-formalisez-votre-modele-de-domaine-avec-un-diagramme-de-cas-dutilisation#/id/r-6831583" target="blank">Le diagramme de cas d'utilisation</a></h3>
+
+            <p>
+            Pour ce faire, nous allons suivre les étapes suivantes :
+                <ol>
+                    <li>Identifier les acteurs.</li>
+                    <li>Définir les cas d'utilisation (use cases).</li>
+                    <li>Ajouter les relations.</li>
+                </ol>
+            </p>
+
+            <p>
+            Un acteur est représenté dans un diagramme sous la forme d'un personnage en bâtons, accompagné d'une description rapide du type d'utilisateur (son rôle).
+            </p>
+
+            <img src="../images/15868658554305_VISUELS_AMANDINE-3.jpg">
+
+            <p>
+            Représentez un cas d'utilisation sous la forme d'un ovale, en notant l'objectif de l'utilisateur à l'intérieur. Attention à ne pas tourner les objectifs du point de vue du programme. 
+            </p>
+
+            <img src="../images/1586866152725_VISUELS_AMANDINE-4.jpg">
+
+            <p>
+            Troisème étape : L'objectif ici est de montrer quels acteurs sont intéressés par quel(s) objectif(s). Pour cela, nous allons utiliser un trait pour les lier, appelé relation.
+            </p>
+
+            <img src="../images/15868662827361_VISUELS_AMANDINE-5.jpg">
+
+            <p>
+            Parfois, vous pouvez remarquer que certaines étapes se répètent dans plusieurs cas. Par exemple, plusieurs cas d'utilisation peuvent indiquer « envoyer ensuite un e-mail à quelqu'un ». Il peut être utile de distinguer cette activité partagée de manière visuelle : il s'agit de dépendances et elles sont indiquées avec des flèches. 
+            </p>
+
+            <p>
+            La flèche sur le diagramme indique une dépendance. Comme c'est une flèche, il est facile de la confondre avec un flux de données ou d'exécution. Mais souvenez-vous : ce n'est pas la même chose. Cela signifie simplement que « Infliger des amendes pour retard » dépend de « Envoyer un e-mail » pour l'exécution de la tâche. 
+            </p>
+            
+
+            <img src="../images/15840325465166_VISUELS_AMANDINE-FIX_1.png">
+
+            <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5647281-appliquez-le-principe-du-domain-driven-design-a-votre-application/6831641-definissez-un-glossaire-commun-a-partir-dun-diagramme-de-classes#/id/video_Player_1" target="blank">Les classes</a></h3>
+
+            <p>
+            Si vous décidez finalement d'utiliser un code orienté objet pour votre système, vous devez déterminer les classes à partir desquelles créer les objets. Mais où chercher les classes dont vous avez besoin ? 🤷‍♀️
+            </p>
+
+            <p>
+            Dans votre modèle de domaine ! 
+            </p>
+
+            <p>
+            Travaillez à partir des descriptions de vos cas d’utilisation (use cases) pour préparer vos classes avec un diagramme de classes. Nous verrons ensemble qu'un diagramme de classes est constitué d'un ensemble de classes et de leurs relations.
+            </p>
+
+            <strong>Étape 1 : identifiez vos noms</strong>
+
+            <p>
+                
+            </p>
+
+
+
+
+
+
+
+
+
+
+            
 
 
 

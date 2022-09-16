@@ -805,7 +805,7 @@ email VARCHAR(255) NOT NULL UNIQUE
 
 						<figure class="block_code">
     						<pre><code>
-INSERT INTO `utilisateur` (`nom`, `prenom`, `email`)
+INSERT INTO utilisateur (nom, prenom, email)
 
 VALUES
 
