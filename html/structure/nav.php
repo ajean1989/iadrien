@@ -23,7 +23,8 @@
         <li><a href="protocoles.php">Protocoles - HTTP</a></li>
         <li><a href="git.php">Git & Github</a></li>
         <li><a href="securite.php">Sécurité</a></li>
-        <li><a href="SOLIDPattern.php">SOLID / Design Pattern / DDD</a></li>
+        <li><a href="SOLIDPattern.php">SOLID - Design Pattern</a></li>
+        <li><a href="architecture.php">Architecture : DDD - SGBD</a></li>
         <li><a href="firefox.php">Firefox - Extensions - Outils</a></li>
         
     </ul>

@@ -600,8 +600,196 @@ $userRestApiRepository = new UserRepository(new RestApiClient());
             <strong>Étape 1 : identifiez vos noms</strong>
 
             <p>
-                
+            Vous vous souvenez du cas d'utilisation « Rechercher un livre ». Listons ensemble les résultats du programme en détail. Ici, comme ce sont les noms qui nous intéressent (comme vous l'aviez peut-être deviné avec le nom du chapitre 👋), nous pouvons les mettre en gras :
+            <ul>
+                <li>l'<strong>utilisateur</strong> fait une requête pour chercher un <strong>livre</strong> ;</li>
+                <li>le <strong>programme affiche la <strong>page de recherche</strong> ;</li>
+                <li>l'utilisateur saisit le nom de l'auteur ;</li>
+                <li>le système vérifie que le <strong>nom de l'auteur</strong> existe ;</li>
+                <li>l'utilisateur saisit le <strong>titre</strong> du <strong>livre</strong> ;</li>
+                <li>l'utilisateur lance la requête ;</li>
+                <li>le système exécute la recherche ;</li>
+                <li>le programme affiche les <strong>résultats</strong> :
+                    <ul>
+                        <li>une série de livres qui correspondent,</li>
+                        <li>une <strong>image</strong> de la couverture de chaque livre,</li>
+                        <li>une courte <strong>biographie</strong> de l'auteur,</li>
+                        <li>une <strong>image</strong> de l'auteur.</li>
+                    </ul>
+                </li>
+            </ul>
+            Nous pouvons en repérer deux sortes : complexe ou simple. Si le nom est complexe (c'est-à-dire qu'il est impossible à décrire en un mot ou deux), il s'agit probablement d'une classe. Si c'est un nom simple, il s'agira probablement d'un attribut de classe.
             </p>
+
+            <p>
+            La classe à laquelle on pense en premier ici est celle du livre, avec plusieurs éléments qui lui sont associés (auteur, titre). Il ne peut pas être représenté sous la forme d'un entier ou d'une chaîne de caractères. En revanche, le titre est suffisamment simple pour être représenté par une chaîne de caractères. Félicitations, ce sera donc un attribut ! 
+            </p>
+
+            <p>
+            Très souvent, vous aurez l'impression qu'un élément est une classe (ou un attribut) ; mais, au moment de l'implémentation, vous vous rendrez compte que c'est plus simple ou plus compliqué que vous ne le pensiez ! Dans ce cas-là, il faudra simplement adapter votre diagramme. D’ailleurs, nous verrons comment faire dans les chapitres à venir.
+            </p>
+
+            <p>
+            Et l'utilisateur dans tout ça ? Ou même le programme lui-même ? S'agit-il également de classes ?
+            </p>
+
+            <p>
+            Commençons par le plus facile : le programme. Dans la mesure où il s'agit de ce que vous créez, il ne s'agira pas d'une seule classe. Il sera constitué de l'ensemble des classes que vous allez identifier et de toutes leurs relations entre elles.
+            </p>
+
+            <p>
+            Maintenant, l'utilisateur. Comme nous l'avons vu, vous pouvez avoir plusieurs types d'utilisateurs (bibliothécaires, usagers) qui ont accès à différentes parties du programme. Vous voulez que les classes représentent leurs différents pouvoirs (non non, nous ne sommes pas dans un film de super-héros) ; cependant, en général, vous n'aurez pas de classe appelée Utilisateur.
+            </p>
+
+            <strong>Étape 2 : représentez vos noms en tant que classes ou attributs</strong>
+
+            <p>
+            Une fois que vous avez défini vos noms, nous allons pouvoir commencer à concevoir nos classes à proprement parler. 🤩 Une classe est représentée par un rectangle, en indiquant le nom de la classe en haut et l'attribut en dessous.
+            </p>
+
+            <p>
+            Commençons par la classe Livre. Puis, nous ne savons pas quel utilisateur va effectuer cette recherche. Or, pour le moment, vous connaissez deux types d'utilisateurs : les usagers et les bibliothécaires. Ajoutons-les :
+            </p>
+
+            <img src="../images/15868664168056_VISUELS_AMANDINE-9-1.jpg">
+
+            <p>
+            Faisons défiler la description de notre cas d’utilisation. Hoho : le nom de l'auteur. Comment le gérer ? 🙈 En ne regardant que le début de notre liste, nous pourrions être tentés de faire du nom de l'auteur un attribut de Livre. Mais descendez un peu dans la liste. 
+            </p>
+
+            <p>
+            Un auteur est plus qu'un simple nom. Par exemple, il peut être associé à de nombreux livres. Si vos clients veulent une biographie succincte de l'auteur, ou sa photo, vous devez les ajouter :
+            </p>
+
+            <img src="../images/15868664742772_VISUELS_AMANDINE-10.jpg">
+
+            <p>
+            En avançant dans le scénario, vous vous rendrez compte que certaines classes doivent communiquer entre elles pour rechercher un livre. Une relation existe donc entre elles. Utilisez un trait entre les classes pour la représenter, comme dans le diagramme ci-dessous :
+            </p>
+
+            <img src="../images/15868665277791_VISUELS_AMANDINE-11.jpg">
+
+            <p>
+            Qu'est-ce que c'est que ces petits chiffres 1 et cet astérisque ? 😵
+            </p>
+
+            <p>
+            Dans cet exemple, les résultats de recherche affichent de nombreux livres. En langage UML, vous pouvez noter cette multiplicité avec un astérisque, qui signifie « au moins un(e) ».  Et comme nous parlons de livres, cet astérisque est placé à l'endroit où le trait de la relation rejoint la classe Livre. En attendant, un livre n'a qu'un résultat de recherche. Vous notez donc un 1 à l'endroit où le trait de la relation rejoint la classe "Résultats de recherche". 
+            </p>
+
+            <p>
+            <img src="../images/16101120224095_VISUELS_AMANDINE-12.png">
+            </p>
+
+            <p>
+            Chaque livre a un auteur. Un auteur peut avoir écrit de nombreux livres, mais généralement un livre n'a qu'un seul auteur. Vous ajoutez donc un * à votre trait du côté du livre et 1 du côté de l'auteur. Un livre ne sera associé qu'à une image, de même qu'un auteur.
+            </p>
+
+            <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5647281-appliquez-le-principe-du-domain-driven-design-a-votre-application/6833431-adaptez-votre-diagramme-aux-changements-de-besoins-de-votre-client#/id/video_Player_1" target="blank">Mettez à jour votre diagramme de cas d'utilisation</a></h3>
+
+            <p>
+            Après quelques échanges, vous vous rendez compte qu'ils ne sont pas 100 % satisfaits. Apparemment, quand un livre n'est pas disponible, les usagers se plaignent de devoir vérifier régulièrement s'il l'est à nouveau. Et même s'ils le cherchent depuis des semaines, il suffit que quelqu'un ait un peu de chance, et passe juste devant eux. Ce qui agace d'autant plus les bibliothécaires quand ce même titre est particulièrement demandé. Ils souhaiteraient donc augmenter l'amende pour les livres populaires rendus en retard et faire en sorte que les usagers puissent mettre un livre de côté.
+            </p>
+
+            <p>
+            Tout d'abord, il va falloir déterminer si vous avez affaire à un cas d'utilisation totalement nouveau ou à une modification d'un cas d'utilisation existant. L'idée de mettre un livre de côté n'est reliée à aucun cas d'utilisation précédent. Vous devez donc reprendre votre diagramme et y ajouter un ovale.
+            </p>
+
+            <img src="../images/15868671341126_VISUELS_AMANDINE-18-1.jpg">
+
+            <p>
+            À présent, nous devons créer une description du nouveau cas d'utilisation. Cela nous permettra de repérer s'il faut ajouter de nouvelles classes ou de nouveaux attributs. Voici la description du nouveau cas d'utilisation : 
+            <ul>
+                <li>l'utilisateur recherche un livre ;</li>
+                <li>le système affiche les informations relatives au livre :
+                    <ul>
+                        <li>    notamment le fait qu'il est actuellement emprunté par un autre <strong>usager</strong> ;</li>
+                    </ul>
+                </li>
+                <li>l'utilisateur sélectionne l'option Mettre de côté ;</li>
+                <li>le programme demande les coordonnées de l'usager ;</li>
+                <li>l'utilisateur saisit le <strong>nom</strong> de l'usager ou son <strong>identifiant</strong> à la bibliothèque ;</li>
+                <li>le programme confirme l'existence de l'usager ;</li>
+                <li>le programme ajoute l'identifiant de l'usager à la liste des exemplaires mis de côté du livre.</li>
+            </ul>
+            </p>
+
+            <p>
+            Les nouveaux noms ont été mis en gras. Vous pouvez créer un diagramme de classes pour montrer les  nouveaux concepts et ceux déjà en lien avec ce cas d'utilisation :
+            </p>
+
+            <img src="../images/15852120845662_VISUELS_AMANDINE-19-1.png">
+
+            <p>
+            Le programme change de comportement, il s'adapte aux besoins de vos clients. Il est essentiel de tenir votre modèle à jour. Vous n'avez pas envie qu'un nouveau concept vous échappe. Si vous prenez la (très) mauvaise habitude de ne pas mettre à jour votre modèle, vous allez retomber dans l'approche « le programme d'abord, les besoins clients ensuite ».
+            </p>
+
+            <p>
+            Dès que de nouvelles idées sont lancées, il faut adapter votre modèle de domaine. Pour cela, il vous faudra souvent ajouter de nouvelles classes et de nouveaux attributs, ou encore déplacer un attribut d'une classe à une autre. 
+            </p>
+
+            <h3 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5647281-appliquez-le-principe-du-domain-driven-design-a-votre-application/6833811-implementez-votre-modele-de-domaine#/id/r-6833881" target="blank">Implémentez votre modèle de domaine</a></h3>
+
+            <p>
+            Une fois que vous avez un modèle de domaine, vous avez une meilleure vue d'ensemble de votre application. Il est donc plus aisé de prendre des décisions importantes en ce qui concerne l'implémentation ! Voici les étapes à suivre pour implémenter votre domaine.
+            </p>
+
+            <h4 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5647281-appliquez-le-principe-du-domain-driven-design-a-votre-application/6833811-implementez-votre-modele-de-domaine#/id/r-6833886" target="blank">Prêtez attention aux frontières</a></h4>
+
+            <p>
+            Il est possible d'avoir plusieurs contextes délimités (bounded contexts) dans un domaine. Dans le système de la bibliothèque, un ensemble de fonctionnalités est utilisé par les bibliothécaires et un autre par les usagers. Ces deux contextes délimités sont englobés dans un seul et même domaine.
+            </p>
+
+            <h4 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5647281-appliquez-le-principe-du-domain-driven-design-a-votre-application/6833811-implementez-votre-modele-de-domaine#/id/r-6833901" target="blank">2- Définissez des entités pour représenter des objets uniques</a></h4>
+
+            <p>
+            y a quelques chapitres de cela, je vous disais qu'une entité se reconnaissait par son caractère unique. Vous vous rappelez ? Cela mérite d'être répété, car c'est important : il s'agit d'éléments qui ont une identité de manière durable, peu importe leur état.
+            </p>
+
+            <p>
+            Les objets entités sont en général utilisés par plusieurs cas d'utilisation. C'est pour cela qu'ils sont habituellement enregistrés dans une sorte de système de stockage persistant (comme une base de données). 🗄 
+            </p>
+
+            <h4 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5647281-appliquez-le-principe-du-domain-driven-design-a-votre-application/6833811-implementez-votre-modele-de-domaine#/id/r-6834091" target="blank">3- Identifiez les objets valeurs dans votre modèle</a></h4>
+
+            <p>
+                Un objet valeur est destiné à représenter une valeur. Si cette valeur n'est plus nécessaire, l'objet est supprimé et remplacé par un autre. Les objets valeurs sont habituellement créés uniquement pour faciliter l'exécution d'un seul cas d'utilisation. À la différence des entités, ils ne sont pas conservés dans le stockage de données, dans la mesure où ils ne sont nécessaires que brièvement. Dans l'exemple ci-dessus, l'amende est probablement calculée à partir du nombre de jours de retard. Il est inutile de conserver un objet et de le mettre à jour tous les jours. Mais il est nécessaire, au moins brièvement, pour calculer l'amende.
+            </p>
+
+            <p>
+            Aujourd'hui, la data constitue une véritable mine d'or. Dans notre cas, il est probablement intéressant de savoir quels livres entraînent le plus d'amendes, ou de connaître le code postal des usagers qui rendent les livres dans les temps. Même si en général nous ne conservons pas l'objet valeur, certains programmes vont au contraire sauvegarder ce type d'informations, afin de comprendre toutes ces données.
+            </p>
+
+            <h4 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5647281-appliquez-le-principe-du-domain-driven-design-a-votre-application/6833811-implementez-votre-modele-de-domaine#/id/r-6834296" target="blank">4- Identifiez les objets d'agrégatione</a></h4>
+
+            <p>
+            Pour terminer, vous avez besoin d'objets pour maintenir l'équilibre du système. Tous ces objets entités et valeurs qui circulent sont habituellement reliés d'une façon ou d'une autre. 
+            </p>
+
+            <p>
+            C'est ici que les objets agrégats interviennent. Ils regroupent des objets valeurs et entités qui vont de pair en un tout unique, de telle sorte que vous pouvez les gérer comme s'il s'agissait d'un seul concept. Prenons comme exemple une liste de livres en retard :
+            </p>
+
+            <img src="../images/15869382467946_VISUELS_AMANDINE-21.jpg">
+
+            <p>
+            Tout d'abord, vous avez les usagers (entités) qui n'ont pas rendu leurs livres. Ensuite, vous avez les livres (entités). Puis vous avez l'amende (valeur) qu'ils doivent payer. Vous devez rassembler tous ces éléments dans une seule et même idée.
+            </p>
+
+            <p>
+            Pour cela, il suffit d'introduire l'objet agrégat « livre en retard ». Notez qu'il a une relation de type « 1 » avec tous les éléments qui s'y rattachent. Ce n'est pas systématique pour un agrégat, mais c'est courant.
+            </p>
+
+            <p>
+            Maintenant que vous avez vos contextes délimités, vos entités, vos objets valeurs et vos agrégats, vous pouvez passer au code. Mais, maintenant, vous avez une longueur d'avance dans la création de votre application. Dans la mesure où vous avez défini tous ces éléments, vous devriez avoir une idée claire de ce que fait et représente chaque objet, et cela vous permettra d'affronter sans soucis la complexité d'un système complet.
+            </p>
+
+
+
+
+
+
+
 
 
 
