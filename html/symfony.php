@@ -32,6 +32,1070 @@
 
             <div class="element_1">
 
+
+
+
+
+
+
+
+            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/page_creation.html" target="_blank">Create your First Page in Symfony</a></h1>
+
+            <p>
+            Creating a new page - whether it's an HTML page or a JSON endpoint - is a two-step process:
+            <ul>
+                <li>Create a route: A route is the URL (e.g. /about) to your page and points to a controller; Create a route: In config/routes.yaml, the route defines the URL to your page (path) and what controller to call. You'll learn more about routing in its own section, including how to make variable URLs.</li>
+                <li>Create a controller: A controller is the PHP function you write that builds the page. You take the incoming request information and use it to create a Symfony Response object, which can hold HTML content, a JSON string or even a binary file like an image or PDF.<br>
+                Create a controller and a method: This is a function where you build the page and ultimately return a <code class="line_code">Response</code> object. You'll learn more about controllers in their own section, including how to return JSON responses;</li>
+            </ul>
+            </p>
+
+            <p>
+            Suppose you want to create a page - /lucky/number - that generates a lucky (well, random) number and prints it. To do that, create a "Controller" class and a "controller" method inside of it:
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+// src/Controller/LuckyController.php
+namespace App\Controller;
+
+use Symfony\Component\HttpFoundation\Response;
+
+class LuckyController
+{
+    public function number(): Response
+    {
+        $number = random_int(0, 100);
+
+        return new Response(
+            '&lthtml&gt&ltbody&gtLucky number: '.$number.'&lt/bod&gty&gt&lt/html&gt'
+        );
+    }
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        Now you need to associate this controller function with a public URL (e.g. /lucky/number) so that the number() method is called when a user browses to it. This association is defined by creating a route in the config/routes.yaml file:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+# config/routes.yaml
+
+# the "app_lucky_number" route name is not important yet
+app_lucky_number:
+    path: /lucky/number
+    controller: App\Controller\LuckyController::number
+            </code></pre>
+        </figure>
+
+        <p>
+        That's it! If you are using Symfony web server, try it out by going to: http://localhost:8000/lucky/number
+        </p>
+
+        <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/routing.html" target="_blank">Routing</a></h1>
+
+        <p>
+        When your application receives a request, it calls a controller action to generate the response. The routing configuration defines which action to run for each incoming URL. It also provides other useful features, like generating SEO-friendly URLs (e.g. /read/intro-to-symfony instead of index.php?article_id=57).
+        </p>
+
+        <p>
+        Routes can be configured in YAML, XML, PHP or using attributes. All formats provide the same features and performance, so choose your favorite. Symfony recommends attributes because it's convenient to put the route and controller in the same place.
+        </p>
+        
+        <p>
+        PHP attributes allow to define routes next to the code of the controllers associated to those routes. Attributes are native in PHP 8 and higher versions, so you can use them right away.
+        </p>
+        
+        <p>
+        You need to add a bit of configuration to your project before using them. If your project uses Symfony Flex, this file is already created for you. Otherwise, create the following file manually:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+# config/routes/attributes.yaml
+controllers:
+    resource: ../../src/Controller/
+    type: attribute
+
+kernel:
+    resource: ../../src/Kernel.php
+    type: attribute
+            </code></pre>
+        </figure>
+
+        <p>
+        This configuration tells Symfony to look for routes defined as attributes in any PHP class stored in the src/Controller/ directory.
+        </p>
+
+        <p>
+        Suppose you want to define a route for the /blog URL in your application. To do so, create a controller class like the following:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// src/Controller/BlogController.php
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+
+class BlogController extends AbstractController
+{
+    #[Route('/blog', name: 'blog_list')]
+    public function list(): Response
+    {
+        // ...
+    }
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        This configuration defines a route called blog_list that matches when the user requests the /blog URL. When the match occurs, the application runs the list() method of the BlogController class.
+        </p>
+
+        <p>
+        The query string of a URL is not considered when matching routes. In this example, URLs like /blog?foo=bar and /blog?foo=bar&bar=foo will also match the blog_list route.
+        </p>
+
+        <p>
+        The route name (blog_list) is not important for now, but it will be essential later when generating URLs. You only have to keep in mind that each route name must be unique in the application.
+        </p>
+
+        <p>
+        Instead of defining routes in the controller classes, you can define them in a separate YAML, XML or PHP file. The main advantage is that they don't require any extra dependency. The main drawback is that you have to work with multiple files when checking the routing of some controller action. Voir la doc pour plus d'info
+        </p>
+
+        <p>
+        By default, routes match any HTTP verb (GET, POST, PUT, etc.) Use the methods option to restrict the verbs each route should respond to:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// src/Controller/BlogApiController.php
+namespace App\Controller;
+
+// ...
+
+class BlogApiController extends AbstractController
+{
+    #[Route('/api/posts/{id}', methods: ['GET', 'HEAD'])]
+    public function show(int $id): Response
+    {
+        // ... return a JSON response with the post
+    }
+
+    #[Route('/api/posts/{id}', methods: ['PUT'])]
+    public function edit(int $id): Response
+    {
+        // ... edit a post
+    }
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        Use the condition option if you need some route to match based on some arbitrary matching logic:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// src/Controller/DefaultController.php
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class DefaultController extends AbstractController
+{
+    #[Route(
+        '/contact',
+        name: 'contact',
+        condition: "context.getMethod() in ['GET', 'HEAD'] and request.headers.get('User-Agent') matches '/firefox/i'",
+        // expressions can also include config parameters:
+        // condition: "request.headers.get('User-Agent') matches '%app.allowed_browsers%'"
+    )]
+    public function contact(): Response
+    {
+        // ...
+    }
+
+    #[Route(
+        '/posts/{id}',
+        name: 'post_show',
+        // expressions can retrieve route parameter values using the "params" variable
+        condition: "params['id'] < 1000"
+    )]
+    public function showPost(int $id): Response
+    {
+        // ... return a JSON response with the post
+    }
+}
+            </code></pre>
+        </figure>
+
+        <p>
+            Plus d'info sur les paramètres <a href="https://symfony.com/doc/current/routing.html#matching-expressions">ici</a>.
+        </p>
+
+        <p>
+        First, the <code class="line_code">debug:router</code> command lists all your application routes in the same order in which Symfony evaluates them. Pass the name (or part of the name) of some route to this argument to print the route details. The other command is called router:match and it shows which route will match the given URL. It's useful to find out why some URL is not executing the controller action that you expect.
+        </p>
+
+        <p>
+        The previous examples defined routes where the URL never changes (e.g. /blog). However, it's common to define routes where some parts are variable. For example, the URL to display some blog post will probably include the title or slug (e.g. /blog/my-first-post or /blog/all-about-symfony).
+        </p>
+
+        <p>
+        In Symfony routes, variable parts are wrapped in { ... } and they must have a unique name. For example, the route to display the blog post contents is defined as /blog/{slug}:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// src/Controller/BlogController.php
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class BlogController extends AbstractController
+{
+    // ...
+
+    #[Route('/blog/{slug}', name: 'blog_show')]
+    public function show(string $slug): Response
+    {
+        // $slug will equal the dynamic part of the URL
+        // e.g. at /blog/yay-routing, then $slug='yay-routing'
+
+        // ...
+    }
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        Routes can define any number of parameters, but each of them can only be used once on each route (e.g. /blog/posts-about-{category}/page/{pageNumber}).
+        </p>
+
+        <p>
+            Plus de paramètres sur le routing <a href="https://symfony.com/doc/current/routing.html#parameters-validation">ici</a>.
+        </p>
+
+
+        <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/controller.html" target="_blank">Controller</a></h1>
+
+        <p>
+        A controller is a PHP function you create that reads information from the Request object and creates and returns a Response object. The response could be an HTML page, JSON, XML, a file download, a redirect, a 404 error or anything else. The controller runs whatever arbitrary logic your application needs to render the content of a page.
+        </p>
+
+        <p>
+        While a controller can be any PHP callable (function, method on an object, or a Closure), a controller is usually a method inside a controller class:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// src/Controller/LuckyController.php
+namespace App\Controller;
+
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class LuckyController
+{
+    #[Route('/lucky/number/{max}', name: 'app_lucky_number')]
+    public function number(int $max): Response
+    {
+        $number = random_int(0, $max);
+
+        return new Response(
+            '&lthtml&gt&ltbody&gtLucky number: '.$number.'&lt/body&gt&lt/html&gt'
+        );
+    }
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        The controller is the <code class="line_code">number()</code> method, which lives inside the controller class <code class="line_code">LuckyController</code>.
+        </p>
+
+        <p>
+        This controller is pretty straightforward (directe) :
+            <ul>
+                <li>line 2: Symfony takes advantage of PHP's namespace functionality to namespace the entire controller class.</li>
+                <li>line 4: Symfony again takes advantage of PHP's namespace functionality: the use keyword imports the <code class="line_code">Response</code> class, which the controller must return.</li>
+                <li>line 7: The class can technically be called anything, but it's suffixed with Controller by convention.</li>
+                <li>line 10: The action method is allowed to have a <code class="line_code">$max</code> argument thanks to the <code class="line_code">{max}</code> wildcard in the route.</li>
+                <li>line 14: The controller creates and returns a <code class="line_code">Response</code> object.</li>
+            </ul>
+        </p>
+
+        <p>
+        To aid development, Symfony comes with an optional base controller class called <code class="line_code">AbstractController</code>. It can be extended to gain access to helper methods. You now have access to methods like <code class="line_code">$this->render()</code> and many others that you'll learn about next.
+        </p>
+
+        <p>
+        If you want to redirect the user to another page, use the redirectToRoute() and redirect() methods:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
+
+// ...
+public function index(): RedirectResponse
+{
+    // redirects to the "homepage" route
+    return $this->redirectToRoute('homepage');
+
+    // redirectToRoute is a shortcut for:
+    // return new RedirectResponse($this->generateUrl('homepage'));
+
+    // does a permanent HTTP 301 redirect
+    return $this->redirectToRoute('homepage', [], 301);
+    // if you prefer, you can use PHP constants instead of hardcoded numbers
+    return $this->redirectToRoute('homepage', [], Response::HTTP_MOVED_PERMANENTLY);
+
+    // redirect to a route with parameters
+    return $this->redirectToRoute('app_lucky_number', ['max' => 10]);
+
+    // redirects to a route and maintains the original query string parameters
+    return $this->redirectToRoute('blog_show', $request->query->all());
+
+    // redirects to the current route (e.g. for Post/Redirect/Get pattern):
+    return $this->redirectToRoute($request->attributes->get('_route'));
+
+    // redirects externally
+    return $this->redirect('http://symfony.com/doc');
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        If you're serving HTML, you'll want to render a template. The <code class="line_code">render()</code> method renders a template and puts that content into a <code class="line_code">Response</code> object for you:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// renders templates/lucky/number.html.twig
+return $this->render('lucky/number.html.twig', ['number' => $number]);
+            </code></pre>
+        </figure>
+
+        <p>
+        Symfony comes packed with a lot of useful classes and functionalities, called <a href="https://symfony.com/doc/current/service_container.html">services</a>. These are used for rendering templates, sending emails, querying the database and any other "work" you can think of.
+        </p>
+
+        <p>
+        If you need a service in a controller, type-hint an argument with its class (or interface) name. Symfony will automatically pass you the service you need:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\Response;
+// ...
+
+#[Route('/lucky/number/{max}')]
+public function number(int $max, LoggerInterface $logger): Response
+{
+    $logger->info('We are logging!');
+    // ...
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        When things are not found, you should return a 404 response. To do this, throw a special type of exception:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+// ...
+public function index(): Response
+{
+    // retrieve the object from database
+    $product = ...;
+    if (!$product) {
+        throw $this->createNotFoundException('The product does not exist');
+
+        // the above is just a shortcut for:
+        // throw new NotFoundHttpException('The product does not exist');
+    }
+
+    return $this->render(...);
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        What if you need to read query parameters, grab a request header or get access to an uploaded file? That information is stored in Symfony's Request object. To access it in your controller, add it as an argument and type-hint it with the Request class:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+// ...
+
+public function index(Request $request, string $firstName, string $lastName): Response
+{
+    $page = $request->query->get('page', 1);
+
+    // ...
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        Symfony provides a session object that you can use to store information about the user between requests. Session is enabled by default, but will only be started if you read or write from it.
+        </p>
+
+        <p>
+        You can also store special messages, called "flash" messages, on the user's session. By design, flash messages are meant to be used exactly once: they vanish from the session automatically as soon as you retrieve them. This feature makes "flash" messages particularly great for storing user notifications.
+        </p>
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/controller.html#the-request-and-response-object" target="_blank">The Request and Response Object</a></h2>
+
+        <p>
+        As mentioned earlier, Symfony will pass the Request object to any controller argument that is type-hinted with the Request class:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+public function index(Request $request): Response
+{
+    $request->isXmlHttpRequest(); // is it an Ajax request?
+
+    $request->getPreferredLanguage(['en', 'fr']);
+
+    // retrieves GET and POST variables respectively
+    $request->query->get('page');
+    $request->request->get('page');
+
+    // retrieves SERVER variables
+    $request->server->get('HTTP_HOST');
+
+    // retrieves an instance of UploadedFile identified by foo
+    $request->files->get('foo');
+
+    // retrieves a COOKIE value
+    $request->cookies->get('PHPSESSID');
+
+    // retrieves an HTTP request header, with normalized, lowercase keys
+    $request->headers->get('host');
+    $request->headers->get('content-type');
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        The Request class has several public properties and methods that return any information you need about the request.
+        </p>
+
+        <p>
+        To return JSON from a controller, use the json() helper method. This returns a JsonResponse object that encodes the data automatically:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+use Symfony\Component\HttpFoundation\JsonResponse;
+// ...
+
+public function index(): JsonResponse
+{
+    // returns '{"username":"jane.doe"}' and sets the proper Content-Type header
+    return $this->json(['username' => 'jane.doe']);
+
+    // the shortcut defines three optional arguments
+    // return $this->json($data, $status = 200, $headers = [], $context = []);
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        If the serializer service is enabled in your application, it will be used to serialize the data to JSON. Otherwise, the json_encode function is used.
+        </p>
+
+        <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/templates.html" target="_blank">Creating and Using Templates</a></h1>
+
+        <p>
+        A template is the best way to organize and render HTML from inside your application, whether you need to render HTML from a controller or generate the contents of an email. Templates in Symfony are created with Twig: a flexible, fast, and secure template engine.
+        </p>
+
+        <p>
+        Before explaining in detail how to create and render templates, look at the following example for a quick overview of the whole process. First, you need to create a new file in the templates/ directory to store the template contents:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+{# templates/user/notifications.html.twig #}
+&lth1&gtHello {{ user_first_name }}!&lt/h1&gt
+&ltp&gtYou have {{ notifications|length }} new notifications.&lt/p&gt
+            </code></pre>
+        </figure>
+
+        <p>
+        Then, create a controller that renders this template and passes to it the needed variables:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// src/Controller/UserController.php
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+
+class UserController extends AbstractController
+{
+    // ...
+
+    public function notifications(): Response
+    {
+        // get the user information and notifications somehow
+        $userFirstName = '...';
+        $userNotifications = ['...', '...'];
+
+        // the template path is the relative file path from `templates/`
+        return $this->render('user/notifications.html.twig', [
+            // this array defines the variables passed to the template,
+            // where the key is the variable name and the value is the variable value
+            // (Twig recommends using snake_case variable names: 'foo_bar' instead of 'fooBar')
+            'user_first_name' => $userFirstName,
+            'notifications' => $userNotifications,
+        ]);
+    }
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        Symfony recommends the following for template names:
+            <ul>
+                <li>Use snake case for filenames and directories (e.g. blog_posts.html.twig, admin/default_theme/blog/index.html.twig, etc.);</li>
+                <li>Define two extensions for filenames (e.g. index.html.twig or blog_posts.xml.twig) being the first extension (html, xml, etc.) the final format that the template will generate.</li>
+            </ul>
+            Although templates usually generate HTML contents, they can generate any text-based format. That's why the two-extension convention simplifies the way templates are created and rendered for multiple formats.
+        </p>
+
+        <p>
+        Templates are stored by default in the <code class="line_code">templates/</code> directory. When a service or controller renders the <code class="line_code">product/index.html.twig template</code>, they are actually referring to the <code class="line_code">&ltyour-project&gt/templates/product/index.html.twig</code> file.
+        </p>
+
+        <p>
+            <a href="https://symfony.com/doc/current/templates.html">Voir la doc pour plus d'info sur twig</a>
+        </p>
+
+        <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/frontend.html" target="_blank">WebPack Encore -> Front : JS React CSS SCSS ... </a></h1>
+
+        <p>
+        Symfony ships with a pure-JavaScript library - called Webpack Encore - that makes it a joy to work with CSS and JavaScript. You can use it, use something else, or create static CSS and JS files in your public/ directory directly and include them in your templates.
+        </p>
+
+        <p>
+        Webpack Encore is a simpler way to integrate Webpack into your application. It wraps Webpack, giving you a clean & powerful API for bundling JavaScript modules, pre-processing CSS & JS and compiling and minifying assets. Encore gives you professional asset system that's a delight to use.
+        </p>
+
+        <p>
+        First, make sure you install Node.js. Optionally you can also install the Yarn package manager. In the next sections you will always see the commands for both npm and yarn, but you only need to run one of them.
+        </p>
+
+        <p>
+        the following instruction for symfony application <a href="https://symfony.com/doc/current/frontend/encore/installation.html">exist for non symfony app too</a>.
+        </p>
+
+        <p>
+        Run these commands to install both the PHP and JavaScript dependencies in your project:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+composer require symfony/webpack-encore-bundle
+
+# if yarn
+yarn install
+
+# if npm
+npm install
+            </code></pre>
+        </figure>
+
+        <p>
+        If you are using Symfony Flex, this will install and enable the WebpackEncoreBundle, create the assets/ directory, add a webpack.config.js file, and add node_modules/ to .gitignore. You can skip the rest of this article and go write your first JavaScript and CSS by reading Encore: Setting up your Project! 
+        </p>
+
+        <p>
+            Je pense que flex s'intalle automatiquement maintenant car en installant webpack Encore, les fichiers mentionné se créer automatiquement. Sans avoir installer flex auparavant. 
+        </p>
+
+        <p>
+        After installing Encore, your app already has a few files, organized into an <code class="line_code">assets/</code> directory:
+        <ul>
+            <li>assets/app.js</li>
+            <li>assets/bootstrap.js</li>
+            <li>assets/controllers.json</li>
+            <li>assets/styles/app.css</li>
+            <li>assets/controllers/hello_controller.js</li>
+        </ul>
+        </p>
+
+        <p>
+        With Encore, think of your <code class="line_code">app.js</code> file like a standalone JavaScript application: it will require all of the dependencies it needs (e.g. jQuery or React), including any CSS. Your <code class="line_code">app.js</code> file is already doing this with a JavaScript <code class="line_code">import</code> statement:
+        </p>
+
+
+        <figure class="block_code">
+                <pre><code>
+// assets/app.js
+// ...
+
+import './styles/app.css';
+            </code></pre>
+        </figure>
+
+        <p>
+        Encore's job (via Webpack) is simple: to read and follow all of the import statements and create one final <code class="line_code">app.js</code> (and <code class="line_code">app.css</code>) that contains everything your app needs. Encore can do a lot more: minify files, pre-process Sass/LESS, support React, Vue.js, etc.
+        </p>
+
+        <p>
+        The other files - bootstrap.js, controllers.json and hello_controller.js relate to a topic you'll learn about soon: Stimulus & Symfony UX.
+        </p>
+
+        
+
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/frontend/encore/simple-example.html#configuring-encore-webpack" target="_blank">WebPack Encore config</a></h2>
+
+
+        <p>
+        Everything in Encore is configured via a webpack.config.js file at the root of your project. It already holds the basic config you need :
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// webpack.config.js
+const Encore = require('@symfony/webpack-encore');
+
+Encore
+    // directory where compiled assets will be stored
+    .setOutputPath('public/build/')
+    // public path used by the web server to access the output path
+    .setPublicPath('/build')
+
+    .addEntry('app', './assets/app.js')
+
+    // uncomment this if you want use jQuery in the following example
+    .autoProvidejQuery()
+;
+
+// ...
+            </code></pre>
+        </figure>
+
+        <p>
+        The key part is <code class="line_code">addEntry()</code> this tells Encore to load the <code class="line_code">assets/app.js</code> file and follow all of the require() statements. It will then package everything together and - thanks to the first app argument - output final <code class="line_code">app.js</code> and <code class="line_code">app.css</code> files into the <code class="line_code">public/build</code> directory.
+        </p>
+
+        <p>
+        To build the assets, run the following if you use the Yarn package manager: <br>
+        Or 'npm run ...' :
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+#compil assets and automatically re-compile when files change
+yarn watch
+or
+npm run watch
+
+#or, run a dev-server that can  sometimes update your code without refreshing
+yarn dev-server
+
+# compil assets once
+yarn dev
+
+# on deploy, create a production build
+yarn build
+            </code></pre>
+        </figure>
+
+        <p>
+        All of these commands - e.g. dev or watch - are shortcuts that are defined in your package.json file. If you use the npm package manager, replace yarn with npm run.
+        </p>
+
+        <p>
+        Stop and restart encore each time you update your webpack.config.js file.
+        </p>
+
+        <p>
+        Congrats! You now have three new files:
+        <ul>
+            <li>public/build/app.js (holds all the JavaScript for your "app" entry)</li>
+            <li>public/build/app.css (holds all the CSS for your "app" entry)</li>
+            <li>public/build/runtime.js (a file that helps Webpack do its job)</li>
+        </ul>
+        </p>
+
+        <p>
+            Les fichiers JS qui compose app.js sont à placer dans assets/ directement. 
+            On les exporte comme habituellement, puis les importes dans app.js de la même manière. 
+        </p>
+
+        <p>
+            Instead of using plain CSS you can also use Sass, LESS or Stylus. To use Sass, rename the app.css file to app.scss and update the import statement:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// assets/app.js
+- import './styles/app.css';
++ import './styles/app.scss';
+            </code></pre>
+        </figure>
+
+        <p>
+        Then, tell Encore to enable the Sass preprocessor:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// webpack.config.js
+  Encore
+      // ...
+
++    .enableSassLoader()
+  ;
+            </code></pre>
+        </figure>
+
+        <p>
+        ;
+
+Because you just changed your webpack.config.js file, you'll need to restart Encore. When you do, you'll see an error! Encore supports many features. But, instead of forcing all of them on you, when you need a feature, Encore will tell you what you need to install. Run:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+
+yarn add sass-loader@^12.0.0 sass --dev
+
+yarn encore dev --watch
+
+or for npm :
+
+npm install sass-loader@^12.0.0 sass --save-dev
+
+npm run watch
+            </code></pre>
+        </figure>
+
+        <p>
+        Your app now supports Sass. 
+        </p>
+
+        <p>
+            details <a href="https://symfony.com/doc/current/frontend/encore/simple-example.html#using-sass-less-stylus">here</a>.
+        </p>
+
+        <p>
+        Using React? First add some dependencies with Yarn:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+# if you use the Yarn package manager
+yarn add react react-dom prop-types
+
+# if you use the npm package manager
+npm install react react-dom prop-types --save
+            </code></pre>
+        </figure>
+
+
+        <p>
+        Enable react in your webpack.config.js:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// webpack.config.js
+  // ...
+
+  Encore
+      // ...
++     .enableReactPreset()
+  ;
+            </code></pre>
+        </figure>
+
+        <p>
+        Then restart Encore. When you do, it will give you a command you can run to install any missing dependencies. After running that command and restarting Encore, you're done!
+        </p>
+
+        <p>
+        Your .js and .jsx files will now be transformed through babel-preset-react.
+        </p>
+
+
+        <p>
+        Babel is automatically configured for all .js and .jsx files via the babel-loader with sensible defaults (e.g. with the @babel/preset-env and @babel/preset-react if requested).
+        </p>
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/frontend/encore/server-data.html" target="_blank">Passing Information from Twig to JavaScript</a></h2>
+
+        <p>
+        In Symfony applications, you may find that you need to pass some dynamic data (e.g. user information) from Twig to your JavaScript code. One great way to pass dynamic configuration is by storing information in <code class="line_code">data</code> attributes and reading them later in JavaScript. For example:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+&ltdiv class="js-user-rating"
+    data-is-authenticated="{{ app.user ? 'true' : 'false' }}"
+    data-user="{{ app.user|serialize(format = 'json') }}"
+&gt
+    &lt!-- ... --&gt
+&lt/div&gt
+            </code></pre>
+        </figure>
+
+        <p>
+        Fetch this in JavaScript:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+document.addEventListener('DOMContentLoaded', function() {
+    var userRating = document.querySelector('.js-user-rating');
+    var isAuthenticated = userRating.dataset.isAuthenticated;
+    var user = JSON.parse(userRating.dataset.user);
+
+});
+            </code></pre>
+        </figure>
+
+        <p>
+        There is no size limit for the value of the data- attributes, so you can store any content. In Twig, use the html_attr escaping strategy to avoid messing with HTML attributes. For example, if your User object has some getProfileData() method that returns an array, you could do the following:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+&ltdiv data-user-profile="{{ app.user ? app.user.profileData|json_encode|e('html_attr') }}"&gt
+    &lt!-- ... --&gt
+&lt/div&gt
+            </code></pre>
+        </figure>
+
+        <p>
+            Doc de l'attribut HTML <code class="line_code">data-</code> <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/data-*">ici</a> : <br>
+            Les attributs universels  <code class="line_code">data-*</code> forment une classe d'attributs, appelés attributs de données (data attributes). Ils permettent d'échanger des données propriétaire entre le HTML et la représentation du DOM, qu'on peut manipuler avec des scripts.
+        </p>
+
+        <p>
+        De tels attributs sont disponibles via l'interface <code class="line_code">HTMLElement</code> de l'élément pour lequel l'attribut est utilisé. La propriété <code class="line_code">HTMLElement.dataset</code> permet d'accéder à l'attribut. Ici, l'astérisque (*) peut être remplacée par n'importe quel nom valide selon les règles appliquées aux noms XML et en respectant les contraintes suivantes : 
+        <ul>
+            <li>Le nom ne peut pas commencer par xml, quelle que soit la casse utilisée pour les différentes lettres</li>
+            <li>Le nom ne doit pas contenir de point-virgule (U+003A)</li>
+            <li>Le nom ne doit pas contenir de lettres majuscules de l'alphabet latin (A à Z).</li>
+        </ul>
+        </p>
+
+        <p>
+            Doc de <code class="line_code">HTMLElement.dataset</code> <a href="https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/dataset">ici</a> :
+        </p>
+
+        <p>
+        La propriété en lecture seule <code class="line_code">dataset</code>, rattachée à l'interface HTMLElement, fournit un accès en lecture/écriture aux attributs de données (data-*) de l'élément. Elle expose un objet DOMStringMap avec un élément pour chaque attribut data-*.
+        </p>
+
+        <p>
+        En HTML : Le nom de l'attribut commence par data-. Il ne peut contenir que des lettres, des nombres, des tirets (-), des points (.), des doubles-points (:), et des tirets bas (_). Les lettres majuscules ASCII (A à Z) sont converties en minuscules.
+        </p>
+
+        <p>
+        En JavaScript : Le nom de la propriété est le même que celui de l'attribut auquel on a retiré le préfixe data-, et on retire les tirets (-) en mettant les lettres qui suivent en majuscules afin d'obtenir une camelCase.
+        </p>
+
+        <p>
+        Il est possible d'accéder aux valeurs d'un attribut et de le modifier en utilisant le nom de la clé comme propriété de l'objet : <code class="line_code">element.dataset.nomcle</code>
+        </p>
+
+        <p>
+        Il est aussi possible de lire et d'écrire les attributs avec la notation entre crochets : <code class="line_code">element.dataset['nomcle']</code>
+        </p>
+
+        <p>
+        L'opérateur in permet de vérifier si un attribut donné existe : <code class="line_code">'nomcle' in element.dataset</code>
+        </p>
+
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/frontend/encore/server-data.html" target="_blank">API plateform</a></h2>
+
+        <p>
+        API Platform est un framework web utilisé pour générer des API REST et GraphQL4, se basant sur le patron de conception MVC. 
+        </p>
+
+        <p>
+        API Platform contient trois parties :
+            <ul>
+                <li>Un backend comprenant les routes de l’API, supportant plusieurs format d’entrées et sorties pour la négociation de contenu, telles que JSON-LD, GraphQL, Hydra, JSON:API, XML, CSV, YAML, ou autres.</li>
+                <li>Un backend contenant la documentation de l’API, générée automatiquement et basé sur Swagger, utilisant le format de specification OpenAPI (en).</li>
+                <li>Un back office d’administration, basé sur React Admin, ainsi qu’un outil pour générer des progressive web app en plusieurs langages, comme React, Vue.js, Next.js, React Native, ou autres.</li>
+            </ul> 
+        </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/quick_tour/flex_recipes.html" target="_blank">Symfony Flex</a></h2>
+
+        <p>
+        Unless you're building a pure API (more on that soon!), you'll probably want to render HTML. To do that, you'll use Twig. Twig is a flexible, fast, and secure template engine for PHP. It makes your templates more readable and concise; it also makes them more friendly for web designers.
+        </p>
+
+        <p>
+        Is Twig already installed in our application? Actually, not yet! And that's great! When you start a new Symfony project, it's small: only the most critical dependencies are included in your composer.json file. Unless you init you project with --full or -- webapp.
+        </p>
+
+        <p>
+        This makes Symfony different from any other PHP framework! Instead of starting with a bulky app with every possible feature you might ever need, a Symfony app is small, simple and fast. And you're in total control of what you add.
+        </p>
+        
+        <p>
+        First, twig is not the name of a Composer package: it's a Flex alias that points to symfony/twig-bundle. Flex resolves that alias for Composer.
+        </p>
+
+        <p>
+        And second, Flex installs a recipe for symfony/twig-bundle. What's a recipe? It's a way for a library to automatically configure itself by adding and modifying files. Thanks to recipes, adding features is seamless and automated: install a package and you're done!
+        </p>
+
+        <p>
+        What did this recipe do? In addition to automatically enabling the feature in config/bundles.php, it added 3 things:
+        <ul>
+            <li><code class="line_code">config/packages/twig.yaml</code> A configuration file that sets up Twig with sensible defaults. </li>
+            <li><code class="line_code">config/packages/test/twig.yaml</code> A configuration file that changes some Twig options when running tests. </li>
+            <li><code class="line_code">templates/</code> This is the directory where template files will live. The recipe also added a <code class="line_code">base.html.twig</code> layout file. </li>
+        </ul>
+        </p>
+
+        <p>
+            Flex semble s'installer de base avec l'initialisation de symfony. 
+        </p>
+
+
+
+        
+      
+
+
+
+
+
+
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/frontend/encore/reactjs.html" target="_blank">Enabling React.js</a></h2>
+
+        <p>
+        Using React? First add some dependencies with Yarn:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+# if you use the Yarn package manager
+yarn add react react-dom prop-types
+
+# if you use the npm package manager
+npm install react react-dom prop-types --save
+            </code></pre>
+        </figure>
+
+
+        <p>
+        Enable react in your webpack.config.js:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// webpack.config.js
+  // ...
+
+  Encore
+      // ...
++     .enableReactPreset()
+  ;
+            </code></pre>
+        </figure>
+
+        <p>
+        Then restart Encore. When you do, it will give you a command you can run to install any missing dependencies. After running that command and restarting Encore, you're done!
+        </p>
+
+        <p>
+        Your .js and .jsx files will now be transformed through babel-preset-react.
+        </p>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     	<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5489656-construisez-un-site-web-a-l-aide-du-framework-symfony-5/7171301-installez-symfony-5" target="_blank">Installer Symfony</a></h1>
 
         <p>
@@ -76,7 +1140,7 @@
 
         <figure class="block_code">
                 <pre><code>
-symfony new --full mon-super-projet
+symfony new --webapp mon-super-projet    anciennement --full déprécié 
             </code></pre>
         </figure>
 
