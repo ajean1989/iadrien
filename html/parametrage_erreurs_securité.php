@@ -1,36 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Paramétrage, erreurs et sécurité</title>
-    </head>
+<?php $title = 'Paramétrage, erreurs et sécurité'; ?>
+<?php ob_start(); ?>
 
-    <body>
-
-        <?php include("structure/header.php"); ?>
-
-        <div id="columns">
-
-        <div class="column_nav">
-
-            <?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-
-
-        <div class="column_front">
-
-        <section id="conteneur">
-
-            <div class="element_1">
-
-    <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237816-preparez-votre-environnement-de-travail#/id/r-4443610" target="_blank">
+    <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237816-preparez-votre-environnement-de-travail#/id/r-4443610" target="_blank">
     Apache, PHP, MySQL</a></h1>
 
     <p><strong>Apache</strong></p>
@@ -667,27 +638,8 @@ Notice: Undefined index: nom in C:\wamp\www\tests\bonjour.php on line 9
     </p>
 
 
+<?php 
+    $content = ob_get_clean(); 
 
-  </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-        </div>
-
-        <div class="column_reseaux">
-            <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="../js/navright.js"></script>
-    
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

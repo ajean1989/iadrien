@@ -1,38 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Javascript côté serveur</title>
-    </head>
+<?php $title = 'Javascript côté serveur'; ?>
+<?php ob_start(); ?>
 
-    <body>
-
-        <?php include("structure/header.php"); ?>
-
-        <div id="columns">
-
-        <div class="column_nav">
-
-            <?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-
-
-        <div class="column_front">
-
-
-        <section id="conteneur">
-
-            <div class="element_1">
-
-
-            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577651-comprenez-comment-fonctionne-lasynchrone-en-js#/id/r-5694610" target="_blank">L'asynchrone en JS</a></h1>
+            <h1 id=<?php echo $ini=0; $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577651-comprenez-comment-fonctionne-lasynchrone-en-js#/id/r-5694610" target="_blank">L'asynchrone en JS</a></h1>
 
             <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1919609-les-objets#/id/r-1925582" target="_blank">JavaScript est synchrone et mono-thread</a></h2>
 
@@ -1357,35 +1326,8 @@ selectedForm.addEventListener('submit', async (e) => {
                     </p>
 
 
+<?php        
+    $content = ob_get_clean(); 
 
-
-
-
-
-
-
-
-
-            </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-        </div>
-
-        <div class="column_reseaux">
-            <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="../js/navright.js"></script>
-
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

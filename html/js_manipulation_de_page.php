@@ -1,38 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Javascript - Manipuler les pages</title>
-    </head>
+<?php $title = 'Javascript - Manipuler les pages'; ?>
+<?php ob_start(); ?>
 
-    <body>
-
-    	<?php include("structure/header.php"); ?>
-
-    	<div id="columns">
-
-    	<div class="column_nav">
-
-    		<?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-
-
-        <div class="column_front">
-
-            <div id="conteneur">
-
-        <section>
-
-            <div class="element_1">
-
-            	<h1 id=<?php echo $ini ; $ini++ ;?>>Manipuler le code HTML, Le DOM.</h1>
+            	<h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>>Manipuler le code HTML, Le DOM.</h1>
 
             	<p>
 				Le DOM, qui signifie Document Object Model (c'est-à-dire "modèle d'objet de document", en français), est une interface de programmation qui est une représentation du HTML d'une page web et qui permet d'accéder aux éléments de cette page web et de les modifier avec le langage JavaScript.
@@ -2127,33 +2096,8 @@ alert(el.offsetHeight); // On affiche la hauteur complète de notre élément HT
 						Ce système de positionnement est clair ? Bon, nous pouvons alors revenir à notre propriété offsetParent ! Si elle existe, c'est parce que les propriétés offsetTop et offsetLeft contiennent le positionnement de votre élément par rapport à son précédent élément parent et non pas par rapport à la page ! Si nous voulons obtenir son positionnement par rapport à la page, il faudra alors aussi ajouter les valeurs de positionnement de son (ses) élément(s) parent(s).
 					</p>
 
+<?php  
+    $content = ob_get_clean(); 
 
-
-
-
-	
-		   </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-            </div>
-
-        </div>
-
-        <div class="column_reseaux">
-            <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-			
-					<script src="../js/navright.js"></script>
-
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

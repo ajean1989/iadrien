@@ -167,6 +167,10 @@ a
 	color: rgb(39, 40, 34);
 }
 
+p a{
+	color : #F29C6B;
+}
+
 a:hover{
 	font-style: none;
 	text-decoration: none;

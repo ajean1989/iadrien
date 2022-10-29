@@ -1,44 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Javascript</title>
-    </head>
-
-    <body>
-
-        <?php include("structure/header.php"); ?>
-
-        <div id="columns">
-
-        <div class="column_nav">
-
-            <?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-
-
-        <div class="column_front">
-
-
-
-        <section id="conteneur">
-
-            <div class="element_1">
-
-                
-
-
-
-
+<?php $title = 'Javascript - Objets'; ?>
+<?php ob_start(); ?>
             
-                <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1919609-les-objets#/id/r-1925582" target="_blank">Les objets (Obsolète - avec prototype)</a></h1>
+                <h1 id=<?php echo $ini=0; $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1919609-les-objets#/id/r-1925582" target="_blank">Les objets (Obsolète - avec prototype)</a></h1>
 
                 <p>
                     Nous avons vu que le JavaScript nous permettait de créer des objets littéraux et nous allons voir maintenant comment créer de véritables objets qui possèdent des propriétés et des méthodes tout comme les objets natifs.<br />
@@ -1775,30 +1738,8 @@ alert(myArray); // Affiche : 1,2,3,4,5
 
                     <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/2633501-les-closures#/id/r-2633598" target="_blank">Une autre utilité, les variables statiques</a></h2>
 
-                    
+<?php  
+    $content = ob_get_clean(); 
 
-
-
-            </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-        </div>
-
-        <div class="column_reseaux">
-            <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="../js/navright.js"></script>
-
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

@@ -1,38 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Modèle MVC</title>
-    </head>
+<?php $title = 'Modèle MVC'; ?>
+<?php ob_start(); ?>
 
-    <body>
-
-    	<?php include("structure/header.php"); ?>
-
-    	<div id="columns">
-
-    	<div class="column_nav">
-
-    		<?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-
-
-        <div class="column_front">
-
-            <div id="conteneur">
-
-            <section>
-
-            <div class="element_1">
-
-            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/7847610-decouvrez-du-code-professionnel#/id/r-7847589" target="blank">Faire un code professionnel</a></h1>
+            <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/7847610-decouvrez-du-code-professionnel#/id/r-7847589" target="blank">Faire un code professionnel</a></h1>
 
             <p>
                 <ul>
@@ -664,40 +633,8 @@ catch(Exception $e) {
             <a href="../images/MVC.png"><img src="../images/MVC.png" alt="résumer code MVC"/></a>
 
 
+<?php  
+    $content = ob_get_clean(); 
 
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-            </div>
-
-        </div>
-
-        <div class="column_reseaux">
-           <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-					
-					<script src="../js/navright.js"></script>
-
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

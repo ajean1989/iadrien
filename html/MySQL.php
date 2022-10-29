@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-		<script>hljs.initHighlightingOnLoad();</script>
-        <title>MySQL</title>
-    </head>
-
-    <body>
-
-    	<?php include("structure/header.php"); ?>
-
-    	<div id="columns">
-
-    	<div class="column_nav">
-
-    		<?php include("structure/nav.php"); ?>
-
-		</div>
-
-
-		<div class="column_front">
-       
-       	 	<section id="conteneur">
-
-    			<div class="element_1">
-
+<?php $title = 'MySQL'; ?>
+<?php ob_start(); ?>
     				
-    				<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913655-travaillez-avec-une-base-de-donnees#/id/r-2174664" target="_blank">PHP et MySQL</a></h1>
+    				<h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/913655-travaillez-avec-une-base-de-donnees#/id/r-2174664" target="_blank">PHP et MySQL</a></h1>
 
     				<p>
     					PHP fait l'intermédiaire entre vous et MySQL. On devra demander à PHP : "Va dire à MySQL de faire ceci".
@@ -1291,47 +1263,8 @@ aliment.id = 11;
 						</figure>
 
 
+<?php       
+    $content = ob_get_clean(); 
 
-
-
-
-
-
-
-
-
-
-
-
-
-						
-
-
-
-
-
-
-
-								</div>
-
-    		</section>
-
-    		<footer>
-
-    		</footer>
-
-		</div>
-
-    	<div class="column_reseaux">
-    		<div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-					
-			<script src="../js/navright.js"></script>
-
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-		<script>hljs.initHighlightingOnLoad();</script>
-        <title>Réseaux</title>
-    </head>
+<?php $title = 'Réseaux'; ?>
+<?php ob_start(); ?>
 
-    <body>
-
-        <?php include("structure/header.php"); ?>
-
-        <div id="columns">
-
-        <div class="column_nav">
-
-            <?php include("structure/nav.php"); ?>
-		
-		</div>
-
-
-
-
-		<div class="column_front">
-
-          
-       	 	<section id="conteneur">
-
-                <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1561696-les-reseaux-de-zero/1561759-les-reseaux-presentation-generale#/id/r-1561741">Les Réseaux</a></h1>
+                <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1561696-les-reseaux-de-zero/1561759-les-reseaux-presentation-generale#/id/r-1561741">Les Réseaux</a></h1>
 
                 <p>
                     On pourrait définir le mot « réseau » en une phrase : Un réseau est un groupe d'entités en communication et consiste en l'échange d'informations. <br/>
@@ -252,32 +224,8 @@
 
 
 
+<?php 
+    $content = ob_get_clean(); 
 
-
-
-
-
-
-
-
-            </section>
-
-            <footer>
-
-            </footer>
-
-            </div>
-
-        <div class="column_reseaux">
-            <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="../js/navright.js"></script>
-
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Builder</title>
-    </head>
+<?php $title = 'Builder'; ?>
+<?php ob_start(); ?>
 
-    <body>
-
-        <?php include("structure/header.php"); ?>
-
-        <div id="columns">
-
-        <div class="column_nav">
-
-            <?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-        <div class="column_front">
-
-
-        <section id="conteneur">
-
-            <div class="element_1">
-
-        <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://www.youtube.com/watch?v=P3aKRdUyr0s" target="_blank">
+        <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://www.youtube.com/watch?v=P3aKRdUyr0s" target="_blank">
         NPM</a></h1>
 
         <p>
@@ -234,96 +206,8 @@ npm init
         </p>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-           </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-
-        </div>
-
-        <div class="column_reseaux">
-            <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="../js/navright.js"></script>
-
-    </body>
-</html>
+<?php  
+    $content = ob_get_clean(); 
+
+    require_once('structure/layout.php');
+?>

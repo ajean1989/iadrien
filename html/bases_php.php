@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>PHP</title>
-    </head>
+<?php $title = 'PHP - Les bases'; ?>
+<?php ob_start(); ?>
 
-    <body>
-
-        <?php include("structure/header.php"); ?>
-
-        <div id="columns">
-
-        <div class="column_nav">
-
-            <?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-        <div class="column_front">
-
-
-        <section id="conteneur">
-
-            <div class="element_1">
-
-        <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237646-decouvrez-le-fonctionnement-dun-site-ecrit-en-php#/id/video_Player_1" target="_blank">
+        <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237646-decouvrez-le-fonctionnement-dun-site-ecrit-en-php#/id/video_Player_1" target="_blank">
         Fonctionnement d'un site en PHP</a></h1>
 
         <p>
@@ -1834,27 +1806,8 @@ if(in_array($ext,$allow_ext))
 
 
 
-           </div>
-    
-            </section>
+<?php 
+     $content = ob_get_clean(); 
 
-            <footer>
-
-            </footer>
-
-
-        </div>
-
-        <div class="column_reseaux">
-            <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="../js/navright.js"></script>
-
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

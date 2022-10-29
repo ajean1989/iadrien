@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Enrichissements</title>
-    </head>
+<?php $title = 'HTML - Enrichissements'; ?>
+<?php ob_start(); ?>
 
-    <body>
-
-    <?php include("structure/header.php"); ?>
-
-        <div id="columns">
-
-        <div class="column_nav">
-
-            <?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-        <div class="column_front">
-
-
-        <section id="conteneur">
-
-            <div class="element_1">
-
-        <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1606851-ajoutez-des-tableaux#/id/video_Player_1" target="_blank">
+        <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1606851-ajoutez-des-tableaux#/id/video_Player_1" target="_blank">
         Ajouter des tableaux</a></h1>
 
         <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1606851-ajoutez-des-tableaux#/id/r-1606764" target="_blank">
@@ -442,28 +414,8 @@ td, th   /* Mettre une bordure sur les td et th */
 
 
 
+<?php   
+    $content = ob_get_clean(); 
 
-
-           </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-        </div>
-
-        <div class="column_reseaux">
-            <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="../js/navright.js"></script>
-
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

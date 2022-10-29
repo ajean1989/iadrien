@@ -1,37 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>StructureHTML</title>
-    </head>
+<?php $title = 'Structure HTML'; ?>
+<?php ob_start(); ?>
 
-    <body>
-
-        <?php include("structure/header.php"); ?>
-
-        <div id="columns">
-
-        <div class="column_nav">
-
-            <?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-
-
-        <div class="column_front">
-
-
-        <section id="conteneur">
-
-            <div class="element_1">
-
-            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1605881-structurez-votre-page#/id/r-1605828" target="_blank">
+            <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1605881-structurez-votre-page#/id/r-1605828" target="_blank">
             Les balises structurantes de HTML5</a></h1>
 
                 <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1605881-structurez-votre-page#/id/r-1610835" target="blank"><code class="line_code">&ltheader&gt</code> : l'en tête</a></h2>
@@ -706,28 +676,8 @@ p
         <img src="../images/7367836783678.png" alt="grid-area"/>
 
 
+<?php 
+    $content = ob_get_clean(); 
 
-    </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-            </div>
-
-
-        <div class="column_reseaux">
-            
-            <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="../js/navright.js"></script>
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

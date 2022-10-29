@@ -1,39 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>React</title>
-    </head>
-
-    <body>
-
-    <?php include("structure/header.php"); ?>
-
-        <div id="columns">
-
-        <div class="column_nav">
-
-            <?php include("structure/nav.php"); ?>
-        
-        </div>
+<?php $title = 'React'; ?>
+<?php ob_start(); ?>
 
 
-        <div class="column_front">
-
-        <section id="conteneur">
-
-            <div class="element_1">
-
-
-
-
-
-
-                <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7008001-debutez-avec-react/7134597-apprehendez-la-logique-de-react#/id/r-7134457" target="_blank">Quelques infos</a></h1>
+                <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7008001-debutez-avec-react/7134597-apprehendez-la-logique-de-react#/id/r-7134457" target="_blank">Quelques infos</a></h1>
 
                 <p>
                 On appelle framework front-end tout ensemble de classes, fonctions et utilitaires qui nous facilite la création d'applications web. Ces outils sont compatibles avec tous les navigateurs.
@@ -71,7 +40,9 @@
                 React lui-même ne manipule pas directement le DOM du navigateur. À la place, React génère un DOM virtuel, distinct du DOM des navigateurs. Au moment venu, il réconcilie ce DOM virtuel avec le DOM du navigateur, en prenant soin de minimiser le nombre d'opérations nécessaires. C’est ce qui nous permet d’avoir de super performances, et d’utiliser React dans de nombreux contextes, et pas seulement au sein du navigateur même, typiquement les applications mobiles natives, etc.
                 </p>
 
-                <a href="https://fr.reactjs.org/docs/getting-started.html">La doc de react.</a>
+                <p>
+                <a href="https://fr.reactjs.org/docs/getting-started.html">La doc de react.</a>  
+                </p>
 
                 <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7008001-debutez-avec-react/7134597-apprehendez-la-logique-de-react#/id/r-7134457" target="_blank">Les composants</a></h1>
 
@@ -1629,93 +1600,8 @@ useEffect(() => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-        </div>
-
-        <div class="column_reseaux">
-            <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="../js/navright.js"></script>
-
-    </body>
-</html>
+<?php 
+    $content = ob_get_clean(); 
+
+    require_once('structure/layout.php');
+?>

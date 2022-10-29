@@ -1,36 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Architecture : DDD - UML - BDD</title>
-    </head>
 
-    <body>
+<?php $title = 'Architecture : DDD - UML - BDD'; ?>
+<?php ob_start(); ?>
 
-        <?php include("structure/header.php"); ?>
-
-        <div id="columns">
-
-        <div class="column_nav">
-
-            <?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-        <div class="column_front">
-
-
-        <section id="conteneur">
-
-            <div class="element_1">
-
-
-            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7415611-ecrivez-du-php-maintenable-avec-les-principes-solid-et-les-design-patterns/7419681-identifiez-les-mauvaises-pratiques-de-conception-avec-stupid#/id/r-7458662" target="_blank">
+            <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/7415611-ecrivez-du-php-maintenable-avec-les-principes-solid-et-les-design-patterns/7419681-identifiez-les-mauvaises-pratiques-de-conception-avec-stupid#/id/r-7458662" target="_blank">
             Les design pattern</a></h1>
 
             <p>
@@ -1213,6 +1185,15 @@ lieu (localisation_de_la_scene:Texte, code_postal:Numérique, longitude:Numériq
         <p>
             ...
         </p>
+
+        <?php 
+        
+        $content = ob_get_clean(); 
+
+        require_once('structure/layout.php');
+
+        ?>
+
 
 
 

@@ -1,38 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Protocoles</title>
-    </head>
+<?php $title = 'Protocoles'; ?>
+<?php ob_start(); ?>
 
-    <body>
-
-    	<?php include("structure/header.php"); ?>
-
-    	<div id="columns">
-
-    	<div class="column_nav">
-
-    		<?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-
-
-        <div class="column_front">
-
-            <div id="conteneur">
-
-            <section>
-
-            <div class="element_1">
-
-            <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/HTTP" target="blank">HTTP</a></h1>
+            <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/HTTP" target="blank">HTTP</a></h1>
 
             <p>
             Hypertext Transfer Protocol (HTTP) (ou protocole de transfert hypertexte en français) est un protocole de la couche application servant à transmettre des documents hypermédias, comme HTML. Il a été conçu pour la communication entre les navigateurs web et les serveurs web mais peut également être utilisé à d'autres fins. Il suit le modèle classique client-serveur : un client ouvre une connexion, effectue une requête et attend jusqu'à recevoir une réponse. Il s'agit aussi d'un protocole sans état, ce qui signifie que le serveur ne conserve aucune donnée (on parle d'état) entre deux requêtes.
@@ -537,76 +506,9 @@ Access-Control-Max-Age: <delta-en-secondes>
             <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/Content-Security-Policy" target="blank">Politique de sécurité de contenu</a></h2>
 
 
+<?php 
+    $content = ob_get_clean(); 
 
+    require_once('structure/layout.php');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-            </div>
-
-        </div>
-
-        <div class="column_reseaux">
-           <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-					
-					<script src="../js/navright.js"></script>
-
-    </body>
-</html>
+?>

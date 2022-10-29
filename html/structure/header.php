@@ -1,4 +1,3 @@
 <header>
-        <?php $ini=0;?>
-       	<h1><code>&lth1&gt Mes notes ! &lt/h1&gt</code></h1>
+       	<a href="/"><h1 id="header">IAdrien</h1></a>
 </header>

@@ -1,36 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Symfony</title>
-    </head>
+<?php $title = 'Symfony'; ?>
+<?php ob_start(); ?>
 
-    <body>
+            <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/page_creation.html" target="_blank">Ordre de création</a></h1>
 
-    	<?php include("structure/header.php"); ?>
-
-    	<div id="columns">
-
-    	<div class="column_nav">
-
-    		<?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-
-
-        <div class="column_front">
-
-            <div id="conteneur">
-
-        <section>
-
-            <div class="element_1">
+            <p>
+                <ol>
+                    <li>designer sa database</li>
+                    <li>Créer un router basique.</li>
+                    <li>Faire une mise en forme minimaliste.</li>
+                    <li>Créer la base de donnée (avec doctrine ORM -> migration).</li>
+                    <li>L'implémenter grâce à Doctrine ORM.</li>
+                    <li>Faire un systeme d'autentification/sécurité.</li>
+                    <li>Ajouter des fonctionnalités du site.</li>
+                </ol>
+            </p>
 
 
 
@@ -44,7 +27,7 @@
             <p>
             Creating a new page - whether it's an HTML page or a JSON endpoint - is a two-step process:
             <ul>
-                <li>Create a route: A route is the URL (e.g. /about) to your page and points to a controller; Create a route: In config/routes.yaml, the route defines the URL to your page (path) and what controller to call. You'll learn more about routing in its own section, including how to make variable URLs.</li>
+                <li>Create a route: A route is the URL (e.g. /about) to your page and points to a controller; Create a route: In <code class="line_code">config/routes.yaml</code>, the route defines the URL to your page (path) and what controller to call. You'll learn more about routing in its own section, including how to make variable URLs.</li>
                 <li>Create a controller: A controller is the PHP function you write that builds the page. You take the incoming request information and use it to create a Symfony Response object, which can hold HTML content, a JSON string or even a binary file like an image or PDF.<br>
                 Create a controller and a method: This is a function where you build the page and ultimately return a <code class="line_code">Response</code> object. You'll learn more about controllers in their own section, including how to return JSON responses;</li>
             </ul>
@@ -97,7 +80,7 @@ app_lucky_number:
         <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/routing.html" target="_blank">Routing</a></h1>
 
         <p>
-        When your application receives a request, it calls a controller action to generate the response. The routing configuration defines which action to run for each incoming URL. It also provides other useful features, like generating SEO-friendly URLs (e.g. /read/intro-to-symfony instead of index.php?article_id=57).
+        When your application receives a request, it calls a controller action to generate the response. The routing configuration defines which action to run for each incoming URL. It also provides other useful features, like generating SEO-friendly URLs (e.g. <code class="line_code">/read/intro-to-symfony</code> instead of <code class="line_code">index.php?article_id=57</code>).
         </p>
 
         <p>
@@ -2744,6 +2727,367 @@ if (0 !== count($violations)) {
             <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5489656-construisez-un-site-web-a-l-aide-du-framework-symfony-5/5517031-gerez-vos-donnees-avec-doctrine-orm#/id/video_Player_1" target="_blank">Gérez vos données avec Doctrine ORM</a></h1>
 
             <p>
+                Doc <a href="https://symfony.com/doc/current/doctrine.html">ici</a>.
+            </p>
+
+            <p>
+            First, install Doctrine support via the orm Symfony pack, as well as the MakerBundle, which will help generate some code:
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+composer require symfony/orm-pack
+composer require --dev symfony/maker-bundle
+                </code></pre>
+            </figure>
+
+            <p>
+            The database connection information is stored as an environment variable called <code class="line_code">DATABASE_URL</code>. For development, you can find and customize this inside <code class="line_code">.env</code> :
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+# .env (or override DATABASE_URL in .env.local to avoid committing your changes)
+
+# customize this line!
+DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7"
+
+# to use mariadb:
+DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=mariadb-10.5.8"
+
+# to use sqlite:
+# DATABASE_URL="sqlite:///%kernel.project_dir%/var/app.db"
+
+# to use postgresql:
+# DATABASE_URL="postgresql://db_user:db_password@127.0.0.1:5432/db_name?serverVersion=11&charset=utf8"
+
+# to use oracle:
+# DATABASE_URL="oci8://db_user:db_password@127.0.0.1:1521/db_name"
+                </code></pre>
+            </figure>
+
+            <p>
+            Now that your connection parameters are setup, Doctrine can create the db_name database for you:
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+php bin/console doctrine:database:create
+                </code></pre>
+            </figure>
+
+            <p>
+            There are more options in <code class="line_code">config/packages/doctrine.yaml</code> that you can configure.
+            </p>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/doctrine.html#creating-an-entity-class" target="_blank">Creating an Entity Class</a></h2>
+
+            <p>
+                On va à présent créer une classe qui corrsepond à une table de notre base de donnée. C'est une Entity Class. On peut siplifier sa création grâce à une commande qui nous posera des questions sur cette table. Cette commande est : <code class="line_code">make:entity</code>
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+$ php bin/console make:entity
+
+Class name of the entity to create or update:
+> Product
+
+New property name (press &ltreturn&gt to stop adding fields):
+> name
+
+Field type (enter ? to see all types) [string]:
+> string
+
+Field length [255]:
+> 255
+
+Can this field be null in the database (nullable) (yes/no) [no]:
+> no
+
+New property name (press &ltreturn&gt to stop adding fields):
+> price
+
+Field type (enter ? to see all types) [string]:
+> integer
+
+Can this field be null in the database (nullable) (yes/no) [no]:
+> no
+
+New property name (press &ltreturn&gt to stop adding fields):
+>
+(press enter again to finish)
+                </code></pre>
+            </figure>
+
+            <p>
+            Whoa! You now have a new <code class="line_code">src/Entity/Product.php</code> file:
+            </p>
+            
+            <figure class="block_code">
+                <pre><code>
+// src/Entity/Product.php
+namespace App\Entity;
+
+use App\Repository\ProductRepository;
+use Doctrine\ORM\Mapping as ORM;
+
+ #[ORM\Entity(repositoryClass: ProductRepository::class)]
+class Product
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private int $id;
+
+    #[ORM\Column(length: 255)]
+    private string $name;
+
+    #[ORM\Column]
+    private int $price;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    // ... getter and setter methods
+}
+                </code></pre>
+            </figure>
+
+            <p>
+            This class is called an "entity". And soon, you'll be able to save and query Product objects to a product table in your database. Each property in the Product entity can be mapped to a column in that table. This is usually done with attributes: the #[ORM\Column(...)] comments that you see above each property:
+            </p>
+
+            <img src="../images/mapping_single_entity.png"/>
+
+            <p>
+            The <code class="line_code">make:entity</code> command is a tool to make life easier. But this is your code: add/remove fields, add/remove methods or update configuration.
+            </p>
+
+            <div class="em">Attention : users se créé avec <code class="line_code">php bin/console make:user</code> et on répond oui pour l'introdroduire en DB via doctrine. Cela créera en plus tout ce qui est nécéssaire pour l'authentification (voir le chap sécurity/Authentication).</div>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/doctrine.html#migrations-creating-the-database-tables-schema" target="_blank">Migration</a></h2>
+
+            <p>
+                Migration permet de créer un DB complète à partir de nos Entity Class ou bien de la mettre à jour avec des nouvelles tables/nouveaux champs.
+            </p>
+
+            <p>
+            If you just defined this class, your database doesn't actually have the <code class="line_code">product</code> table yet. To add it, you can leverage the <code class="line_code">DoctrineMigrationsBundle</code>, which is already installed:
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+php bin/console make:migration
+                </code></pre>
+            </figure>
+
+            <p>
+            If everything worked, you should see something like this:
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+SUCCESS!
+
+Next: Review the new migration "migrations/Version20211116204726.php"
+Then: Run the migration with php bin/console doctrine:migrations:migrate
+                </code></pre>
+            </figure>
+
+            <p>
+            If you open this file, it contains the SQL needed to update your database! To run that SQL, execute your migrations:
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+php bin/console doctrine:migrations:migrate
+                </code></pre>
+            </figure>
+
+            <p>
+            This command executes all migration files that have not already been run against your database. You should run this command on production when you deploy to keep your production database up-to-date.
+            </p>
+
+            <p>
+            But what if you need to add a new field property to Product, like a <code class="line_code">description</code> ? You can edit the class to add the new property. But, you can also use <code class="line_code">make:entity again</code> :
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+ $ php bin/console make:entity
+
+Class name of the entity to create or update
+> Product
+
+New property name (press &ltreturn&gt to stop adding fields):
+> description
+
+Field type (enter ? to see all types) [string]:
+> text
+
+Can this field be null in the database (nullable) (yes/no) [no]:
+> no
+
+New property name (press &ltreturn&gt to stop adding fields):
+>
+(press enter again to finish)
+                </code></pre>
+            </figure>
+
+            <p>
+            This adds the new description property and <code class="line_code">getDescription()</code> and <code class="line_code">setDescription()</code> methods.
+            </p>
+
+            <p>
+            The new property is mapped, but it doesn't exist yet in the <code class="line_code">product</code> table. No problem! Generate a new migration:
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+php bin/console make:migration
+                </code></pre>
+            </figure>
+
+            <p>
+            The migration system is smart. It compares all of your entities with the current state of the database and generates the SQL needed to synchronize them ! And like before, execute your migrations:
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+php bin/console doctrine:migrations:migrate
+                </code></pre>
+            </figure>
+
+            <p>
+            This will only execute the one new migration file, because DoctrineMigrationsBundle knows that the first migration was already executed earlier. Behind the scenes, it manages a <code class="line_code">migration_versions</code> table to track this.
+            </p>
+
+            <p>
+            Each time you make a change to your schema, run these two commands to generate the migration and then execute it. Be sure to commit the migration files and execute them when you deploy.
+            </p>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database" target="_blank">Persisting Objects to the Database</a></h2>
+
+            <p>
+            It's time to save a <code class="line_code">Product</code> object to the database! Let's create a new controller to experiment:
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+php bin/console make:controller ProductController
+                </code></pre>
+            </figure>
+
+            <p>
+            Inside the controller, you can create a new <code class="line_code">Product</code> object, set data on it, and save it:
+            </p>
+
+            <figure class="block_code">
+                <pre><code>
+// src/Controller/ProductController.php
+namespace App\Controller;
+
+// ...
+use App\Entity\Product;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class ProductController extends AbstractController
+{
+    #[Route('/product', name: 'create_product')]
+13  public function createProduct(ManagerRegistry $doctrine): Response
+    {
+15      $entityManager = $doctrine->getManager();
+
+17      $product = new Product();
+        $product->setName('Keyboard');
+        $product->setPrice(1999);
+20      $product->setDescription('Ergonomic and stylish!');
+
+        // tell Doctrine you want to (eventually) save the Product (no queries yet)
+23      $entityManager->persist($product);
+
+        // actually executes the queries (i.e. the INSERT query)
+26      $entityManager->flush();
+
+        return new Response('Saved new product with id '.$product->getId());
+    }
+}
+                </code></pre>
+            </figure>
+
+            <p>
+                If you go on http://localhost:8000/product You'll see that you've just created your first row in the <code class="line_code">product</code> table. To prove it, you can query the database directly:
+            </p>
+
+            <p>
+                explications : 
+                <ul>
+                    <li>line 13 The <code class="line_code">ManagerRegistry $doctrine</code> argument tells Symfony to inject the Doctrine service into the controller method.</li>
+                    <li>line 15 The <code class="line_code">$doctrine->getManager()</code> method gets Doctrine's entity manager object, which is the most important object in Doctrine. It's responsible for saving objects to, and fetching objects from, the database.</li>
+                    <li>lines 17-20 In this section, you instantiate and work with the <code class="line_code">$product</code> object like any other normal PHP object.</li>
+                    <li>line 23 The <code class="line_code">persist($product)</code> call tells Doctrine to "manage" the <code class="line_code">$product</code> object. This does not cause a query to be made to the database.</li>
+                    <li>line 26 When the <code class="line_code">flush()</code> method is called, Doctrine looks through all of the objects that it's managing to see if they need to be persisted to the database. In this example, the <code class="line_code">$product</code> object's data doesn't exist in the database, so the entity manager executes an INSERT query, creating a new row in the product table.</li>
+                </ul>
+
+            </p>
+
+            <p>
+            Whether (Qu'il s'agisse) you're creating or updating objects, the workflow is always the same: Doctrine is smart enough to know if it should INSERT or UPDATE your entity.
+            </p>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/doctrine.html#validating-objects" target="_blank">Validating Objects</a></h2>
+
+            <p>
+            <a href="https://symfony.com/doc/current/validation.html">The Symfony validator</a> (Validation is a very common task in web applications. Data entered in forms needs to be validated. Data also needs to be validated before it is written into a database or passed to a web service.) reuses Doctrine metadata to perform some basic validation tasks:
+            </p>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/doctrine.html#fetching-objects-from-the-database" target="_blank">Fetching Objects from the Database</a></h2>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/doctrine.html#automatically-fetching-objects-paramconverter" target="_blank">Automatically Fetching Objects (ParamConverter)</a></h2>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/doctrine.html#updating-an-object" target="_blank">Updating an Object</a></h2>
+
+            <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/doctrine.html#deleting-an-object" target="_blank">Deleting an Object</a></h2>
+
+
+            <p>
+                -----------------------------------------------------------
+            </p>
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <p>
             Doctrine ORM implémente 2 patterns objets pour mapper un objet PHP à des éléments d'un système de persistance :
             <ul>
                 <li>le pattern <a href="https://martinfowler.com/eaaCatalog/dataMapper.html"><strong>"Data Mapper"</strong></a>. C'est une couche qui synchronise la donnée stockée en base avec les objets PHP. En d'autres termes :
@@ -2824,7 +3168,10 @@ class Article
                 </li>
                 <li>Les types définis dans les annotations Doctrine ne correspondent ni aux types en PHP ni à ceux de la base de données, mais sont mappés aux deux. En voici quelques-uns <a href="https://openclassrooms.com/fr/courses/5489656-construisez-un-site-web-a-l-aide-du-framework-symfony-5/5517031-gerez-vos-donnees-avec-doctrine-orm#/id/r-5730161">ici</a> et <a href="https://www.doctrine-project.org/projects/doctrine-dbal/en/2.6/reference/types.html#types">ici la doc</a></li>
             </ul>
-            Plus d'infos dans la doc <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/annotations-reference.html#annotations-reference">ici</a>.
+        </p>
+
+        <p>
+        Plus d'infos dans la doc <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/annotations-reference.html#annotations-reference">ici</a>.
         </p>
 
         <p>
@@ -2893,6 +3240,692 @@ DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name
             Doc <a href="https://symfony.com/doc/current/security.html">ici</a>.
         </p>
 
+        <p>
+        To get started, install the SecurityBundle:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+composer require symfony/security-bundle
+            </code></pre>
+        </figure>
+
+        <p>
+        If you have Symfony Flex installed, this also creates a security.yaml configuration file for you :
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+# config/packages/security.yaml
+security:
+    # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        users_in_memory: { memory: null }
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            lazy: true
+            provider: users_in_memory
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+            </code></pre>
+        </figure>
+
+        <p>
+        That's a lot of config! In the next sections, the three main elements are discussed:
+        <ul>
+            <li> <a href="https://symfony.com/doc/current/security.html#the-user">The User</a> (providers) : Any secured section of your application needs some concept of a user. The user provider loads users from any storage (e.g. the database) based on a "user identifier" (e.g. the user's email address); </li>
+            <li> <a href="https://symfony.com/doc/current/security.html#the-firewall">The Firewall</a> & <a href="https://symfony.com/doc/current/security.html#authenticating-users">Authenticating Users</a> (firewalls) : The firewall is the core of securing your application. Every request within the firewall is checked if it needs an authenticated user. The firewall also takes care of authenticating this user (e.g. using a login form); </li>
+            <li><a href="https://symfony.com/doc/current/security.html#access-control-authorization">Access Control (Authorization)</a> (access_control) : Using access control and the authorization checker, you control the required permissions to perform a specific action or visit a specific URL.</li>
+        </ul>
+        </p>
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/security.html#the-user" target="_blank">The User</a></h2>
+
+        <p>
+        Permissions in Symfony are always linked to a user object. If you need to secure (parts of) your application, you need to create a user class. This is a class that implements UserInterface. This is often a Doctrine entity, but you can also use a dedicated Security user class.
+        </p>
+
+        <p>
+        The easiest way to generate a user class is using the <code class="line_code">make:user</code> command from the <code class="line_code">MakerBundle</code> (cela créera une entity user) (Besides creating the entity, the <code class="line_code">make:user</code> command also adds config for a user provider in your security configuration) :
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+php bin/console make:user
+ The name of the security user class (e.g. User) [User]:
+ > User
+
+ Do you want to store user data in the database (via Doctrine)? (yes/no) [yes]:
+ > yes
+
+ Enter a property name that will be the unique "display" name for the user (e.g. email, username, uuid) [email]:
+ > email
+
+ Will this app need to hash/check user passwords? Choose No if passwords are not needed or will be checked/hashed by some other system (e.g. a single sign-on server).
+
+ Does this app need to hash/check user passwords? (yes/no) [yes]:
+ > yes
+
+ created: src/Entity/User.php
+ created: src/Repository/UserRepository.php
+ updated: src/Entity/User.php
+ updated: config/packages/security.yaml
+            </code></pre>
+        </figure>
+
+        <figure class="block_code">
+                <pre><code>
+// src/Entity/User.php
+namespace App\Entity;
+
+use App\Repository\UserRepository;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private $id;
+
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    private $email;
+
+    #[ORM\Column(type: 'json')]
+    private $roles = [];
+
+    #[ORM\Column(type: 'string')]
+    private $password;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * The public representation of the user (e.g. a username, an email address, etc.)
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+}
+            </code></pre>
+        </figure>
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/security.html#the-firewall" target="_blank">The Firewall</a></h2>
+
+        <p>
+        The firewalls section of config/packages/security.yaml is the most important section. A "firewall" is your authentication system: the firewall defines which parts of your application are secured and how your users will be able to authenticate (e.g. login form, API token, etc).
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+# config/packages/security.yaml
+security:
+    # ...
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            lazy: true
+            provider: users_in_memory
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+            </code></pre>
+        </figure>
+
+        <p>
+        Only one firewall is active on each request: Symfony uses the pattern key to find the first match (you can also match by host or other things).
+        </p>
+
+        <p>
+        The dev firewall is really a fake firewall: it makes sure that you don't accidentally block Symfony's dev tools - which live under URLs like /_profiler and /_wdt.
+        </p>
+
+        <p>
+        All real URLs are handled by the main firewall (no pattern key means it matches all URLs). A firewall can have many modes of authentication, in other words, it enables many ways to ask the question "Who are you?".
+        </p>
+
+        <p>
+        Often, the user is unknown (i.e. not logged in) when they first visit your website. If you visit your homepage right now, you will have access and you'll see that you're visiting a page behind the firewall in the toolbar:
+        </p>
+
+        <p>
+        Visiting a URL under a firewall doesn't necessarily require you to be authenticated (e.g. the login form has to be accessible or some parts of your application are public). You'll learn how to restrict access to URLs, controllers or anything else within your firewall in the access control section.
+        </p>
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/security.html#authenticating-users" target="_blank">Authenticating Users</a></h2>
+
+        <p>
+        During authentication, the system tries to find a matching user for the visitor of the webpage. Traditionally, this was done using a login form or a HTTP basic dialog in the browser. However, the SecurityBundle comes with many other authenticators:
+            <ul>
+                <li><a href="https://symfony.com/doc/current/security.html#form-login">Form Login</a></li>
+                <li><a href="https://symfony.com/doc/current/security.html#json-login">JSON Login</a> : Some applications provide an API that is secured using tokens. These applications may use an endpoint that provides these tokens based on a username (or email) and password. The JSON login authenticator helps you create this functionality.</li>
+                <li><a href="https://symfony.com/doc/current/security.html#http-basic">HTTP Basic</a>: HTTP Basic authentication is a standardized HTTP authentication framework. It asks credentials (username and password) using a dialog in the browser and the HTTP basic authenticator of Symfony will verify these credentials.</li>
+                <li><a href="https://symfony.com/doc/current/security.html#login-link">Login Link</a> : Login links are a passwordless authentication mechanism. The user will receive a short-lived link (e.g. via email) which will authenticate them to the website.</li>
+                <li><a href="https://symfony.com/doc/current/security.html#x-509-client-certificates">X.509 Client Certificates</a> : When using client certificates, your web server does all the authentication itself. The X.509 authenticator provided by Symfony extracts the email from the "distinguished name" (DN) of the client certificate. Then, it uses this email as user identifier in the user provider.</li>
+                <li><a href="https://symfony.com/doc/current/security.html#remote-users">Remote users</a> : Besides client certificate authentication, there are more web server modules that pre-authenticate a user (e.g. kerberos). The remote user authenticator provides a basic integration for these services.</li>
+                <li><a href="https://symfony.com/doc/current/security/custom_authenticator.html">Custom Authenticators</a></li>
+                <li><a href="https://github.com/hwi/HWIOAuthBundle">Via a third-party service such as Google, Facebook or Twitter (social login)</a></li>
+            </ul>
+        </p>
+
+        <p>
+            Ici on ne verra que le Form Login.
+        </p>
+
+        <p>
+        First, create a controller for the login form:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+php bin/console make:controller Login
+
+created: src/Controller/LoginController.php
+created: templates/login/index.html.twig
+            </code></pre>
+        </figure>
+
+        <figure class="block_code">
+                <pre><code>
+// src/Controller/LoginController.php
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class LoginController extends AbstractController
+{
+    #[Route('/login', name: 'app_login')]
+    public function index(): Response
+    {
+        return $this->render('login/index.html.twig', [
+            'controller_name' => 'LoginController',
+        ]);
+    }
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        Then, enable the form login authenticator using the form_login setting:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+# config/packages/security.yaml
+security:
+    # ...
+
+    firewalls:
+        main:
+            # ...
+            form_login:
+                # "app_login" is the name of the route created previously
+                login_path: app_login
+                check_path: app_login
+            </code></pre>
+        </figure>
+
+        <p>
+        Once enabled, the security system redirects unauthenticated visitors to the login_path when they try to access a secured place (this behavior can be customized using authentication entry points).
+        </p>
+
+        <p>
+        Edit the login controller to render the login form:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// ...
++ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+  class LoginController extends AbstractController
+  {
+      #[Route('/login', name: 'app_login')]
+-     public function index(): Response
++     public function index(AuthenticationUtils $authenticationUtils): Response
+      {
++         // get the login error if there is one
++         $error = $authenticationUtils->getLastAuthenticationError();
++
++         // last username entered by the user
++         $lastUsername = $authenticationUtils->getLastUsername();
++
+          return $this->render('login/index.html.twig', [
+-             'controller_name' => 'LoginController',
++             'last_username' => $lastUsername,
++             'error'         => $error,
+          ]);
+      }
+  }
+            </code></pre>
+        </figure>
+
+        <p>
+        Don't let this controller confuse you. Its job is only to render the form: the form_login authenticator will handle the form submission automatically. If the user submits an invalid email or password, that authenticator will store the error and redirect back to this controller, where we read the error (using <code class="line_code">AuthenticationUtils</code>) so that it can be displayed back to the user.
+        </p>
+
+        <p>
+        Finally, create or update the template:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+{# templates/login/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# ... #}
+
+{% block body %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form action="{{ path('app_login') }}" method="post">
+        <label for="username">Email:</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="_password"/>
+
+        {# If you want to control the URL the user is redirected to on success
+        <input type="hidden" name="_target_path" value="/account"/> #}
+
+        <button type="submit">login</button>
+    </form>
+{% endblock %}
+            </code></pre>
+        </figure>
+
+        <div class="em">The <code class="line_code">error</code> variable passed into the template is an instance of <a href="https://github.com/symfony/symfony/blob/6.1/src/Symfony/Component/Security/Core/Exception/AuthenticationException.php">AuthenticationException</a>. It may contain sensitive information about the authentication failure. Never use <code class="line_code">error.message</code>: use the <code class="line_code">messageKey</code> property instead, as shown in the example. This message is always safe to display.</div>
+
+        <p>
+        The form can look like anything, but it usually follows some conventions:
+            <ul>
+                <li>The <code class="line_code">&ltform&gt</code> element sends a POST request to the <code class="line_code">app_login</code> route, since that's what you configured as the <code class="line_code">check_path</code> under the <code class="line_code">form_login</code> key in <code class="line_code">security.yaml</code>;</li>
+                <li>The username (or whatever your user's "identifier" is, like an email) field has the name <code class="line_code">_username</code> and the password field has the name <code class="line_code">_password</code>.</li>
+            </ul>
+        </p>
+
+        And that's it! When you submit the form, the security system automatically reads the _username and _password POST parameter, loads the user via the user provider, checks the user's credentials and either authenticates the user or sends them back to the login form where the error can be displayed.
+
+        <p>
+        This login form is currently not protected against CSRF attacks. Read Security on how to protect your login form.
+        </p>
+
+        <p>
+        Login CSRF attacks can be prevented using the same technique of adding hidden CSRF tokens into the login forms. The Security component already provides CSRF protection, but you need to configure some options before using it.
+        </p>
+
+        <p>
+        First, you need to enable CSRF on the form login:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+# config/packages/security.yaml
+security:
+    # ...
+
+    firewalls:
+        secured_area:
+            # ...
+            form_login:
+                # ...
+                enable_csrf: true
+            </code></pre>
+        </figure>
+
+        <p>
+        Then, use the <code class="line_code">csrf_token()</code> function in the Twig template to generate a CSRF token and store it as a hidden field of the form. By default, the HTML field must be called <code class="line_code">_csrf_token</code> and the string used to generate the value must be <code class="line_code">authenticate</code> :
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+{# templates/login/index.html.twig #}
+
+{# ... #}
+&ltform action="{{ path('app_login') }}" method="post"&gt
+    {# ... the login fields #}
+
+    &ltinput type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"&gt
+
+    &ltbutton type="submit"&gtlogin&lt/button&gt
+&lt/form&gt
+            </code></pre>
+        </figure>
+
+        <p>
+        After this, you have protected your login form against CSRF attacks.
+        </p>
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/security.html#logging-out" target="_blank">Logging Out</a></h2>
+
+        <p>
+        To enable logging out, activate the <code class="line_code">logout</code> config parameter under your firewall:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+ # config/packages/security.yaml
+security:
+    # ...
+
+    firewalls:
+        main:
+            # ...
+            logout:
+                path: app_logout
+
+                # where to redirect after logout
+                # target: app_any_route
+            </code></pre>
+        </figure>
+
+        <p>
+        Next, you need to create a route for this URL (but not a controller):
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// src/Controller/SecurityController.php
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+
+class SecurityController extends AbstractController
+{
+    #[Route('/logout', name: 'app_logout', methods: ['GET'])]
+    public function logout()
+    {
+        // controller can be blank: it will never be called!
+        throw new \Exception('Don\'t forget to activate logout in security.yaml');
+    }
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        That's it! By sending a user to the <code class="line_code">app_logout</code> route (i.e. to <code class="line_code">/logout</code>) Symfony will un-authenticate the current user and redirect them.
+        </p>
+
+        <h2 id=<?php echo $ini ; $ini++ ;?>><a href="https://symfony.com/doc/current/security.html#access-control-authorization" target="_blank">Access Control (Authorization)</a></h2>
+
+        <p>
+        Users can now log in to your app using your login form. Great! Now, you need to learn how to deny access and work with the User object. This is called authorization, and its job is to decide if a user can access some resource (a URL, a model object, a method call, ...).
+        </p>
+
+        <p>
+            <ol>
+                <li>The user receives a specific role when logging in (e.g. <code class="line_code">ROLE_ADMIN</code>).</li>
+                <li>You add code so that a resource (e.g. URL, controller) requires a specific "attribute" (e.g. a role like <code class="line_code">ROLE_ADMIN</code>) in order to be accessed.</li>
+            </ol>
+        </p>
+
+        <p>
+        Roles : When a user logs in, Symfony calls the <code class="line_code">getRoles()</code> method on your <code class="line_code">User</code> object to determine which roles this user has. In the <code class="line_code">User</code> class that was generated earlier, the roles are an array that's stored in the database and every user is always given at least one role: <code class="line_code">ROLE_USER</code> : 
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+// src/Entity/User.php
+
+// ...
+class User
+{
+    #[ORM\Column(type: 'json')]
+    private $roles = [];
+
+    // ...
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+}
+            </code></pre>
+        </figure>
+
+        <p>
+        This is a nice default, but you can do whatever you want to determine which roles a user should have. Here are a few guidelines:
+        <ul>
+            <li>Every role must start with <code class="line_code">ROLE_ </code>(otherwise, things won't work as expected)</li>
+            <li>Other than the above rule, a role is just a string and you can invent what you need (e.g. <code class="line_code">ROLE_PRODUCT_ADMIN</code>).</li>
+        </ul>
+        </p>
+
+        <p>
+        You'll use these roles next to grant access to specific sections of your site.
+        </p>
+
+        <p>
+        Instead of giving many roles to each user, you can define role inheritance rules by creating a role hierarchy:
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+# config/packages/security.yaml
+security:
+    # ...
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+            </code></pre>
+        </figure>
+
+        <p>
+        Users with the <code class="line_code">ROLE_ADMIN</code> role will also have the <code class="line_code">ROLE_USER</code> role. Users with <code class="line_code">ROLE_SUPER_ADMIN</code>, will automatically have <code class="line_code">ROLE_ADMIN</code>, <code class="line_code">ROLE_ALLOWED_TO_SWITCH</code> and <code class="line_code">ROLE_USER</code> (inherited from <code class="line_code">ROLE_ADMIN</code>).
+        </p>
+
+        <p>
+        There are two ways to deny access to something:
+        <ol>
+            <li><a href="https://symfony.com/doc/current/security.html#security-authorization-access-control">access_control in security.yaml</a> allows you to protect URL patterns (e.g. /admin/*). Simpler, but less flexible;
+            <figure class="block_code">
+                <pre><code>
+# config/packages/security.yaml
+security:
+    # ...
+
+    access_control:
+        # matches /admin/users/*
+        - { path: '^/admin/users', roles: ROLE_SUPER_ADMIN }
+
+        # matches /admin/* except for anything matching the above rule
+        - { path: '^/admin', roles: ROLE_ADMIN }
+            </code></pre>
+        </figure>
+        </li>
+            <li><a href="https://symfony.com/doc/current/security.html#security-securing-controller">in your controller</a>(or other code).
+            <figure class="block_code">
+                <pre><code>
+// src/Controller/AdminController.php
+// ...
+
+public function adminDashboard(): Response
+{
+    $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+    // or add an optional message - seen by developers
+    $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+}
+            </code></pre>
+        </figure>
+        </li>
+        <li>In templates :
+        <figure class="block_code">
+                <pre><code>
+{% if is_granted('ROLE_ADMIN') %}
+    &lta href="..."&gtDelete&lt/a&gt
+{% endif %}
+            </code></pre>
+        </figure>
+        </li>
+        <li>More options to see ... </li>
+        </ol>
+        </p>
+
+        <p>
+        When a visitor isn't yet logged in to your website, they are treated as "unauthenticated" and don't have any roles. This will block them from visiting your pages if you defined an <code class="line_code">access_control</code> rule.
+        </p>
+
+        <p>
+        In the <code class="line_code">access_control</code> configuration, you can use the <code class="line_code">PUBLIC_ACCESS</code> security attribute to exclude some routes for unauthenticated access (e.g. the login page):
+        </p>
+
+        <figure class="block_code">
+                <pre><code>
+# config/packages/security.yaml
+security:
+
+    # ...
+    access_control:
+        # allow unauthenticated users to access the login form
+        - { path: ^/admin/login, roles: PUBLIC_ACCESS }
+
+        # but require authentication for all other admin routes
+        - { path: ^/admin, roles: ROLE_ADMIN }
+            </code></pre>
+        </figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5489656-construisez-un-site-web-a-l-aide-du-framework-symfony-5/5517036-qu-est-ce-qu-un-code-de-qualite#/id/video_Player_1" target="_blank">Produire un code de qualité</a></h1>
 
         <p>
@@ -2917,134 +3950,8 @@ DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name
 
 
 
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    	
-
-
-
-		   </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-            </div>
-
-        </div>
-
-        <div class="column_reseaux">
-           <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-					
-					<script src="../js/navright.js"></script>
-
-    </body>
-</html>
+<?php 
+    $content = ob_get_clean(); 
+
+    require_once('structure/layout.php');
+?>

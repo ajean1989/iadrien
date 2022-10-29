@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Javascript - Bases</title>
-    </head>
+<?php $title = 'Javascript - Les bases'; ?>
+<?php ob_start(); ?>
 
-    <body>
-
-   		<?php include("structure/header.php"); ?>
-
-    	<div id="columns">
-
-    	<div class="column_nav">
-
-    		<?php include("structure/nav.php"); ?>
-        
-        </div>
-
-
-        <div class="column_front">
-
-
-        <section id="conteneur">
-
-            <div class="element_1">
-
-    	<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1916901-premiers-pas-en-javascript#/id/r-1916870" target="_blank">Où placer le code dans la page</a></h1>
+    	<h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/1916901-premiers-pas-en-javascript#/id/r-1916870" target="_blank">Où placer le code dans la page</a></h1>
 
     	<p>
     		Les codes JavaScript sont insérés au moyen de l'élément <code class="line_code">&ltscript&gt</code>. Cet élément possède un attribut <code class="line_code">type</code> qui sert à indiquer le type de langage que l'on va utiliser. Dans notre cas, il s'agit de JavaScript, mais ça pourrait être autre chose, comme du VBScript.<br />
@@ -1986,32 +1958,8 @@ favDialog.addEventListener('close', function onClose() {
 		</figure>
 
 	
-		   </div>
-    
-            </section>
+<?php 
+	$content = ob_get_clean(); 
 
-            <footer>
-
-            </footer>
-
-            
-
-        </div>
-
-        <div class="column_reseaux">
-           <div id="navright">
-                reseaux
-            </div>
-
-        </div>
-
-    </div>
-					
-					<script src="../js/navright.js"></script>
-        </div>
-
-    </div>
-
-
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

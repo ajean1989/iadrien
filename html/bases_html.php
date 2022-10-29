@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-		<script>hljs.initHighlightingOnLoad();</script>
-        <title>HTML</title>
-    </head>
-
-    <body>
-
-    	<?php include("structure/header.php"); ?>
-
-    	<div id="columns">
-
-    	<div class="column_nav">
-
-    		<?php include("structure/nav.php"); ?>
-
-		</div>
-
-
-		<div class="column_front">
-          
-       	 	<section id="conteneur">
-
-    			<div class="element_1">
-
+<?php $title = 'HMTL'; ?>
+<?php ob_start(); ?>				
     				
-    				<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1604361-creez-votre-premiere-page-web-en-html#/id/r-6413154" target="_blank">Structure de base d'un site web HTML</a></h1>
+    				<h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1604361-creez-votre-premiere-page-web-en-html#/id/r-6413154" target="_blank">Structure de base d'un site web HTML</a></h1>
 
     				<figure class="block_code">
     					<pre><code class="html">
@@ -341,29 +313,8 @@
 				 			Il est nécessaire d'échapper les caractères '<' en '&amp;lt;' et '>' en '&amp;gt' afin de s'assurer que le code écrit entre les éléments ne soit pas interprété de façon involontaire.</li>
 						</ul>
 					</p>
+<?php 
+	$content = ob_get_clean(); 
 
-				</div>
-			
- 	
-    		</section>
-
-
-    		<footer>
-
-    		</footer>
-
-    		</div>
-
-    	<div class="column_reseaux">
-    		<div id="navright">
-                reseaux
-        	</div>
-
-        </div>
-
-    </div>
-					
-					<script src="../js/navright.js"></script>
-
-    </body>
-</html>
+    require_once('structure/layout.php');
+?>

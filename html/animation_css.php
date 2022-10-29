@@ -1,38 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>Animations CSS</title>
-    </head>
-
-    <body>
-
-    	<?php include("structure/header.php"); ?>
-
-    	<div id="columns">
-
-    	<div class="column_nav">
-
-    		<?php include("structure/nav.php"); ?>
-        
-        </div>
+<?php $title = 'HMTL'; ?>
+<?php ob_start(); ?>
 
 
-
-
-        <div class="column_front">
-
-            <div id="conteneur">
-
-        <section>
-
-            <div class="element_1">
-
-    	<h1 id=<?php echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5919246-creez-des-animations-css-modernes/6340913-creez-des-animations-simples-avec-les-transitions" target="_blank">Les transitions</a></h1>
+        <h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/5919246-creez-des-animations-css-modernes/6340913-creez-des-animations-simples-avec-les-transitions" target="_blank">Les transitions</a></h1>
 
         <p>
         Pour créer une transition, vous aurez besoin de plusieurs informations :
@@ -204,30 +174,10 @@ transition: transform 1000ms ease-in-out;
         En d’autres termes, il ne faut animer que des propriétés qui font partie de l’étape composition. Les plus adaptées sont donc <code class="line_code">ransform</code> et <code class="line_code">opacity</code> par exemple.
         </p>
 
+        <?php 
+        
+        $content = ob_get_clean(); 
 
+        require_once('structure/layout.php');
 
-		   </div>
-    
-            </section>
-
-            <footer>
-
-            </footer>
-
-            </div>
-
-        </div>
-
-        <div class="column_reseaux">
-           <div id="navright">
-                Menu
-            </div>
-
-        </div>
-
-    </div>
-					
-					<script src="../js/navright.js"></script>
-
-    </body>
-</html>
+        ?>
