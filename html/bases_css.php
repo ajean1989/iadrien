@@ -1,8 +1,6 @@
 <?php $title = 'CSS - Les bases'; ?>
 <?php ob_start(); ?>
 
-			Architecture : DDD - UML - BDD
-
     	<h1 id=<?php $ini=0; echo $ini ; $ini++ ;?>><a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1605060-mettez-en-place-le-css#/id/video_Player_1" target="_blank">Infos générales</a></h1>
 
     	<p>

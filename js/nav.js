@@ -18,7 +18,7 @@ function devWebFold(){
     }
     else{
         for(let list of listDevWeb){
-            list.style.display = 'contents';
+            list.style.display = 'block';
         }
     }
 }
@@ -50,7 +50,7 @@ function devIaFold(){
     }
     else{
         for(let list of listDevIa){
-            list.style.display = 'contents';
+            list.style.display = 'block';
         }
     }
 }

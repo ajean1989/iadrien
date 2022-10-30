@@ -7,13 +7,10 @@
 				</p>
 
 				<p>
-					Ce site s'est construit au fil de mes connaissances et a pour objectif initial de mettre en application mes connaissances acquises en développement web et de centraliser mes résumers de cours, principalement tirés d'OpenClassroom et des différentes documentations disponibles.<br/>
-					Il n'a pas vocation à être utilisé comme support de formation car il n'est pas à nécéssairement tenu à jour et n'a pas fait l'objet de relecture particulière.
+					Ce site s'est construit au fil de mes connaissances et a pour objectif initial de mettre en application mes connaissances acquises en développement web et de centraliser mes résumés de cours, principalement tirés d'OpenClassroom et des différentes documentations disponibles.<br/>
+					Il n'a pas vocation à être utilisé comme support de formation car il n'est pas nécéssairement tenu à jour et n'a pas fait l'objet de relecture particulière.
 				</p>
 
-				<p>
-
-				</p>
 
 <?php 
     $content = ob_get_clean(); 

@@ -37,7 +37,9 @@
 
 
     		<footer>
-
+				<p>
+				Adrien Jacquenet - ad.jacquenet@gmail.com - Le site n'utilise pas de cookies. 
+				</p>	
     		</footer>
 
     	</div>
@@ -49,11 +51,9 @@
 
         </div>
 
-    </div>
-					
-					<script src="../js/navright.js"></script>
-                    <script src="../js/nav.js"></script>
-
-
+    </div>	
+		<script src="../js/navright.js"></script>
+        <script src="../js/nav.js"></script>
+		
     </body>
 </html>
