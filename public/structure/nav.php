@@ -29,6 +29,9 @@
         <li class="dev_web"><a href="architecture.php">Architecture : DDD - SGBD</a></li>
         <li class="dev_web"><a href="firefox.php">Firefox - Extensions - Outils</a></li>
         <li id="list_dev_ia">▶ Notes IA</li>
+        <li class="dev_ia"><a href="ia.php">Introduction à l'IA</a></li>
+        <li class="dev_ia"><a href="bdd.php">Bases de données</a></li>
         <li class="dev_ia"><a href="python.php">Python</a></li>
+        <li class="dev_ia"><a href="azure.php">Microsoft Azure</a></li>
     </ul>
 </nav>

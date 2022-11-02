@@ -2,9 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/highlightjs/styles/a11y-dark.css" />
-        <script src="../js/highlight.pack.js"></script>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/highlightjs/styles/a11y-dark.css" />
+        <script src="js/highlight.pack.js"></script>
 		<script>hljs.initHighlightingOnLoad();</script>
         <title><?=$title?></title>
     </head>
@@ -52,8 +52,8 @@
         </div>
 
     </div>	
-		<script src="../js/navright.js"></script>
-        <script src="../js/nav.js"></script>
+		<script src="js/navright.js"></script>
+        <script src="js/nav.js"></script>
 		
     </body>
 </html>
