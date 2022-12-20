@@ -53,7 +53,7 @@
 
     </div>	
 		<script src="js/navright.js"></script>
-        <script src="js/nav.js"></script>
+        <!--<script src="js/nav.js"></script>-->
 		
     </body>
 </html>

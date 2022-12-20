@@ -6,11 +6,14 @@ var nb=document.querySelectorAll("section h1, h2, h3, h4, h5");  		//nombre de t
 
 
 for(var i=0; i<nb.length; i++){
-		if(document.getElementById(i).firstChild.nodeName=='#text'){   
-			titres[i]=document.getElementById(i);  						// dans <h1>, affiché avec innerHTML
-		}else{
-			titres[i]=document.getElementById(i).firstElementChild;  	//dans <a>, affiché avec innerHTML
+		try{
+			if(document.getElementById(i).firstChild.nodeName=='#text'){   
+				titres[i]=document.getElementById(i);  						// dans <h1>, affiché avec innerHTML
+			}else{
+				titres[i]=document.getElementById(i).firstElementChild;  	//dans <a>, affiché avec innerHTML
+			}
 		}
+		catch{}
 			
 }
 

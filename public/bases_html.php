@@ -313,6 +313,28 @@
 				 			Il est nécessaire d'échapper les caractères '<' en '&amp;lt;' et '>' en '&amp;gt' afin de s'assurer que le code écrit entre les éléments ne soit pas interprété de façon involontaire.</li>
 						</ul>
 					</p>
+
+					<p>
+						Mise en forme avec <code class="line_code">&ltdetails&gt</code> (<code class="line_code">&ltdetails open&gt</code> pour ouvrir par défaut) <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/details">(doc)</a>:
+					</p>
+
+					<p>
+					<figure class="block_code">
+    					<pre><code>
+&ltdetails open&gt
+  &ltsummary&gtEpcot Center&lt/summary&gt
+  &ltp&gtEpcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.&lt/p&gt
+&lt/details&gt
+						</code></pre>
+					</figure>
+					</p>
+
+					<p>
+					<details open>
+  						<summary>Epcot Center</summary>
+  						<p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>
+					</details> 
+					</p>
 <?php 
 	$content = ob_get_clean(); 
 

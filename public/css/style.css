@@ -24,6 +24,9 @@
 }
 
 
+
+
+
 /* Corps */
 
 body{
@@ -159,12 +162,14 @@ p{
 	text-align: justify;
 }
 
+/*
 p + ul{
 	margin-left: 100px;
 	margin-right: 0px;
 	text-align: justify;
 
 }
+*/
 
 
 img{
@@ -188,6 +193,10 @@ nav{
 	top: 0px;
 }
 
+.nav_summary{
+	font-weight: bold;
+}
+
 #nav{
 	padding-left : 2px;
 }
@@ -201,7 +210,18 @@ nav{
 
 .dev_web{
 	padding-top : 5px;
+	list-style-type : none;
 }
+
+.dev_ia{
+	padding-top : 5px;
+	list-style-type : none;
+}
+
+.dev_ia a{
+	text-decoration: none;
+}
+
 
 
 /* Nav right */
@@ -296,3 +316,39 @@ nav{
 
 
 
+/* Pour les pages Notion */
+
+.page-body p{
+	margin-left: 0px;
+	margin-right: 0px;
+
+}
+
+.page-body h1{
+	margin-left : 0px;
+	text-decoration: none;
+}
+.page-body h2{
+	margin-left : 0px;
+	text-decoration: none;
+}
+.page-body h3{
+	margin-left : 0px;
+	text-decoration: none;
+}
+.page-body h4{
+	margin-left : 0px;
+	text-decoration: none;
+}
+
+.page-title{
+	text-decoration : none;
+}
+
+ul + p{
+	margin-bottom : 2em;
+}
+
+.code, code{
+	background: rgb(43, 43, 43);
+}

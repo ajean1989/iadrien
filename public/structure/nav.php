@@ -1,6 +1,7 @@
 <nav>
     <ul id="nav">
-        <li id="list_dev_web">▶ Notes Dev Web</li>
+        <details open>
+            <summary class="nav_summary">Notes Dev Web</summary>
         <li class="dev_web"><a href="bases_html.php">HTML - Bases</a></li>
         <li class="dev_web"><a href="bases_css.php">CSS - Bases</a></li>
         <li class="dev_web"><a href="animation_css.php">CSS - Animations</a></li>
@@ -28,10 +29,16 @@
         <li class="dev_web"><a href="SOLIDPattern.php">SOLID - Design Pattern</a></li>
         <li class="dev_web"><a href="architecture.php">Architecture : DDD - SGBD</a></li>
         <li class="dev_web"><a href="firefox.php">Firefox - Extensions - Outils</a></li>
-        <li id="list_dev_ia">▶ Notes IA</li>
-        <li class="dev_ia"><a href="ia.php">Introduction à l'IA</a></li>
-        <li class="dev_ia"><a href="bdd.php">Bases de données</a></li>
-        <li class="dev_ia"><a href="python.php">Python</a></li>
+        </details>
+        <details open>
+            <summary class="nav_summary">Notes IA</summary>
         <li class="dev_ia"><a href="azure.php">Microsoft Azure</a></li>
+        <li class="dev_ia"><a href="Story 3 - Introduction IA.php">Introduction à l'IA</a></li>
+        <li class="dev_ia"><a href="python.php">Python OC</a></li>
+        <li class="dev_ia"><a href="Story 4-9 python.php">Python Simplon</a></li>
+        <li class="dev_ia"><a href="Story 2 - Introduction base de données.php">Introduction aux bases de données</a></li>
+        <li class="dev_ia"><a href="Story 10-12 bdd.php">Bases de données</a></li>
+        
+        </details>
     </ul>
 </nav>
