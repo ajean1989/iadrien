@@ -12,3 +12,7 @@ Le repository iadrien succède au repository notes qui est l'ancienne version du
 Il existe cependant deux remotes : 
 - origin vers notes
 - iadrien vers iadrien
+
+# Branches
+- Une branche Master à push sur le serveur
+- Une branche Dev
