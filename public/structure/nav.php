@@ -31,13 +31,7 @@
         <li class="dev_web"><a href="firefox.php">Firefox - Extensions - Outils</a></li>
         </details>
         <details open>
-            <summary class="nav_summary">Notes IA</summary>
-        <li class="dev_ia"><a href="azure.php">Microsoft Azure</a></li>
-        <li class="dev_ia"><a href="Story 3 - Introduction IA.php">Introduction à l'IA</a></li>
-        <li class="dev_ia"><a href="python.php">Python OC</a></li>
-        <li class="dev_ia"><a href="Story 4-9 python.php">Python Simplon</a></li>
-        <li class="dev_ia"><a href="Story 2 - Introduction base de données.php">Introduction aux bases de données</a></li>
-        <li class="dev_ia"><a href="Story 10-12 bdd.php">Bases de données</a></li>
+            <summary class="nav_summary">Notes IA</summary>	<li class="dev_ia"><a href="FormationIA.html">Formation IA</a></li>
         
         </details>
     </ul>
